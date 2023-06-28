@@ -27,7 +27,25 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
     <div class="exampleWrapper">
       <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
       <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-      <auro-tabs>Hello World</auro-tabs>
+      <auro-tabgroup class="compact-default">
+        <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+          Baggage Info
+        </auro-tab>
+        <auro-tabpanel slot="panel">
+          <span>Tab 1 Content</span>
+        </auro-tabpanel>
+        <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+          Help
+        </auro-tab>
+        <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+        <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+          More
+        </auro-tab>
+        <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+        <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+          No Panel
+        </auro-tab>
+      </auro-tabgroup>
       <!-- AURO-GENERATED-CONTENT:END -->
     </div>
 <auro-accordion lowProfile justifyRight>
@@ -36,7 +54,25 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -49,7 +85,25 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -58,7 +112,25 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -71,7 +143,25 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -80,7 +170,25 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -93,7 +201,25 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -102,7 +228,25 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -115,7 +259,25 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -124,7 +286,25 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -137,7 +317,25 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -146,7 +344,25 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
