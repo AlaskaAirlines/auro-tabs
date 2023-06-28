@@ -1,0 +1,7 @@
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
+
+:host {
+  display: block;
+  width: 100%;
+}
