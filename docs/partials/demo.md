@@ -16,6 +16,12 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 
 ## Example(s)
 
+## Default
+
+`auro-tabpanel` needs to be defined directly after `auro-tab` so that it can be paired.
+If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel empty.
+Example below:
+
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -29,18 +35,53 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 
 </auro-accordion>
 
+## States
+
+There are five states which `auro-tabs` supported:
+- default
+- hover
+- focus
+- selected
+- disabled
+
+Try hover & focus state by forcing the `<a>` element state inside auro-tab with css styles console.
+
+Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
+Although, `selected` is automatically added on tab clicked.
+
+## Accessibility
+
+### Tab Role
+
+Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as tablist, tab, or tabpanel. Except for auro-tab which is an extension of `auro-hyperlink`. If `href` property is defined, then the `auro-tab` role is not set.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/role.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Recommended Use and Version Control
 
 There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name)` method and pass in a unique name.
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name, type)` method and pass in a unique name.
+
+`type` can be 'group(default) | tab | panel'
 
 ```js
 import './node_modules/@alaskaairux/auro-tabgroup';
 registerComponent('custom-tabgroup');
 ```
 
-This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabs` element.
+This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabgroup` element.
 
 <div class="exampleWrapper">
   <custom-tabgroup class="compact-default">

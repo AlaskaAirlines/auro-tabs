@@ -22,10 +22,6 @@ The following sections are editable by making changes to the following files:
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
 `<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis in tellus nec pellentesque. Integer bibendum ligula sit amet vehicula gravida. Maecenas accumsan, ligula vitae molestie iaculis, tellus mi laoreet ex [install instructions](https://auro.alaskaair.com/components/auro/button/install), ac malesuada velit dolor vel mi. Cras et rutrum urna. Sed mattis mi eu tortor ullamcorper, egestas bibendum mauris cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra eros eget neque commodo vulputate. In tempus eu velit at dictum.
-
-Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./../docs/partials/readmeAddlInfo.md -->
@@ -104,6 +100,10 @@ import "@aurodesignsystem/auro-tabs";
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -167,6 +167,10 @@ The `<auro-tabs>` element should be used in situations where users may:
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>

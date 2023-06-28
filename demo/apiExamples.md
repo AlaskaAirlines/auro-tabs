@@ -42,6 +42,10 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
           More
         </auro-tab>
         <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+        <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+          Disabled
+        </auro-tab>
+        <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
         <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
           No Panel
         </auro-tab>
@@ -69,6 +73,10 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -100,6 +108,10 @@ Explanation and use description.
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
@@ -127,6 +139,10 @@ Explanation and use description.
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -158,6 +174,10 @@ Explanation and use description.
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
@@ -185,6 +205,10 @@ Explanation and use description.
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -216,6 +240,10 @@ Explanation and use description.
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
@@ -243,6 +271,10 @@ Explanation and use description.
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -274,6 +306,10 @@ Explanation and use description.
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
@@ -301,6 +337,10 @@ Explanation and use description.
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -332,6 +372,10 @@ Explanation and use description.
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
@@ -359,6 +403,10 @@ Explanation and use description.
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
