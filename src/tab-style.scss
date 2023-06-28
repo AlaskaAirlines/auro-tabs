@@ -1,0 +1,15 @@
+:host {
+  height: 24px;
+
+  a {
+    padding: 0 var(--auro-size-300);
+    padding-bottom: var(--auro-size-50);
+    color: var(--auro-color-ui-default-on-light);
+    cursor: pointer;
+    font-family: var(--auro-asset-font-circular-family-name);
+    font-weight: 450;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
