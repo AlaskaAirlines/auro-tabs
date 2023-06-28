@@ -13,3 +13,29 @@
     white-space: nowrap;
   }
 }
+
+:host([selected]) {
+  a {
+    color: var(--auro-color-ui-active-on-light);
+  }
+}
+
+:host([disabled]) {
+  pointer-events: none;
+
+  a {
+    border-bottom: solid 1px var(--auro-color-border-disabled-on-light);
+    color: var(--auro-color-text-disabled-on-light);
+  }
+}
+
+:host(:hover) {
+  a {
+    border-bottom: solid 1px var(--auro-color-border-active-on-light);
+  }
+}
+
+:host(:focus-within) {
+  border-radius: calc(var(--auro-size-50) + var(--auro-size-25));
+  outline: solid 1px var(--auro-color-border-active-on-light);
+}
