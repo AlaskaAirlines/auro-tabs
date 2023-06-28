@@ -26,42 +26,30 @@ The `<auro-tabs>` element should be used in situations where users may:
 * ...
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Additional Information
-
-> Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam fermentum libero ipsum, ac tempor sapien blandit in. Nam tincidunt non felis molestie varius.
-
-|convallis|tristique|nisl dignissim|eleifend|
-|---|---|---|---|
-|√|√|||
-|||√|√|
-
-Aenean at blandit lorem. Fusce imperdiet mi nec gravida maximus. Quisque nisl libero, condimentum in nisi a, imperdiet lacinia arcu.
-
-```javascript
-toggleDialog = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = 'hidden';
-  dialog.removeAttribute("open");
-  dialog.setAttribute("open", true);
-}
-
-toggleDialogClose = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = '';
-  dialog.removeAttribute("open");
-}
-```
-
 ## Example(s)
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabs>Hello World</auro-tabs>
+  <auro-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -70,11 +58,28 @@ toggleDialogClose = (elName) => {
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
-Having a closing statement about your example helps to really complete the thought with your reader.
 
 ## Recommended Use and Version Control
 
@@ -83,19 +88,55 @@ There are two important parts of every Auro component. The <a href="https://deve
 To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name)` method and pass in a unique name.
 
 ```js
-import './node_modules/@alaskaairux/auro-tabs';
-registerComponent('custom-tabs');
+import './node_modules/@alaskaairux/auro-tabgroup';
+registerComponent('custom-tabgroup');
 ```
 
 This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabs` element.
 
 <div class="exampleWrapper">
-  <custom-header display="display">Salutations World!</custom-header>
+  <custom-tabgroup class="compact-default">
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </custom-tabgroup>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
-  ```html
-  <custom-header display="display">Salutations World!</custom-header>
-  ```
 
+```html
+<custom-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</custom-tabgroup>
+```
 </auro-accordion>

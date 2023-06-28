@@ -89,7 +89,25 @@ import "@aurodesignsystem/auro-tabs";
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 
@@ -134,7 +152,25 @@ The `<auro-tabs>` element should be used in situations where users may:
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
-<auro-tabs>Hello World</auro-tabs>
+<auro-tabgroup class="compact-default">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 
