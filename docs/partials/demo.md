@@ -53,7 +53,11 @@ Although, `selected` is automatically added on tab clicked.
 
 ### Tab Role
 
-Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as tablist, tab, or tabpanel. Except for auro-tab which is an extension of `auro-hyperlink`. If `href` property is defined, then the `auro-tab` role is not set.
+Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as tablist, button, or tabpanel. Except for auro-tab which is an extension of `auro-hyperlink`. If `href` property is defined, then the `auro-tab` role is not set.
+
+Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
+
+A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html) to make left & right arrow to navigate through the tab items, so we give it role 'button'.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
