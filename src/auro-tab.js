@@ -46,7 +46,7 @@ export class AuroTab extends AuroHyperlink {
 
   firstUpdated() {
     if (!this.href) {
-      this.setAttribute('role', 'tab');
+      this.setAttribute('role', 'button');
     }
 
     // Set a well-defined initial state.

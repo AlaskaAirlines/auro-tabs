@@ -128,6 +128,7 @@ export class AuroTabgroup extends LitElement {
       END: 'End',
       ENTER: 'Enter',
       SPACE: ' ',
+      TAB: 'Tab'
     };
 
     // Don’t handle modifier shortcuts typically used by assistive technology.
@@ -138,24 +139,56 @@ export class AuroTabgroup extends LitElement {
     // The switch-case will determine which tab should be marked as focused
     // depending on the key that was pressed.
     const tabs = this.allTabs();
+    let focusedIdx = this.focusedTabIdx;
+
+    // we check if previous tab have 'disabled' attribute and check the following previous tab for the same thing,
+    // and keeps goind on until we found the one that's not disabled.
+    const findPreviousNotDisabledIndex = () => {
+      const decrement = () => {
+        if (focusedIdx === 0) {
+          focusedIdx = tabs.length - 1;
+        } else {
+          focusedIdx -= 1;
+        }
+      };
+      // do increment for first time.
+      decrement();
+
+      while (tabs[focusedIdx].hasAttribute('disabled')) {
+        decrement();
+      }
+      return focusedIdx;
+    };
+
+    // we check if next tab have 'disabled' attribute and check the following next tab for the same thing,
+    // and keeps goind on until we found the one that's not disabled.
+    const findNextNotDisabledIndex = () => {
+      const increment = () => {
+        if (focusedIdx === tabs.length - 1) {
+          focusedIdx = 0;
+        } else {
+          focusedIdx += 1;
+        }
+      };
+      // do increment for first time.
+      increment();
+
+      while (tabs[focusedIdx].hasAttribute('disabled')) {
+        increment();
+      }
+      return focusedIdx;
+    };
+
     let newTab = null;
     switch (event.key) {
       case KEYCODE.LEFT:
       case KEYCODE.UP:
-        if (this.focusedTabIdx === 0) {
-          this.focusedTabIdx = tabs.length - 1;
-        } else {
-          this.focusedTabIdx -= 1;
-        }
+        this.focusedTabIdx = findPreviousNotDisabledIndex();
         newTab = tabs[this.focusedTabIdx];
         break;
       case KEYCODE.RIGHT:
       case KEYCODE.DOWN:
-        if (this.focusedTabIdx === tabs.length - 1) {
-          this.focusedTabIdx = 0;
-        } else {
-          this.focusedTabIdx += 1;
-        }
+        this.focusedTabIdx = findNextNotDisabledIndex();
         newTab = tabs[this.focusedTabIdx];
         break;
       case KEYCODE.HOME:
@@ -169,8 +202,11 @@ export class AuroTabgroup extends LitElement {
         newTab = tabs[this.focusedTabIdx];
         this.selectTab(newTab);
         break;
-      // Any other key press is ignored and passed back to the browser.
+      case KEYCODE.TAB:
+        this.focusedTabIdx = tabs.findIndex((tab) => tab.hasAttribute('selected'));
+      // eslint-disable-next-line no-fallthrough
       default:
+        // Any other key press is ignored and passed back to the browser.
         return;
     }
 
