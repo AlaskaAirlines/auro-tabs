@@ -20,10 +20,10 @@
 
 .tabgroupContainer {
   display: flex;
+  overflow: hidden visible;
   flex-direction: column;
   padding-top: var(--auro-size-50);
   padding-bottom: calc(var(--auro-size-50) + var(--auro-size-25));
-  overflow-x: hidden;
 }
 
 .tabgroup {
