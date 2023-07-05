@@ -15,9 +15,6 @@ import styleCss from "./style-css.js";
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6';
 import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6';
 
-// import '@aurodesignsystem/auro-button';
-// import '@aurodesignsystem/auro-icon';
-
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-tabgroup element is a container element for tabs and panels.
@@ -336,7 +333,7 @@ export class AuroTabgroup extends LitElement {
     const activeTab = tabs.find((tab) => tab.selected);
     this.sliderStyles = {
       width: activeTab ? `${activeTab.clientWidth}px` : 0,
-      left: activeTab ? `${activeTab.offsetLeft}px` : 0,
+      left: activeTab ? `${activeTab.offsetLeft - 2}px` : 0,
     };
     this.requestUpdate();
   }

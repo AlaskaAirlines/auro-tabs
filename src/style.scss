@@ -32,8 +32,10 @@
   position: relative;
   display: flex;
   overflow: unset;
+  width: fit-content;
   flex-wrap: nowrap;
   padding-top: var(--auro-size-50);
+  padding-right: var(--auro-size-25);
   padding-bottom: 0;
   margin-left: var(--auro-size-25);
 }
