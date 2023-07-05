@@ -21,7 +21,7 @@ The following sections are editable by making changes to the following files:
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
-`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of showing a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./../docs/partials/readmeAddlInfo.md -->
@@ -100,10 +100,6 @@ import "@aurodesignsystem/auro-tabs";
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Disabled
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>
@@ -137,11 +133,10 @@ We recommend you load these bundles using [differential serving](https://philipw
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./../docs/partials/useCases.md -->
-The `<auro-tabs>` element should be used in situations where users may:
+The `<auro-tabs>` element should be used in situations where users:
 
-* ...
-* ...
-* ...
+* show a list of content without reloading the page or compromising on space
+* need to organize large amount of content that can be separated
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Code Examples
@@ -167,10 +162,6 @@ The `<auro-tabs>` element should be used in situations where users may:
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Disabled
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
   </auro-tab>

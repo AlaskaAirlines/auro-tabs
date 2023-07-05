@@ -8,18 +8,17 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./description.md) -->
 <!-- The below content is automatically added from ./description.md -->
-`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of showing a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## auro-tabs use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./useCases.md) -->
 <!-- The below content is automatically added from ./useCases.md -->
-The `<auro-tabs>` element should be used in situations where users may:
+The `<auro-tabs>` element should be used in situations where users:
 
-* ...
-* ...
-* ...
+* show a list of content without reloading the page or compromising on space
+* need to organize large amount of content that can be separated
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Example(s)
@@ -48,6 +47,73 @@ Example below:
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+
+```html
+<auro-tabgroup>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## States
+
+There are five states which `auro-tabs` supported:
+- default
+- hover
+- focus
+- selected
+- disabled
+
+Try hover & focus state by forcing the `<a>` element state inside auro-tab with css styles console.
+
+Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
+Although, `selected` is automatically added on tab clicked.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/states.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/states.html -->
+  <auro-tabgroup>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
     <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
       Disabled
     </auro-tab>
@@ -60,8 +126,8 @@ Example below:
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/states.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/states.html -->
 
 ```html
 <auro-tabgroup>
@@ -91,23 +157,10 @@ Example below:
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## States
-
-There are five states which `auro-tabs` supported:
-- default
-- hover
-- focus
-- selected
-- disabled
-
-Try hover & focus state by forcing the `<a>` element state inside auro-tab with css styles console.
-
-Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
-Although, `selected` is automatically added on tab clicked.
-
 ## Scroll behaviour
 
-`auro-tabs` will show a button in left & right side, when the number of `auro-tab` exceeds the container size.
+`auro-tabs` in desktop breakpoint (>=768px) will show a button in left & right side, when the number of `auro-tab` exceeds the container size. In mobile breakpoint (<767px), it will normally show a browser scrollbar under the tabgroup.
+
 Example below:
 
 <div class="exampleWrapper">
@@ -366,7 +419,7 @@ Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as
 
 Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
 
-A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, so we give it role 'button'.
+A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, for that reason we give it role 'button'.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
@@ -435,17 +488,19 @@ There are two important parts of every Auro component. The <a href="https://deve
 
 To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name, type)` method and pass in a unique name.
 
-`type` can be 'group(default) | tab | panel'
+`type` can be either `'group(default)' | 'tab' | 'panel'`
 
 ```js
-import './node_modules/@alaskaairux/auro-tabgroup';
+import '@alaskaairux/auro-tabs';
 registerComponent('custom-tabgroup');
+registerComponent('custom-tab', 'tab');
+registerComponent('custom-tabpanel', 'tabpanel');
 ```
 
 This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabgroup` element.
 
 <div class="exampleWrapper">
-  <custom-tabgroup class="compact-default">
+  <custom-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -470,23 +525,23 @@ This will create a new custom element that you can use in your HTML that will fu
 
 ```html
 <custom-tabgroup class="compact-default">
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
-  </auro-tab>
-  <auro-tabpanel slot="panel">
+  </custom-tab>
+  <custom-tabpanel slot="panel">
     <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  </custom-tabpanel>
+  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Help
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  </custom-tab>
+  <custom-tabpanel slot="panel"><span>Tab 2 Content</span></custom-tabpanel>
+  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     More
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  </custom-tab>
+  <custom-tabpanel slot="panel"><span>Tab 3 Content</span></custom-tabpanel>
+  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     No Panel
-  </auro-tab>
+  </custom-tab>
 </custom-tabgroup>
 ```
 </auro-accordion>
