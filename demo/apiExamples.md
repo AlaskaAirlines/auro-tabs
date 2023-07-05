@@ -27,7 +27,7 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
     <div class="exampleWrapper">
       <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
       <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-      <auro-tabgroup class="compact-default">
+      <auro-tabgroup>
         <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
           Baggage Info
         </auro-tab>
@@ -58,7 +58,7 @@ The auro-tabs element provides users a way to ... (it would be great if you fill
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -93,7 +93,7 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -124,7 +124,7 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -159,7 +159,7 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -190,7 +190,7 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -225,7 +225,7 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -256,7 +256,7 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -291,7 +291,7 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -322,7 +322,7 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -357,7 +357,7 @@ Explanation and use description.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -388,7 +388,7 @@ Explanation and use description.
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>

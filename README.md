@@ -85,7 +85,7 @@ import "@aurodesignsystem/auro-tabs";
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -152,7 +152,7 @@ The `<auro-tabs>` element should be used in situations where users may:
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
