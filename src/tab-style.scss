@@ -39,7 +39,6 @@
 :host(:focus:not(:focus-visible)) {
   border-radius: calc(var(--auro-size-50) + var(--auro-size-25));
   outline: solid 1px var(--auro-color-border-active-on-light);
-  outline-offset: calc(var(--auro-size-25) + 1px);
 
   a {
     outline: none;
