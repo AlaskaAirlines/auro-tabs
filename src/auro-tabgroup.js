@@ -57,15 +57,20 @@ export class AuroTabgroup extends LitElement {
   }
 
   async firstUpdated() {
+    this.tabSlot = this.shadowRoot.querySelector('slot[name=tab]');
+    this.panelSlot = this.shadowRoot.querySelector('slot[name=panel]');
+
+    await this.updateComplete;
+    this.tabSlot.addEventListener('slotchange', this.onSlotChange);
+    this.panelSlot.addEventListener('slotchange', this.onSlotChange);
+    this.addEventListener('keydown', this.onKeyDown);
+    this.addEventListener('click', this.onClick);
+
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'tablist');
     }
     this.setAttribute('aria-busy', true);
 
-    this.addEventListener('keydown', this.onKeyDown);
-    this.addEventListener('click', this.onClick);
-
-    await this.updateComplete;
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
 
     await Promise.all([
@@ -73,6 +78,7 @@ export class AuroTabgroup extends LitElement {
       customElements.whenDefined('auro-tabpanel'),
     ]);
 
+    this.linkPanels();
     this.setSliderStyles();
   }
 
@@ -81,12 +87,52 @@ export class AuroTabgroup extends LitElement {
     this.removeEventListener('click', this.onClick);
   }
 
+  /**
+   * `onSlotChange()` is called whenever an element is added or removed from
+   * one of the shadow DOM slots.
+   */
+  onSlotChange() {
+    this.linkPanels();
+  }
+
+  linkPanels() {
+    const tabs = this.allTabs();
+    // Give each panel a `aria-labelledby` attribute that refers to the tab
+    // that controls it.
+    tabs.forEach((tab) => {
+      const panel = tab.nextElementSibling;
+      if (panel) {
+        if (panel.tagName.toLowerCase() !== 'auro-tabpanel') {
+          // eslint-disable-next-line no-console
+          console.error(`Tab #${tab.id} is not a` +
+              `sibling of a <auro-tabpanel>`);
+          return;
+        }
+
+        tab.setAttribute('aria-controls', panel.id);
+        panel.setAttribute('aria-labelledby', tab.id);
+      }
+    });
+
+    // select a tab if defined or select the first tab
+    const selectedTab = tabs.find((tab) => tab.selected) || tabs[0];
+    this.selectTab(selectedTab);
+  }
+
   allPanels() {
     return Array.from(this.querySelectorAll('auro-tabpanel'));
   }
 
   allTabs() {
     return Array.from(this.querySelectorAll('auro-tab'));
+  }
+
+  panelForTab(tab) {
+    const panelId = tab.getAttribute('aria-controls');
+    if (panelId) {
+      return this.querySelector(`#${panelId}`);
+    }
+    return null;
   }
 
   prevTab() {
@@ -119,9 +165,13 @@ export class AuroTabgroup extends LitElement {
 
   reset() {
     const tabs = this.allTabs();
+    const panels = this.allPanels();
 
     tabs.forEach((tab) => {
       tab.selected = false;
+    });
+    panels.forEach((panel) => {
+      panel.hidden = true;
     });
   }
 
@@ -141,6 +191,16 @@ export class AuroTabgroup extends LitElement {
         behavior: "smooth",
       });
     }
+
+    // Get the panel that the `newTab` is associated with.
+    const newPanel = this.panelForTab(newTab);
+    // If that panel doesn’t exist, abort.
+    if (!newPanel) {
+      // eslint-disable-next-line no-console
+      console.error(`No panel with id ${newTab.id}`);
+      return;
+    }
+    newPanel.hidden = false;
   }
 
   onKeyDown(event) {

@@ -21,7 +21,8 @@
   "dependencies": {
     "@aurodesignsystem/auro-hyperlink": "^3.3.3",
     "chalk": "^5.2.0",
-    "lit": "^2.7.5"
+    "lit": "^2.7.5",
+    "uuid": "^9.0.0"
   },
   "peerDependencies": {
     "@alaskaairux/design-tokens": "^3.14.0",

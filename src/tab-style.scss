@@ -1,10 +1,10 @@
 :host {
-  height: 24px;
-  margin-bottom: var(--auro-size-50);
+  padding-bottom: calc(var(--auro-size-50) - 1px);
 
   a {
     padding: 0 var(--auro-size-300);
     padding-bottom: calc(var(--auro-size-100) - 1px);
+    border-bottom: solid 1px var(--auro-color-border-divider-on-light);
     color: var(--auro-color-ui-default-on-light);
     cursor: pointer;
     font-family: var(--auro-asset-font-circular-family-name);

@@ -22,8 +22,8 @@
   display: flex;
   overflow: hidden visible;
   flex-direction: column;
-  padding-top: var(--auro-size-50);
-  border-bottom: solid 1px var(--auro-color-border-divider-on-light);
+  padding-bottom: calc(var(--auro-size-150) - 1px);
+  margin-bottom: calc(var(--auro-size-50) + 1px);
   transition: scroll .5s ease-in-out;
 }
 
@@ -32,6 +32,9 @@
   display: flex;
   overflow: unset;
   flex-wrap: nowrap;
+  padding-top: var(--auro-size-50);
+  padding-bottom: 0;
+  margin-left: var(--auro-size-25);
 }
 
 .slider  {
