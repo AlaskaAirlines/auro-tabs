@@ -68,6 +68,11 @@
   height: calc(var(--auro-size-500) - var(--auro-size-50) - 1px);
   align-items: center;
   background-color: var(--auro-color-background-lightest);
+  color: var(--auro-color-icon-primary-on-light);
+
+  &:hover {
+    color: var(--auro-color-icon-accent-on-light);
+  }
 }
 
 .gradientLeft,
