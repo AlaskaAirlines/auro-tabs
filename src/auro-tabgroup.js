@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
@@ -9,6 +10,13 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 // Import touch detection lib
 import styleCss from "./style-css.js";
+
+// Import icon
+import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6';
+import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6';
+
+// import '@aurodesignsystem/auro-button';
+// import '@aurodesignsystem/auro-icon';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -27,6 +35,7 @@ export class AuroTabgroup extends LitElement {
     super();
 
     this.sliderStyles = {};
+    this.scrollPosition = 0;
 
     this.addEventListener('tab-selected', () => this.setSliderStyles());
   }
@@ -34,11 +43,14 @@ export class AuroTabgroup extends LitElement {
   // This function is to define props used within the scope of this component
   // Be sure to review  https://lit.dev/docs/components/properties/
   // to understand how to use reflected attributes with your property settings.
-  // static get properties() {
-  //   return {
-  //     ...super.properties,
-  //   };
-  // }
+  static get properties() {
+    return {
+      ...super.properties,
+      scrollPosition: {
+        type: Number
+      }
+    };
+  }
 
   static get styles() {
     return [styleCss];
@@ -48,9 +60,13 @@ export class AuroTabgroup extends LitElement {
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'tablist');
     }
+    this.setAttribute('aria-busy', true);
 
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('click', this.onClick);
+
+    await this.updateComplete;
+    this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
 
     await Promise.all([
       customElements.whenDefined('auro-tab'),
@@ -116,6 +132,15 @@ export class AuroTabgroup extends LitElement {
 
     const tabs = this.allTabs();
     this.focusedTabIdx = tabs.findIndex((tab) => tab === newTab);
+
+    if (this.scrollSize > 0) {
+      const tabBounding = newTab.getBoundingClientRect();
+      const halfWidth = this.tabGroupContainer.clientWidth / 2;
+      this.tabGroupContainer.scrollBy({
+        left: tabBounding.x - halfWidth,
+        behavior: "smooth",
+      });
+    }
   }
 
   onKeyDown(event) {
@@ -199,8 +224,10 @@ export class AuroTabgroup extends LitElement {
         break;
       case KEYCODE.ENTER:
       case KEYCODE.SPACE:
-        newTab = tabs[this.focusedTabIdx];
-        this.selectTab(newTab);
+        if (this.focusedTabIdx) {
+          newTab = tabs[this.focusedTabIdx];
+          this.selectTab(newTab);
+        }
         break;
       case KEYCODE.TAB:
         this.focusedTabIdx = tabs.findIndex((tab) => tab.hasAttribute('selected'));
@@ -215,7 +242,9 @@ export class AuroTabgroup extends LitElement {
     // browser from taking any actions.
     event.preventDefault();
     // Focus to the new tab, that has been determined in the switch-case.
-    newTab.focus();
+    if (newTab) {
+      newTab.focus();
+    }
   }
 
   /**
@@ -228,7 +257,7 @@ export class AuroTabgroup extends LitElement {
 
     // If the click was not targeted on a tab element itself,
     // it was a click inside the a panel or on empty space. Nothing to do.
-    // actually this is going to be known issue for custom auro-tab component name in the future
+    // actually this is going to be a known issue for custom auro-tab component name in the future
     if (roleIsNotTab && !closestTab && event.target.localName !== 'auro-tab') {
       return;
     }
@@ -252,16 +281,105 @@ export class AuroTabgroup extends LitElement {
     this.requestUpdate();
   }
 
+  // generate icon based in icon param
+  generateIcon(icon) {
+    const dom = new DOMParser().parseFromString(icon.svg, 'text/html');
+    return dom.body.firstChild;
+  }
+
+  onTabGroupScroll() {
+    this.scrollPosition = this.tabGroupContainer.scrollLeft;
+  }
+
+  get tabGroupContainer () {
+    return this.shadowRoot.querySelector('.tabgroupContainer');
+  }
+
+  get scrollSize () {
+    if (this.tabGroupContainer) {
+      return this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth;
+    }
+    return 0;
+  }
+
+  scrollTab(direction) {
+    if (this.tabGroupContainer) {
+      switch (direction) {
+        case 'prev':
+          if (this.tabGroupContainer.scrollLeft > 0) {
+            this.tabGroupContainer.scrollBy({
+              left: -this.tabGroupContainer.clientWidth,
+              behavior: "smooth",
+            });
+          }
+          break;
+        case 'next':
+          if (this.tabGroupContainer.scrollLeft < this.scrollSize) {
+            this.tabGroupContainer.scrollBy({
+              left: this.tabGroupContainer.clientWidth,
+              behavior: "smooth",
+            });
+          }
+          break;
+        default:
+      }
+    }
+  }
+
+  get arrowLeftIcon() {
+    return html`
+    <button class="chevronLeft" @click=${() => this.scrollTab('prev')}>
+      <div class="icon">${this.generateIcon(chevronLeft)}</div>
+      <div class="gradientLeft"></div>
+    </button>`;
+  }
+
+  get arrowRightIcon() {
+    return html`
+    <button class="chevronRight" @click=${() => this.scrollTab('next')}>
+      <div class="gradientRight"></div>
+      <div class="icon">${this.generateIcon(chevronRight)}</div>
+    </button>`;
+  }
+
+  renderScrollTab() {
+    if (this.scrollPosition === 0) {
+      return this.arrowRightIcon;
+    } else if (this.scrollPosition >= this.scrollSize) {
+      return this.arrowLeftIcon;
+    }
+    return html`
+      ${this.arrowLeftIcon}
+      ${this.arrowRightIcon}
+    `;
+  }
+
+  renderLeftScrollTab() {
+    if ((this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0) {
+      return this.arrowLeftIcon;
+    }
+    return null;
+  }
+
+  renderRightScrollTab() {
+    if ((this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0) {
+      return this.arrowRightIcon;
+    }
+    return null;
+  }
+
   // function that renders the HTML and CSS into the scope of the component
   render() {
     const sliderStyles = styleMap(this.sliderStyles);
 
     return html`
     <div class="tabgroupContainer">
+      ${this.renderLeftScrollTab()}
       <div class="tabgroup">
         <slot name="tab"></slot>
         <div class="slider" style=${sliderStyles}></div>
       </div>
+      ${this.renderRightScrollTab()}
     </div>
     <slot name="panel"></slot>
     `;

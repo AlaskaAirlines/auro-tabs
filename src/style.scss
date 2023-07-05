@@ -23,7 +23,8 @@
   overflow: hidden visible;
   flex-direction: column;
   padding-top: var(--auro-size-50);
-  padding-bottom: calc(var(--auro-size-50) + var(--auro-size-25));
+  border-bottom: solid 1px var(--auro-color-border-divider-on-light);
+  transition: scroll .5s ease-in-out;
 }
 
 .tabgroup {
@@ -31,8 +32,6 @@
   display: flex;
   overflow: unset;
   flex-wrap: nowrap;
-  border-bottom: solid 1px var(--auro-color-border-divider-on-light);
-  margin-bottom: var(--auro-size-50);
 }
 
 .slider  {
@@ -45,6 +44,46 @@
   transition: all .25s;
 }
 
+.chevronLeft,
+.chevronRight {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  height: inherit;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.icon {
+  display: flex;
+  width: calc(var(--auro-size-400) - var(--auro-size-50));
+  height: calc(var(--auro-size-500) - var(--auro-size-50) - 1px);
+  align-items: center;
+  background-color: var(--auro-color-background-lightest);
+}
+
+.gradientLeft,
+.gradientRight {
+  width: var(--auro-size-200);
+  height: calc(var(--auro-size-500) - var(--auro-size-50) - 1px);
+}
+
+.chevronRight {
+  right: 0;
+}
+
+.gradientLeft {
+  background: linear-gradient(90deg, var(--auro-color-background-lightest) 0%, transparent 100%);
+}
+
+.gradientRight {
+  background: linear-gradient(270deg, var(--auro-color-background-lightest) 0%, transparent 100%);
+}
+
 @media (width <= 767px) {
   .tabgroupContainer {
     overflow-x: scroll;
@@ -52,5 +91,9 @@
 
   .tabgroup {
     width: fit-content;
+  }
+
+  .chevronLeft, .chevronRight {
+    display: none;
   }
 }
