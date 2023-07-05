@@ -27,13 +27,13 @@ The `<auro-tabs>` element should be used in situations where users may:
 ## Default
 
 `auro-tabpanel` needs to be defined directly after `auro-tab` so that it can be paired.
-If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel empty.
+If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel undefined.
 Example below:
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -64,7 +64,7 @@ Example below:
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -105,6 +105,254 @@ Try hover & focus state by forcing the `<a>` element state inside auro-tab with 
 Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
 Although, `selected` is automatically added on tab clicked.
 
+## Scroll behaviour
+
+`auro-tabs` will show a button in left & right side, when the number of `auro-tab` exceeds the container size.
+Example below:
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/scroll.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/scroll.html -->
+  <auro-tabgroup>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 2
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 3
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 4
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 5
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 6
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 7
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 8
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 9
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 10
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 11
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 12
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 13
+    </auro-tab>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>
+  <div style="width: 400px; margin-top: 36px; background-color: white">
+    <auro-tabgroup>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        Baggage Info
+      </auro-tab>
+      <auro-tabpanel slot="panel">
+        <span>Tab 1 Content</span>
+      </auro-tabpanel>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        Help
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 2
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 3
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 4
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 5
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 6
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 7
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 8
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 9
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 10
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 11
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 12
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        More 13
+      </auro-tab>
+      <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+        Disabled
+      </auro-tab>
+      <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+        No Panel
+      </auro-tab>
+    </auro-tabgroup>  
+  </div>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/scroll.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/scroll.html -->
+
+```html
+<auro-tabgroup>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 2
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 3
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 4
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 5
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 6
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 7
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 8
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 9
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 10
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 11
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 12
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More 13
+  </auro-tab>
+  <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>
+<div style="width: 400px; margin-top: 36px; background-color: white">
+  <auro-tabgroup>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Baggage Info
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Help
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 2
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 3
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 4
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 5
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 6
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 7
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 8
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 9
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 10
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 11
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 12
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      More 13
+    </auro-tab>
+    <auro-tab disabled href="#/" relative="http://localhost:8000/demo" slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+      No Panel
+    </auro-tab>
+  </auro-tabgroup>  
+</div>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ## Accessibility
 
 ### Tab Role
@@ -113,12 +361,12 @@ Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as
 
 Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
 
-A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html) to make left & right arrow to navigate through the tab items, so we give it role 'button'.
+A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, so we give it role 'button'.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/role.html -->
-  <auro-tabgroup class="compact-default">
+  <auro-tabgroup>
     <auro-tab slot="tab">
       Baggage Info
     </auro-tab>
@@ -149,7 +397,7 @@ A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alask
 <!-- The below code snippet is automatically added from ./../../apiExamples/role.html -->
 
 ```html
-<auro-tabgroup class="compact-default">
+<auro-tabgroup>
   <auro-tab slot="tab">
     Baggage Info
   </auro-tab>

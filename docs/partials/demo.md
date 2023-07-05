@@ -19,7 +19,7 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 ## Default
 
 `auro-tabpanel` needs to be defined directly after `auro-tab` so that it can be paired.
-If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel empty.
+If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel undefined.
 Example below:
 
 <div class="exampleWrapper">
@@ -49,6 +49,25 @@ Try hover & focus state by forcing the `<a>` element state inside auro-tab with 
 Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
 Although, `selected` is automatically added on tab clicked.
 
+
+## Scroll behaviour
+
+`auro-tabs` will show a button in left & right side, when the number of `auro-tab` exceeds the container size.
+Example below:
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/scroll.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/scroll.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Accessibility
 
 ### Tab Role
@@ -57,7 +76,7 @@ Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as
 
 Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
 
-A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html) to make left & right arrow to navigate through the tab items, so we give it role 'button'.
+A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, so we give it role 'button'.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
