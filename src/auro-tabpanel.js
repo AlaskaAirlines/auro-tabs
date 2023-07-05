@@ -5,6 +5,7 @@
 
 // If using litElement base class
 import { LitElement, html } from "lit";
+import { v4 as uuidv4 } from 'uuid';
 
 // Import touch detection lib
 import styleCss from "./tabpanel-style-css.js";
@@ -28,6 +29,9 @@ export class AuroTabpanel extends LitElement {
 
   firstUpdated() {
     this.setAttribute('role', 'tabpanel');
+    if (!this.id) {
+      this.id = `auro-tabpanel-generated-${uuidv4()}`;
+    }
   }
 
   static get styles() {

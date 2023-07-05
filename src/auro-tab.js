@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------
 
 import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
+import { v4 as uuidv4 } from 'uuid';
 
 // Import touch detection lib
 import styleCss from "./tab-style-css.js";
@@ -47,6 +48,10 @@ export class AuroTab extends AuroHyperlink {
   firstUpdated() {
     if (!this.href) {
       this.setAttribute('role', 'tab');
+    }
+
+    if (!this.id) {
+      this.id = `auro-tab-generated-${uuidv4()}`;
     }
 
     // Set a well-defined initial state.
