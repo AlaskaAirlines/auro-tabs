@@ -6,7 +6,9 @@ import '../src/auro-tabpanel';
 describe('auro-tabgroup', () => {
   it('auro-tabgroup is accessible', async () => {
     const el = await fixture(html`
-      <auro-tabgroup></auro-tabgroup>
+      <auro-tabgroup>
+        <auro-tab>Tab 1</auro-tab>
+      </auro-tabgroup>
     `);
 
     await expect(el).to.be.accessible();
