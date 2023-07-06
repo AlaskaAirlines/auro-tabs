@@ -14,6 +14,8 @@ import styleCss from "./tab-style-css.js";
 /**
  * The auro-tabpanel element should only be used for auro-tabgroup only.
  *
+ * @attr {Boolean} selected - Mark the tab as selected tab.
+ * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
 
 // build the component class
@@ -50,6 +52,7 @@ export class AuroTab extends AuroHyperlink {
       this.setAttribute('role', 'button');
     }
 
+    // give a unique id to the tab
     if (!this.id) {
       this.id = `auro-tab-generated-${uuidv4()}`;
     }
@@ -60,6 +63,13 @@ export class AuroTab extends AuroHyperlink {
     this.upgradeProperty('selected');
   }
 
+  /**
+   * This is to safe guard against cases where, for instance, a framework may have added the element
+   * to the page and set a value on one of its properties, but lazy loaded its definition.
+   * Without this guard, the upgraded element would miss that property and the instance property
+   * would prevent the class property setter from ever being called.
+   * @param {string} prop The component property.
+   */
   upgradeProperty(prop) {
     if (Object.hasOwn(this, prop)) {
       const value = this[prop];
@@ -76,6 +86,9 @@ export class AuroTab extends AuroHyperlink {
     this.setAttribute('tabindex', value ? 0 : -1);
   }
 
+  /**
+   * Setter function for selected property.
+   */
   set selected(value) {
     if (value) {
       this.setAttribute('selected', '');
@@ -90,6 +103,10 @@ export class AuroTab extends AuroHyperlink {
     }
   }
 
+  /**
+   * Getter for selected property.
+   * @returns {Boolean}
+   */
   get selected() {
     return this.hasAttribute('selected');
   }

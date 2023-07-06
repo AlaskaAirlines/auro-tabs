@@ -22,8 +22,10 @@ import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_
  * `<auro-tabpanel>`. This element is stateless, meaning that no values are
  * cached and therefore, changes during runtime work.
  *
- * @attr {Number} pad - Uses fixed pixel values for padding left & right of the tab component wrapper
- * @attr {String} mode - Apply sizing based on provied mode (compact | large). Default to "compact"
+ * @prop {Number} scrollPosition - Tabgroup container scroll position.
+ * @prop {Object} sliderStyles - Slider styles.
+ * @slot tab - Slot component named for auro-tab.
+ * @slot panel - Slot component named for auro-tabpanel.
  */
 
 // build the component class
@@ -31,8 +33,8 @@ export class AuroTabgroup extends LitElement {
   constructor() {
     super();
 
-    this.sliderStyles = {};
     this.scrollPosition = 0;
+    this.sliderStyles = {};
 
     this.addEventListener('tab-selected', () => this.setSliderStyles());
   }
@@ -45,6 +47,9 @@ export class AuroTabgroup extends LitElement {
       ...super.properties,
       scrollPosition: {
         type: Number
+      },
+      sliderStyles: {
+        type: Object
       }
     };
   }
@@ -68,6 +73,7 @@ export class AuroTabgroup extends LitElement {
     }
     this.setAttribute('aria-busy', true);
 
+    this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
 
     await Promise.all([
@@ -92,6 +98,11 @@ export class AuroTabgroup extends LitElement {
     this.linkPanels();
   }
 
+  /**
+   * Function handler to link the tab with next sibling of tabpanel.
+   * Also Set the required aria-controls & aria-labelledby attribute.
+   * And finally, select a 'selected' tab if defined or default to first tab.
+   */
   linkPanels() {
     const tabs = this.allTabs();
     // Give each panel a `aria-labelledby` attribute that refers to the tab
@@ -116,14 +127,27 @@ export class AuroTabgroup extends LitElement {
     this.selectTab(selectedTab);
   }
 
+  /**
+   * Function to get all of the auro-tabpanel.
+   * @returns {Array} Array of auro-tabpanel element.
+   */
   allPanels() {
     return Array.from(this.querySelectorAll('auro-tabpanel'));
   }
 
+  /**
+   * Function to get all of the auro-tab.
+   * @returns {Array} Array of auro-tab element.
+   */
   allTabs() {
     return Array.from(this.querySelectorAll('auro-tab'));
   }
 
+  /**
+   * Function to get the panel for given auro-tab.
+   * @param {HTMLElement} tab Auro-tab element.
+   * @returns {HTMLElement | null} Auro-tabpanel element.
+   */
   panelForTab(tab) {
     const panelId = tab.getAttribute('aria-controls');
     if (panelId) {
@@ -132,6 +156,10 @@ export class AuroTabgroup extends LitElement {
     return null;
   }
 
+  /**
+   * Function to get previous tab of the selected one.
+   * @returns {HTMLElement} Auro-tab element.
+   */
   prevTab() {
     const tabs = this.allTabs();
     // Use `findIndex()` to find the index of the currently
@@ -144,22 +172,37 @@ export class AuroTabgroup extends LitElement {
     return tabs[(newIdx + tabs.length) % tabs.length];
   }
 
+  /**
+   * Function to get next tab of the selected one.
+   * @returns {HTMLElement} Auro-tab element.
+   */
   nextTab() {
     const tabs = this.allTabs();
     const newIdx = tabs.findIndex((tab) => tab.selected) + 1;
     return tabs[newIdx % tabs.length];
   }
 
+  /**
+   * Function to get the very first tab.
+   * @returns {HTMLElement} Auro-tab element.
+   */
   firstTab() {
     const tabs = this.allTabs();
     return tabs[0];
   }
 
+  /**
+   * Function to get the very last tab.
+   * @returns {HTMLElement} Auro-tab element.
+   */
   lastTab() {
     const tabs = this.allTabs();
     return tabs[tabs.length - 1];
   }
 
+  /**
+   * Function to reset the selected state of the tabs & hide the panel.
+   */
   reset() {
     const tabs = this.allTabs();
     const panels = this.allPanels();
@@ -172,14 +215,22 @@ export class AuroTabgroup extends LitElement {
     });
   }
 
+  /**
+   * Function handler when selecting an auro-tab.
+   * @param {HTMLElement} newTab Selected auro-tab.
+   * @returns {void}
+   */
   selectTab(newTab) {
     // Deselect all tabs and hide all panels.
     this.reset();
     newTab.selected = true;
 
     const tabs = this.allTabs();
+    // Set focused tab index.
     this.focusedTabIdx = tabs.findIndex((tab) => tab === newTab);
 
+    // This will scroll the container to selected tab to nearly centered
+    // of the relative viewport if possible.
     if (this.scrollSize > 0) {
       const tabBounding = newTab.getBoundingClientRect();
       const halfWidth = this.tabGroupContainer.clientWidth / 2;
@@ -200,6 +251,13 @@ export class AuroTabgroup extends LitElement {
     newPanel.hidden = false;
   }
 
+  /**
+   * Function handler when user do a keyboard action
+   * when the focus is inside auro-tabgroup.
+   * @private
+   * @param {KeyboardEvent} event HTML onkeydown keyboard event.
+   * @returns {void}
+   */
   onKeyDown(event) {
     const KEYCODE = {
       DOWN: 'ArrowDown',
@@ -305,6 +363,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @private
    * @param {Event} event HTML click Event.
    * `onClick()` handles clicks inside the tab panel.
    */
@@ -326,6 +385,11 @@ export class AuroTabgroup extends LitElement {
     }
   }
 
+  /**
+   * Function to set the slider position & width
+   * when a tab is selected.
+   * @private
+   */
   setSliderStyles () {
     this.sliderStyles.width = 0;
     const tabs = this.allTabs();
@@ -338,20 +402,30 @@ export class AuroTabgroup extends LitElement {
     this.requestUpdate();
   }
 
-  // generate icon based in icon param
+  /**
+   * Function to generate icon based in icon param.
+   * @private
+   * @param {string} icon SVG string.
+   * @returns {HTMLElement}
+   */
   generateIcon(icon) {
     const dom = new DOMParser().parseFromString(icon.svg, 'text/html');
     return dom.body.firstChild;
   }
 
+  /**
+   * Function to save the tab group container scroll position state.
+   * @private
+   */
   onTabGroupScroll() {
     this.scrollPosition = this.tabGroupContainer.scrollLeft;
   }
 
-  get tabGroupContainer () {
-    return this.shadowRoot.querySelector('.tabgroupContainer');
-  }
-
+  /**
+   * Getter for tab group container scroll size.
+   * @private
+   * @returns {Number}
+   */
   get scrollSize () {
     if (this.tabGroupContainer) {
       return this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth;
@@ -359,6 +433,10 @@ export class AuroTabgroup extends LitElement {
     return 0;
   }
 
+  /**
+   * Function handler for the scroll button click action.
+   * @param {string} direction Direction of the scroll.
+   */
   scrollTab(direction) {
     if (this.tabGroupContainer) {
       switch (direction) {
@@ -383,6 +461,11 @@ export class AuroTabgroup extends LitElement {
     }
   }
 
+  /**
+   * Getter for arrow left icon HTML.
+   * @private
+   * @returns {HTMLElement}
+   */
   get arrowLeftIcon() {
     return html`
     <button class="chevronLeft" @click=${() => this.scrollTab('prev')}>
@@ -391,6 +474,11 @@ export class AuroTabgroup extends LitElement {
     </button>`;
   }
 
+  /**
+   * Getter for arrow right icon HTML.
+   * @private
+   * @returns {HTMLElement}
+   */
   get arrowRightIcon() {
     return html`
     <button class="chevronRight" @click=${() => this.scrollTab('next')}>
@@ -399,18 +487,11 @@ export class AuroTabgroup extends LitElement {
     </button>`;
   }
 
-  renderScrollTab() {
-    if (this.scrollPosition === 0) {
-      return this.arrowRightIcon;
-    } else if (this.scrollPosition >= this.scrollSize) {
-      return this.arrowLeftIcon;
-    }
-    return html`
-      ${this.arrowLeftIcon}
-      ${this.arrowRightIcon}
-    `;
-  }
-
+  /**
+   * Conditional rendering for left scroll button.
+   * @returns {HTMLElement | null} Arrow left icon.
+   * @private
+   */
   renderLeftScrollTab() {
     if ((this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0) {
       return this.arrowLeftIcon;
@@ -418,6 +499,11 @@ export class AuroTabgroup extends LitElement {
     return null;
   }
 
+  /**
+   * Conditional rendering for right scroll button.
+   * @returns {HTMLElement | null} Arrow right icon.
+   * @private
+   */
   renderRightScrollTab() {
     if ((this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0) {
       return this.arrowRightIcon;

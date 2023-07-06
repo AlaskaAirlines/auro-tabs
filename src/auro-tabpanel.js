@@ -29,6 +29,7 @@ export class AuroTabpanel extends LitElement {
 
   firstUpdated() {
     this.setAttribute('role', 'tabpanel');
+    // give a unique id to the tabpanel
     if (!this.id) {
       this.id = `auro-tabpanel-generated-${uuidv4()}`;
     }
