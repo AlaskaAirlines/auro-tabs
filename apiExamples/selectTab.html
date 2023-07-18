@@ -1,0 +1,25 @@
+<div style="margin-bottom: 36px;">
+  <button onClick="selectFirstTab()">Select First Tab</button>
+  <button onClick="selectSecondTab()">Select Second Tab</button>
+  <button onClick="selectLastTab()">Select Last Tab</button>
+</div>
+
+<auro-tabgroup id="select-tab-example">
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Baggage Info
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    Help
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    More
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    No Panel
+  </auro-tab>
+</auro-tabgroup>

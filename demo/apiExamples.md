@@ -144,131 +144,20 @@ The auro-tabpanel element should only be used for auro-tabs only.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Attribute Examples
-
-#### <a name="attributeName"></a>`attributeName`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
-Explanation and use description.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Baggage Info
-    </auro-tab>
-    <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Help
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      More
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      No Panel
-    </auro-tab>
-  </auro-tabgroup>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
-
-```html
-<auro-tabgroup>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Baggage Info
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    More
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    No Panel
-  </auro-tab>
-</auro-tabgroup>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-### Property Examples
-
-#### <a name="propertyName"></a>`propertyName`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
-Explanation and use description.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Baggage Info
-    </auro-tab>
-    <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Help
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      More
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      No Panel
-    </auro-tab>
-  </auro-tabgroup>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
-
-```html
-<auro-tabgroup>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Baggage Info
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    More
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    No Panel
-  </auro-tab>
-</auro-tabgroup>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
 ### Method Examples
 
-#### <a name="methodName"></a>`methodName`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
-Explanation and use description.
+#### <a name="selectTab"></a>`selectTab`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
+We can programatically select a tab by passing the auro-tab element to the parameter of `selectTab` method.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup>
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/selectTab.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/selectTab.html -->
+  <div style="margin-bottom: 36px;">
+    <button onClick="selectFirstTab()">Select First Tab</button>
+    <button onClick="selectSecondTab()">Select Second Tab</button>
+    <button onClick="selectLastTab()">Select Last Tab</button>
+  </div>
+  <auro-tabgroup id="select-tab-example">
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       Baggage Info
     </auro-tab>
@@ -291,11 +180,16 @@ Explanation and use description.
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/selectTab.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/selectTab.html -->
 
 ```html
-<auro-tabgroup>
+<div style="margin-bottom: 36px;">
+  <button onClick="selectFirstTab()">Select First Tab</button>
+  <button onClick="selectSecondTab()">Select Second Tab</button>
+  <button onClick="selectLastTab()">Select Last Tab</button>
+</div>
+<auro-tabgroup id="select-tab-example">
   <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
     Baggage Info
   </auro-tab>
@@ -314,34 +208,60 @@ Explanation and use description.
     No Panel
   </auro-tab>
 </auro-tabgroup>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../demo/utils/onTabSelected.js) -->
+<!-- The below code snippet is automatically added from ./../../demo/utils/onTabSelected.js -->
+
+```js
+function onTabSelected(e) {
+  alert(`Tab selected: ${e.target.innerText}`);
+}
+
+function addListener() {
+  window.addEventListener('tab-selected', onTabSelected)
+}
+
+function removeListener() {
+  window.removeEventListener('tab-selected', onTabSelected)
+}
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
 ### Event Examples
 
-#### <a name="eventName"></a>`eventName`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
-Explanation and use description.
+#### `tab-selected`
+
+Tab component will fire `tab-selected` event when selected.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-tabgroup>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/tab-selected.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/tab-selected.html -->
+  <div style="margin-bottom: 36px;">
+    <button onClick="addListener()">Add event listener</button>
+    <button onClick="removeListener()">Remove event listener</button>
+  </div>
+  <auro-tabgroup id="tab-selected-example">
+    <auro-tab slot="tab">
       Baggage Info
     </auro-tab>
     <auro-tabpanel slot="panel">
       <span>Tab 1 Content</span>
     </auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Help
+    <auro-tab slot="tab">
+      Select me!
     </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    <auro-tabpanel slot="panel"><span><a href="https://www.google.com">Tab 2 Content</a></span></auro-tabpanel>
+    <auro-tab slot="tab">
       More
     </auro-tab>
     <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+    <auro-tab disabled slot="tab">
+      Disabled
+    </auro-tab>
+    <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
+    <auro-tab slot="tab">
       No Panel
     </auro-tab>
   </auro-tabgroup>
@@ -349,37 +269,63 @@ Explanation and use description.
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/tab-selected.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/tab-selected.html -->
 
 ```html
-<auro-tabgroup>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+<div style="margin-bottom: 36px;">
+  <button onClick="addListener()">Add event listener</button>
+  <button onClick="removeListener()">Remove event listener</button>
+</div>
+<auro-tabgroup id="tab-selected-example">
+  <auro-tab slot="tab">
     Baggage Info
   </auro-tab>
   <auro-tabpanel slot="panel">
     <span>Tab 1 Content</span>
   </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
+  <auro-tab slot="tab">
+    Select me!
   </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  <auro-tabpanel slot="panel"><span><a href="https://www.google.com">Tab 2 Content</a></span></auro-tabpanel>
+  <auro-tab slot="tab">
     More
   </auro-tab>
   <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
+  <auro-tab disabled slot="tab">
+    Disabled
+  </auro-tab>
+  <auro-tabpanel slot="panel"><span>Disabled Content</span></auro-tabpanel>
+  <auro-tab slot="tab">
     No Panel
   </auro-tab>
 </auro-tabgroup>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../demo/utils/onTabSelected.js) -->
+<!-- The below code snippet is automatically added from ./../../demo/utils/onTabSelected.js -->
+
+```js
+function onTabSelected(e) {
+  alert(`Tab selected: ${e.target.innerText}`);
+}
+
+function addListener() {
+  window.addEventListener('tab-selected', onTabSelected)
+}
+
+function removeListener() {
+  window.removeEventListener('tab-selected', onTabSelected)
+}
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
 ### Slot Examples
 
-#### <a name="slotName"></a>`slotName`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
-Explanation and use description.
+#### <a name="tab"></a>`tab`<a href="#auro-tabs" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a> - `tabpanel`
+
+`<auro-tab slot=tab>` & `<auro-tabpanel slot=tabpanel>` needs to be sibling next to each other to be linked.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
