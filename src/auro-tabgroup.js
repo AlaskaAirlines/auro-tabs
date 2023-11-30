@@ -339,7 +339,10 @@ export class AuroTabgroup extends LitElement {
         break;
       case KEYCODE.ENTER:
       case KEYCODE.SPACE:
-        if (this.focusedTabIdx) {
+        // to check if 'focusedTabIdx' is not equal to undefined or null,
+        // because 0 as a first index is a truthy value for this case
+        // eslint-disable-next-line no-eq-null, eqeqeq
+        if (this.focusedTabIdx != null) {
           newTab = tabs[this.focusedTabIdx];
           this.selectTab(newTab);
         }
