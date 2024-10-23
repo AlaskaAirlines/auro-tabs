@@ -1,5 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import '../src/auro-tabs';
+import '../index.js';
 
 describe('auro-tabs', () => {
   it('sets the CSS class on auro-tabs > div element', async () => {

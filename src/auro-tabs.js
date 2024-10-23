@@ -14,6 +14,8 @@ import { LitElement, html } from "lit";
 // Import touch detection lib
 import styleCss from "./style-css.js";
 
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-tabs element provides users a way to ... (it would be great if you fill this out).
@@ -44,6 +46,18 @@ export class AuroTabs extends LitElement {
     return [styleCss];
   }
 
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-tabs"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroTabs.register("custom-tabs") // this will register this element to <custom-tabs/>
+   *
+   */
+  static register(name = "auro-tabs") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabs);
+  }
+
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
   // aria-hidden="${this.hideAudible(this.hiddenAudible)}"
 
@@ -57,9 +71,4 @@ export class AuroTabs extends LitElement {
       </div>
     `;
   }
-}
-
-// default internal definition
-if (!customElements.get("auro-tabs")) {
-  customElements.define("auro-tabs", AuroTabs);
 }

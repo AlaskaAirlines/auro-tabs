@@ -78,13 +78,14 @@ Having a closing statement about your example helps to really complete the thoug
 
 ## Recommended Use and Version Control
 
-There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
+There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name)` method and pass in a unique name.
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `AuroTabls.register(name)` method and pass in a unique name.
 
 ```js
-import './node_modules/@alaskaairux/auro-tabs';
-registerComponent('custom-tabs');
+import { AuroTabls } from './node_modules/@alaskaairux/auro-tabs/src/auro-tabs.js';
+
+AuroTabls.register('custom-tabs');
 ```
 
 This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabs` element.
