@@ -6,12 +6,12 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 
 # Tabs
 
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./description.md) -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/description.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## auro-tabs use cases
 
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./useCases.md) -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/useCases.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Example(s)
@@ -23,14 +23,14 @@ If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpa
 Example below:
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -50,14 +50,14 @@ Selected and Disabled state can be set directly with property: `selected` or `di
 Although, `selected` is automatically added on tab clicked.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/states.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/states.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/states.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/states.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -70,14 +70,14 @@ Although, `selected` is automatically added on tab clicked.
 Example below:
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/scroll.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/scroll.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/scroll.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/scroll.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -85,14 +85,14 @@ Example below:
 #### Container width: 400px
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/scroll-400.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/scroll-400.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/scroll-400.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/scroll-400.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -108,14 +108,14 @@ Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
 A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, for that reason we give it role 'button'.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/role.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/role.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/role.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/role.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
