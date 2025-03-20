@@ -1,5 +1,5 @@
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
+@import "@aurodesignsystem/webcorestylesheets/src/core";
+@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
 
 :host {
   display: block;

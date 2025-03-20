@@ -4,11 +4,13 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
+@import "@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/auro-classic/SassCustomProperties";
+@import "@aurodesignsystem/webcorestylesheets/src/core";
+@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
+@import "@aurodesignsystem/webcorestylesheets/src/fonts";
+@import "@aurodesignsystem/webcorestylesheets/src/essentials";
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
 
 ::slotted(auro-tabpanel) {
   flex-basis: 100%;
