@@ -8,6 +8,7 @@ describe('auro-tabgroup', () => {
     const el = await fixture(html`
       <auro-tabgroup>
         <auro-tab>Tab 1</auro-tab>
+        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
       </auro-tabgroup>
     `);
 
