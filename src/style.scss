@@ -4,8 +4,8 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import "@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
-@import "@aurodesignsystem/design-tokens/dist/auro-classic/SassCustomProperties";
+@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
 @import "@aurodesignsystem/webcorestylesheets/src/core";
 @import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
 @import "@aurodesignsystem/webcorestylesheets/src/fonts";
@@ -25,8 +25,8 @@
   display: flex;
   overflow: hidden visible;
   flex-direction: column;
-  padding-bottom: calc(var(--auro-size-150) - 1px);
-  margin-bottom: calc(var(--auro-size-50) + 1px);
+  padding-bottom: calc(var(--ds-size-150) - 1px);
+  margin-bottom: calc(var(--ds-size-50) + 1px);
   transition: scroll .5s ease-in-out;
 }
 
@@ -36,19 +36,19 @@
   overflow: unset;
   width: fit-content;
   flex-wrap: nowrap;
-  padding-top: var(--auro-size-50);
-  padding-right: var(--auro-size-25);
+  padding-right: var(--ds-size-25);
   padding-bottom: 0;
-  margin-left: var(--auro-size-25);
+  margin-left: var(--ds-size-25);
+  border-bottom: 1px solid var(--ds-color-border-divider-default);
 }
 
 .slider  {
   position: absolute;
-  bottom: -1px;
+  bottom: 0px;
   left: 0;
   width: 0;
-  height: calc(var(--auro-size-25) + 1px);
-  background-color: var(--auro-color-ui-active-on-light);
+  height: 2px;
+  background-color: var(--ds-color-border-emphasis-default);
   transition: all .25s;
 }
 
@@ -68,21 +68,21 @@
 
 .icon {
   display: flex;
-  width: calc(var(--auro-size-400) - var(--auro-size-50));
-  height: calc(var(--auro-size-500) - var(--auro-size-50) - 1px);
+  width: calc(var(--ds-size-400) - var(--ds-size-50));
+  height: calc(var(--ds-size-500) - var(--ds-size-50) - 1px);
   align-items: center;
-  background-color: var(--auro-color-background-lightest);
-  color: var(--auro-color-icon-primary-on-light);
+  background-color: var(--ds-color-background-lightest);
+  color: var(--ds-color-icon-primary-default);
 
   &:hover {
-    color: var(--auro-color-icon-accent-on-light);
+    color: var(--ds-color-icon-accent-default);
   }
 }
 
 .gradientLeft,
 .gradientRight {
-  width: var(--auro-size-200);
-  height: calc(var(--auro-size-500) - var(--auro-size-50) - 1px);
+  width: var(--ds-size-200, $ds-size-200);
+  height: calc(var(--ds-size-500, $ds-size-500) - var(--ds-size-50, $ds-size-50) - 1px);
 }
 
 .chevronRight {
@@ -90,11 +90,11 @@
 }
 
 .gradientLeft {
-  background: linear-gradient(90deg, var(--auro-color-background-lightest) 0%, transparent 100%);
+  background: linear-gradient(90deg, var(--ds-color-background-lightest) 0%, transparent 100%);
 }
 
 .gradientRight {
-  background: linear-gradient(270deg, var(--auro-color-background-lightest) 0%, transparent 100%);
+  background: linear-gradient(270deg, var(--ds-color-background-lightest) 0%, transparent 100%);
 }
 
 @media (width <= 767px) {

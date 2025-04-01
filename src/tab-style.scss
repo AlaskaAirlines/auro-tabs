@@ -1,14 +1,20 @@
+@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
+@import "@aurodesignsystem/webcorestylesheets/src/core";
+@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
+@import "@aurodesignsystem/webcorestylesheets/src/fonts";
+@import "@aurodesignsystem/webcorestylesheets/src/essentials";
+
 :host {
-  padding-bottom: calc(var(--auro-size-50) - 1px);
+  // this seems to be important for making the a-tag get proper height
+  display: flex;
 
   a {
-    padding: 0 var(--auro-size-300);
-    padding-bottom: calc(var(--auro-size-100) - 1px);
-    border-bottom: solid 1px var(--auro-color-border-divider-on-light);
-    color: var(--auro-color-ui-default-on-light);
+    color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
     cursor: pointer;
-    font-family: var(--auro-asset-font-circular-family-name);
-    font-weight: 450;
+    font-family: var(--ds-font-family-default, $ds-font-family-default), sans-serif;
+    font-weight: var(--ds-text-body-default-weight);
+    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300);
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -17,7 +23,7 @@
 
 :host([selected]) {
   a {
-    color: var(--auro-color-ui-active-on-light);
+    color: var(--ds-color-text-ui-hover-default, $ds-color-text-ui-hover-default);
   }
 }
 
@@ -25,22 +31,32 @@
   pointer-events: none;
 
   a {
-    color: var(--auro-color-text-disabled-on-light);
+    color: var(--ds-color-text-ui-disabled-default, $ds-color-text-ui-disabled-default);
   }
 }
 
 :host(:hover) {
   a {
-    border-bottom: solid 1px var(--auro-color-border-active-on-light);
+    background-color: var(--ds-color-ui-bkg-hover-default, $ds-color-ui-bkg-hover-default);
   }
 }
 
 :host(:focus-within),
 :host(:focus:not(:focus-visible)) {
-  border-radius: calc(var(--auro-size-50) + var(--auro-size-25));
-  outline: solid 1px var(--auro-color-border-active-on-light);
+  position: relative;
 
-  a {
-    outline: none;
+  &::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+    width: 100%;
+    height: calc(100% + var(--ds-size-50, $ds-size-50));
+
+    border-radius: var(--ds-border-radius, $ds-border-radius);
+    border: 1px solid var(--ds-color-border-active-default, $ds-color-border-active-default);
   }
 }
