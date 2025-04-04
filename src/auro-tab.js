@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable no-magic-numbers, no-underscore-dangle */
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
@@ -48,19 +48,22 @@ export class AuroTab extends AuroHyperlink {
   }
 
   firstUpdated() {
-    if (!this.href) {
-      this.setAttribute('role', 'button');
+    const anchor = this.shadowRoot.querySelector('a');
+    if (anchor) {
+      anchor.setAttribute('role', 'none');
     }
+    
+    // Set a well-defined initial state.
+    this.upgradeProperty('selected');
 
     // give a unique id to the tab
     if (!this.id) {
       this.id = `auro-tab-generated-${uuidv4()}`;
     }
-
-    // Set a well-defined initial state.
-    this.setAttribute('aria-selected', 'false');
-    this.setAttribute('tabindex', -1);
-    this.upgradeProperty('selected');
+    if (!this.id) {
+      this.id = `${this.id}-anchor`;
+    }
+    this.setAttribute('role', 'tab');
   }
 
   /**
@@ -78,37 +81,18 @@ export class AuroTab extends AuroHyperlink {
     }
   }
 
-  attributeChangedCallback(name, oldVal, newVal) {
-    super.attributeChangedCallback(name, oldVal, newVal);
-    const value = this.hasAttribute('selected');
-    this.setAttribute('aria-selected', value);
+  updated(changedProperties) {
+    if (changedProperties.has('selected')) {
+      this.setAttribute('tabindex', this.selected ? 0 : -1);
+      this.setAttribute('aria-selected', this.selected ? 'true': 'false');
 
-    this.setAttribute('tabindex', value ? 0 : -1);
-  }
-
-  /**
-   * Setter function for selected property.
-   */
-  set selected(value) {
-    if (value) {
-      this.setAttribute('selected', '');
       const event = new Event('tab-selected', {
         bubbles: true,
         composed: true,
-        detail: this
+        detail: this.selected
       });
       this.dispatchEvent(event);
-    } else {
-      this.removeAttribute('selected');
     }
-  }
-
-  /**
-   * Getter for selected property.
-   * @returns {Boolean}
-   */
-  get selected() {
-    return this.hasAttribute('selected');
   }
 }
 
