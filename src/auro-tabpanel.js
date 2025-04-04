@@ -18,18 +18,13 @@ import styleCss from "./tabpanel-style-css.js";
 
 // build the component class
 export class AuroTabpanel extends LitElement {
-  // This function is to define props used within the scope of this component
-  // Be sure to review  https://lit.dev/docs/components/properties/
-  // to understand how to use reflected attributes with your property settings.
-  // static get properties() {
-  //   return {
-  //     // ...super.properties,
-  //   };
-  // }
 
-  firstUpdated() {
+  constructor() {
+    super();
+
     this.setAttribute('role', 'tabpanel');
-    // give a unique id to the tabpanel
+    this.setAttribute('tabindex', 0);
+
     if (!this.id) {
       this.id = `auro-tabpanel-generated-${uuidv4()}`;
     }
@@ -37,6 +32,21 @@ export class AuroTabpanel extends LitElement {
 
   static get styles() {
     return [styleCss];
+  }
+
+  static get properties() {
+    return {
+      hidden: {
+        type: Boolean,
+        reflect: true
+      },
+    };
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('hidden')) {
+      this.setAttribute('tabindex', this.hidden ? -1 : 0);
+    }
   }
 
   // function that renders the HTML and CSS into the scope of the component
