@@ -15,6 +15,13 @@ import styleCss from "./style-css.js";
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6';
 import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6';
 
+const KEYCODE = {
+  LEFT: 'ArrowLeft',
+  RIGHT: 'ArrowRight',
+  HOME: 'Home',
+  END: 'End',
+};
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-tabgroup element is a container element for tabs and panels.
@@ -68,10 +75,7 @@ export class AuroTabgroup extends LitElement {
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('click', this.onClick);
 
-    if (!this.hasAttribute('role')) {
-      this.setAttribute('role', 'tablist');
-    }
-    this.setAttribute('aria-busy', true);
+    this.setAttribute('aria-busy', "true");
 
     this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
@@ -100,12 +104,10 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * Function handler to link the tab with next sibling of tabpanel.
-   * Also Set the required aria-controls & aria-labelledby attribute.
-   * And finally, select a 'selected' tab if defined or default to first tab.
+   * And select a 'selected' tab if defined or default to first tab.
    */
   linkPanels() {
     const tabs = this.allTabs();
-    // Give each panel a `aria-labelledby` attribute that refers to the tab
     // that controls it.
     tabs.forEach((tab) => {
       const panel = tab.nextElementSibling;
@@ -259,17 +261,6 @@ export class AuroTabgroup extends LitElement {
    * @returns {void}
    */
   onKeyDown(event) {
-    const KEYCODE = {
-      DOWN: 'ArrowDown',
-      LEFT: 'ArrowLeft',
-      RIGHT: 'ArrowRight',
-      UP: 'ArrowUp',
-      HOME: 'Home',
-      END: 'End',
-      ENTER: 'Enter',
-      SPACE: ' ',
-      TAB: 'Tab'
-    };
 
     // Don’t handle modifier shortcuts typically used by assistive technology.
     if (event.altKey) {
@@ -320,14 +311,14 @@ export class AuroTabgroup extends LitElement {
     };
 
     let newTab = null;
+    // keyboard support
+    // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
     switch (event.key) {
       case KEYCODE.LEFT:
-      case KEYCODE.UP:
         this.focusedTabIdx = findPreviousNotDisabledIndex();
         newTab = tabs[this.focusedTabIdx];
         break;
       case KEYCODE.RIGHT:
-      case KEYCODE.DOWN:
         this.focusedTabIdx = findNextNotDisabledIndex();
         newTab = tabs[this.focusedTabIdx];
         break;
@@ -337,19 +328,6 @@ export class AuroTabgroup extends LitElement {
       case KEYCODE.END:
         newTab = this.lastTab();
         break;
-      case KEYCODE.ENTER:
-      case KEYCODE.SPACE:
-        // to check if 'focusedTabIdx' is not equal to undefined or null,
-        // because 0 as a first index is a truthy value for this case
-        // eslint-disable-next-line no-eq-null, eqeqeq
-        if (this.focusedTabIdx != null) {
-          newTab = tabs[this.focusedTabIdx];
-          this.selectTab(newTab);
-        }
-        break;
-      case KEYCODE.TAB:
-        this.focusedTabIdx = tabs.findIndex((tab) => tab.hasAttribute('selected'));
-      // eslint-disable-next-line no-fallthrough
       default:
         // Any other key press is ignored and passed back to the browser.
         return;
@@ -359,9 +337,11 @@ export class AuroTabgroup extends LitElement {
     // keys, home or end. The element calls `preventDefault()` to prevent the
     // browser from taking any actions.
     event.preventDefault();
+
     // Focus to the new tab, that has been determined in the switch-case.
     if (newTab) {
       newTab.focus();
+      this.selectTab(newTab);
     }
   }
 
@@ -471,7 +451,7 @@ export class AuroTabgroup extends LitElement {
    */
   get arrowLeftIcon() {
     return html`
-    <button class="chevronLeft" @click=${() => this.scrollTab('prev')}>
+    <button class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
       <div class="icon">${this.generateIcon(chevronLeft)}</div>
     </button>`;
   }
@@ -483,7 +463,7 @@ export class AuroTabgroup extends LitElement {
    */
   get arrowRightIcon() {
     return html`
-    <button class="chevronRight" @click=${() => this.scrollTab('next')}>
+    <button class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
       <div class="icon">${this.generateIcon(chevronRight)}</div>
     </button>`;
   }
@@ -517,7 +497,7 @@ export class AuroTabgroup extends LitElement {
     const sliderStyles = styleMap(this.sliderStyles);
 
     return html`
-    <div class="tabgroupContainer">
+    <div class="tabgroupContainer" role="tablist">
       ${this.renderLeftScrollTab()}
       <div class="tabgroup">
         <slot name="tab"></slot>
