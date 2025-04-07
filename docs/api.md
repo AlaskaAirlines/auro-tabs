@@ -59,19 +59,20 @@ cached and therefore, changes during runtime work.
 
 ## Methods
 
-| Method         | Type                          | Description                                      |
-|----------------|-------------------------------|--------------------------------------------------|
-| `allPanels`    | `(): Array`                   | Function to get all of the auro-tabpanel.        |
-| `allTabs`      | `(): Array`                   | Function to get all of the auro-tab.             |
-| `firstTab`     | `(): HTMLElement`             | Function to get the very first tab.              |
-| `lastTab`      | `(): HTMLElement`             | Function to get the very last tab.               |
-| `linkPanels`   | `(): void`                    | Function handler to link the tab with next sibling of tabpanel.<br />And select a 'selected' tab if defined or default to first tab. |
-| `nextTab`      | `(): HTMLElement`             | Function to get next tab of the selected one.    |
-| `onSlotChange` | `(): void`                    | `onSlotChange()` is called whenever an element is added or removed from<br />one of the shadow DOM slots. |
-| `prevTab`      | `(): HTMLElement`             | Function to get previous tab of the selected one. |
-| `reset`        | `(): void`                    | Function to reset the selected state of the tabs & hide the panel. |
-| `scrollTab`    | `(direction: string): void`   | Function handler for the scroll button click action.<br /><br />**direction**: Direction of the scroll. |
-| `selectTab`    | `(newTab: HTMLElement): void` | Function handler when selecting an auro-tab.<br /><br />**newTab**: Selected auro-tab. |
+| Method         | Type                                      | Description                                      |
+|----------------|-------------------------------------------|--------------------------------------------------|
+| `allPanels`    | `(): Array`                               | Function to get all of the auro-tabpanel.        |
+| `allTabs`      | `(): Array`                               | Function to get all of the auro-tab.             |
+| `firstTab`     | `(): HTMLElement`                         | Function to get the very first tab.              |
+| `lastTab`      | `(): HTMLElement`                         | Function to get the very last tab.               |
+| `linkPanels`   | `(): void`                                | Function handler to link the tab with next sibling of tabpanel.<br />And select a 'selected' tab if defined or default to first tab. |
+| `nextTab`      | `(): HTMLElement`                         | Function to get next tab of the selected one.    |
+| `onSlotChange` | `(): void`                                | `onSlotChange()` is called whenever an element is added or removed from<br />one of the shadow DOM slots. |
+| `panelForTab`  | `(tab: HTMLElement): HTMLElement \| null` | Function to get the panel for given auro-tab.<br /><br />**tab**: Auro-tab element. |
+| `prevTab`      | `(): HTMLElement`                         | Function to get previous tab of the selected one. |
+| `reset`        | `(): void`                                | Function to reset the selected state of the tabs & hide the panel. |
+| `scrollTab`    | `(direction: string): void`               | Function handler for the scroll button click action.<br /><br />**direction**: Direction of the scroll. |
+| `selectTab`    | `(newTab: HTMLElement): void`             | Function handler when selecting an auro-tab.<br /><br />**newTab**: Selected auro-tab. |
 
 ## Slots
 
@@ -84,3 +85,9 @@ cached and therefore, changes during runtime work.
 # auro-tabpanel
 
 The auro-tabpanel element should only be used for auro-tabs only.
+
+## Properties
+
+| Property | Attribute | Type      |
+|----------|-----------|-----------|
+| `hidden` | `hidden`  | `boolean` |
