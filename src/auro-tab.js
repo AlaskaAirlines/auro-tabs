@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-underscore-dangle */
+/* eslint-disable no-magic-numbers */
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
@@ -48,43 +48,23 @@ export class AuroTab extends AuroHyperlink {
   }
 
   firstUpdated() {
-    const anchor = this.shadowRoot.querySelector('a');
-    if (anchor) {
-      anchor.setAttribute('role', 'none');
-    }
-    
-    // Set a well-defined initial state.
-    this.upgradeProperty('selected');
-
     // give a unique id to the tab
     if (!this.id) {
       this.id = `auro-tab-generated-${uuidv4()}`;
     }
-    if (!this.id) {
-      this.id = `${this.id}-anchor`;
-    }
     this.setAttribute('role', 'tab');
-  }
 
-  /**
-   * This is to safe guard against cases where, for instance, a framework may have added the element
-   * to the page and set a value on one of its properties, but lazy loaded its definition.
-   * Without this guard, the upgraded element would miss that property and the instance property
-   * would prevent the class property setter from ever being called.
-   * @param {string} prop The component property.
-   */
-  upgradeProperty(prop) {
-    if (Object.hasOwn(this, prop)) {
-      const value = this[prop];
-      delete this[prop];
-      this[prop] = value;
+    const anchor = this.shadowRoot.querySelector('a');
+    if (anchor) {
+      // remove anchor's role to avoid nested interactive elements issue. WCAG 4.1.2
+      anchor.setAttribute('role', 'none');
     }
   }
 
   updated(changedProperties) {
     if (changedProperties.has('selected')) {
       this.setAttribute('tabindex', this.selected ? 0 : -1);
-      this.setAttribute('aria-selected', this.selected ? 'true': 'false');
+      this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
 
       const event = new Event('tab-selected', {
         bubbles: true,

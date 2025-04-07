@@ -45,7 +45,7 @@ export class AuroTabpanel extends LitElement {
 
   updated(changedProperties) {
     if (changedProperties.has('hidden')) {
-      this.setAttribute('tabindex', this.hidden ? -1 : 0);
+      this.setAttribute('tabindex', this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
     }
   }
 

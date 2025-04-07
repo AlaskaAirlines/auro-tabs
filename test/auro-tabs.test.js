@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
 import '../src/auro-tabgroup';
 import '../src/auro-tab';
 import '../src/auro-tabpanel';
@@ -7,8 +7,8 @@ describe('auro-tabgroup', () => {
   it('auro-tabgroup is accessible', async () => {
     const el = await fixture(html`
       <auro-tabgroup>
-        <auro-tab>Tab 1</auro-tab>
-        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
+        <auro-tab slot="tab">Tab 1</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
       </auro-tabgroup>
     `);
 
@@ -24,8 +24,8 @@ describe('auro-tabgroup', () => {
   it('auro-tabs full example is rendered', async () => {
     await fixture(html`
       <auro-tabgroup>
-        <auro-tab>Tab 1</auro-tab>
-        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
+        <auro-tab slot="tab">Tab 1</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
       </auro-tabgroup>
     `);
   });
@@ -33,39 +33,48 @@ describe('auro-tabgroup', () => {
   it('trigger keyhandler', async () => {
     const el = await fixture(html`
       <auro-tabgroup>
-        <auro-tab selected>Tab 1</auro-tab>
-        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
-        <auro-tab>Tab 2</auro-tab>
-        <auro-tabpanel>Tabpanel 2</auro-tabpanel>
+        <auro-tab slot="tab" selected>Tab 1</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
+        <auro-tab slot="tab">Tab 2</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
+        <auro-tab slot="tab">Tab 3</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 3</auro-tabpanel>
+        <auro-tab slot="tab">Tab 4</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 4</auro-tabpanel>
+        <auro-tab slot="tab">Tab 5</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 5</auro-tabpanel>
       </auro-tabgroup>
     `);
 
-    el.selectTab(el.querySelector('auro-tab'))
+    const firstTab = el.firstTab();
+    firstTab.focus();
 
-    const arrayKeys = ['ArrowRight', 'ArrowRight', 'ArrowLeft', 'ArrowLeft', 'Home', 'End', ' ', 'Enter', 'a']
+    const panels = el.allPanels();
 
-    arrayKeys.forEach(key => {
+    const arrayKeys = ['ArrowRight', 'ArrowLeft', 'Home', 'End', 'ArrowRight', 'ArrowLeft'];
+    const expectedIndex = [1, 0, 0, 4, 0, 4];
+
+    for (let i = 0; i < arrayKeys.length; i++) {
       el.dispatchEvent(new KeyboardEvent('keydown', {
-        bubbles: true,
-        composed: true,
-        key,
+        key: arrayKeys[i],
       }));
-    })
 
-    el.dispatchEvent(new KeyboardEvent('keydown', {
-      bubbles: true,
-      composed: true,
-      altKey: 'b',
-    }));
+      await elementUpdated(el);
+
+      await expect(el.focusedTabIdx).to.equal(expectedIndex[i]);
+
+      const currentPanel = el.querySelector('auro-tabpanel:not([hidden])');
+      await expect(currentPanel).to.equal(panels[el.focusedTabIdx]);
+    }
   });
 
   it('trigger navigation prev & nextTab', async () => {
     const el = await fixture(html`
       <auro-tabgroup>
-        <auro-tab selected>Tab 1</auro-tab>
-        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
-        <auro-tab>Tab 2</auro-tab>
-        <auro-tabpanel>Tabpanel 2</auro-tabpanel>
+        <auro-tab slot="tab" selected>Tab 1</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
+        <auro-tab slot="tab">Tab 2</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
       </auro-tabgroup>
     `);
 
@@ -76,10 +85,10 @@ describe('auro-tabgroup', () => {
   it('trigger click handler', async () => {
     const el = await fixture(html`
       <auro-tabgroup>
-        <auro-tab selected>Tab 1</auro-tab>
-        <auro-tabpanel>Tabpanel 1</auro-tabpanel>
-        <auro-tab>Tab 2</auro-tab>
-        <auro-tabpanel>Tabpanel 2</auro-tabpanel>
+        <auro-tab slot="tab" selected>Tab 1</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
+        <auro-tab slot="tab">Tab 2</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
       </auro-tabgroup>
     `);
 
