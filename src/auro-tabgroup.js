@@ -473,7 +473,6 @@ export class AuroTabgroup extends LitElement {
     return html`
     <button class="chevronLeft" @click=${() => this.scrollTab('prev')}>
       <div class="icon">${this.generateIcon(chevronLeft)}</div>
-      <div class="gradientLeft"></div>
     </button>`;
   }
 
@@ -485,7 +484,6 @@ export class AuroTabgroup extends LitElement {
   get arrowRightIcon() {
     return html`
     <button class="chevronRight" @click=${() => this.scrollTab('next')}>
-      <div class="gradientRight"></div>
       <div class="icon">${this.generateIcon(chevronRight)}</div>
     </button>`;
   }
