@@ -10,11 +10,11 @@
   display: flex;
 
   a {
+    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300);
     color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
     cursor: pointer;
     font-family: var(--ds-font-family-default, $ds-font-family-default), sans-serif;
     font-weight: var(--ds-text-body-default-weight);
-    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300);
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -44,19 +44,18 @@
 :host(:focus-within),
 :host(:focus:not(:focus-visible)) {
   position: relative;
+  outline: none;
 
-  &::before {
-    display: inline-block;
-    content: '';
+  &:before {
     position: absolute;
     top: 0;
     left: 50%;
-
-    transform: translateX(-50%);
+    display: inline-block;
     width: 100%;
     height: calc(100% + var(--ds-size-50, $ds-size-50));
-
-    border-radius: var(--ds-border-radius, $ds-border-radius);
     border: 1px solid var(--ds-color-border-active-default, $ds-color-border-active-default);
+    border-radius: var(--ds-border-radius, $ds-border-radius);
+    content: '';
+    transform: translateX(-50%);
   }
 }
