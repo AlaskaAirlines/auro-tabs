@@ -1,16 +1,12 @@
-import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
+import { fixture, html, expect, elementUpdated, waitUntil } from '@open-wc/testing';
+import { setViewport } from '@web/test-runner-commands';
 import '../src/auro-tabgroup';
 import '../src/auro-tab';
 import '../src/auro-tabpanel';
 
 describe('auro-tabgroup', () => {
   it('auro-tabgroup is accessible', async () => {
-    const el = await fixture(html`
-      <auro-tabgroup>
-        <auro-tab slot="tab">Tab 1</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
-      </auro-tabgroup>
-    `);
+    const el = await fixture(getTabGroup(3));
 
     await expect(el).to.be.accessible();
   });
@@ -22,29 +18,12 @@ describe('auro-tabgroup', () => {
   });
 
   it('auro-tabs full example is rendered', async () => {
-    await fixture(html`
-      <auro-tabgroup>
-        <auro-tab slot="tab">Tab 1</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
-      </auro-tabgroup>
-    `);
+    const el = await fixture(getTabGroup(3));
+    await expect(el.checkVisibility()).to.be.true;
   });
 
   it('trigger keyhandler', async () => {
-    const el = await fixture(html`
-      <auro-tabgroup>
-        <auro-tab slot="tab" selected>Tab 1</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
-        <auro-tab slot="tab">Tab 2</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
-        <auro-tab slot="tab">Tab 3</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 3</auro-tabpanel>
-        <auro-tab slot="tab">Tab 4</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 4</auro-tabpanel>
-        <auro-tab slot="tab">Tab 5</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 5</auro-tabpanel>
-      </auro-tabgroup>
-    `);
+    const el = await fixture(getTabGroup());
 
     const firstTab = el.firstTab();
     firstTab.focus();
@@ -69,30 +48,107 @@ describe('auro-tabgroup', () => {
   });
 
   it('trigger navigation prev & nextTab', async () => {
-    const el = await fixture(html`
-      <auro-tabgroup>
-        <auro-tab slot="tab" selected>Tab 1</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
-        <auro-tab slot="tab">Tab 2</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
-      </auro-tabgroup>
-    `);
+    const el = await fixture(getTabGroup());
 
-    el.prevTab();
-    el.nextTab();
+    const prev = el.prevTab();
+    await expect(prev.textContent).to.equal('Tab 5');
+
+    const next = el.nextTab();
+    await expect(next.textContent).to.equal('Tab 2');
   })
 
   it('trigger click handler', async () => {
+    const el = await fixture(getTabGroup());
+
+    const CLICK_INDEX = 3;
+    const tabs = el.querySelectorAll('auro-tab');
+    await tabs[CLICK_INDEX].click();
+
+    await expect(el.focusedTabIdx).to.equal(CLICK_INDEX);
+    const currentPanel = el.querySelector('auro-tabpanel:not([hidden])');
+    await expect(currentPanel.textContent).to.equal(`Tabpanel ${CLICK_INDEX + 1}`);
+  })
+
+  it('shows only selected tab\'s panel', async () => {
     const el = await fixture(html`
       <auro-tabgroup>
         <auro-tab slot="tab" selected>Tab 1</auro-tab>
         <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
         <auro-tab slot="tab">Tab 2</auro-tab>
         <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
+        <auro-tab slot="tab">Tab 3</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 3</auro-tabpanel>
+        <auro-tab slot="tab">Tab 4</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 4</auro-tabpanel>
+        <auro-tab slot="tab">Tab 5</auro-tab>
+        <auro-tabpanel slot="panel">Tabpanel 5</auro-tabpanel>
       </auro-tabgroup>
     `);
 
-    el.click()
-    el.querySelector('auro-tab').click()
+    const CLICK_INDEX = 3;
+    const tabs = el.querySelectorAll('auro-tab');
+    await tabs[CLICK_INDEX].click();
+
+    await expect(el.focusedTabIdx).to.equal(CLICK_INDEX);
+    const panels = el.querySelectorAll('auro-tabpanel');
+    for (let p of panels) {
+      await expect(p.checkVisibility()).not.to.equal(p.hidden); 
+    }
   })
+
+  it('all tabs and panels have id', async () => {
+    const el = await fixture(getTabGroup());
+
+    const tabs = el.querySelectorAll('auro-tab');
+    for (let t of tabs) {
+      await expect(t.id).to.exist;
+    }
+
+    const panels = el.querySelectorAll('auro-tabpanel');
+    for (let p of panels) {
+      await expect(p.id).to.exist;
+    }
+  })
+
+  it ('scrolls container when clicks arrow buttons', async () => {
+    const el = await fixture(getTabGroup(20));
+
+    await elementUpdated(el);
+
+    const rightR = el.shadowRoot.querySelector('.chevronRight');
+
+    await rightR.click();
+    await elementUpdated(el);
+
+    await waitUntil(() => el.scrollPosition >= el.tabGroupContainer.clientWidth);
+
+    const leftR =  el.shadowRoot.querySelector('.chevronLeft');
+    await leftR.click();
+    await elementUpdated(el);
+    await waitUntil(() => el.scrollPosition === 0);
+  })
+
+
+  it ('do not show arrow buttons in a small screen', async () => {
+    await setViewport({
+      width: 500,
+      height: 800
+    });
+    const el = await fixture(getTabGroup(20));
+
+    const arrows = el.shadowRoot.querySelector('.chevronRight, .chevronLeft');
+    await expect(arrows.checkVisibility()).to.be.false;
+  });
 });
+
+function getTabGroup(tabcount = 5) {
+  const pairs = [];
+  for (let i = 0; i < tabcount; i++) {
+    pairs.push(html`
+      <auro-tab slot="tab" selected>Tab ${i + 1}</auro-tab>
+      <auro-tabpanel slot="panel">Tabpanel ${i + 1}</auro-tabpanel>
+    `);
+  }
+
+  return html`<auro-tabgroup>${pairs}</auro-tabgroup>`;
+}
