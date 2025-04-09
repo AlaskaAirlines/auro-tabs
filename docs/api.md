@@ -23,12 +23,6 @@ The auro-tabpanel element should only be used for auro-tabgroup only.
 | `tertiary`       | `tertiary`       |           | `Boolean` | false   | If true and `type="cta"`, the hyperlink will have a tertiary UI. |
 | `type`           | `type`           |           | `String`  |         | Defines the type of hyperlink; accepts `nav` or `cta`. |
 
-## Methods
-
-| Method            | Type                   | Description                                      |
-|-------------------|------------------------|--------------------------------------------------|
-| `upgradeProperty` | `(prop: string): void` | This is to safe guard against cases where, for instance, a framework may have added the element<br />to the page and set a value on one of its properties, but lazy loaded its definition.<br />Without this guard, the upgraded element would miss that property and the instance property<br />would prevent the class property setter from ever being called.<br /><br />**prop**: The component property. |
-
 ## Events
 
 | Event          |
