@@ -10,7 +10,7 @@
   display: flex;
 
   a {
-    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300);
+    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300) var(--ds-size-75, $ds-size-75);
     color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
     cursor: pointer;
     font-family: var(--ds-font-family-default, $ds-font-family-default), sans-serif;

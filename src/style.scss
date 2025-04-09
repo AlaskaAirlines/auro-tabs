@@ -36,19 +36,19 @@
   overflow: unset;
   width: fit-content;
   flex-wrap: nowrap;
-  padding-right: var(--ds-size-25, $ds-size-25);
+  //padding-right: var(--ds-size-25, $ds-size-25);
   padding-bottom: 0;
   border-bottom: 1px solid var(--ds-color-border-divider-default, $ds-color-border-divider-default);
-  margin-left: var(--ds-size-25, $ds-size-25);
+  //margin-left: var(--ds-size-25, $ds-size-25);
 }
 
 .slider  {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 0;
   height: calc(var(--ds-size-25, $ds-size-25) + 1px);
-  background-color: var(--ds-color-border-emphasis-default, $ds-color-border-emphasis-default) ;
+  background-color: var(--ds-color-ui-active-default, $ds-color-ui-active-default) ;
   transition: all .25s;
 }
 
@@ -72,10 +72,10 @@
   height: calc(var(--ds-size-500, $ds-size-500) - var(--ds-size-50, $ds-size-50) - 1px);
   align-items: center;
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
-  color: var(--ds-color-icon-primary-default, $ds-color-icon-primary-default);
+  color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
 
   &:hover {
-    color: var(--ds-color-icon-accent-default, $ds-color-icon-accent-default);
+    color: var(--ds-color-ui-hover-default, $ds-color-ui-hover-default);
   }
 }
 

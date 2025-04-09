@@ -411,6 +411,72 @@ Example below:
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
+#### Custom tab content
+
+Auro tab supports injecting rich content (html) inside the tab.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
+  <!-- The below content is automatically added from ../apiExamples/custom-content.html -->
+  <div style="margin-bottom: 36px;">
+    <button onClick="addListener()">Add event listener</button>
+    <button onClick="removeListener()">Remove event listener</button>
+  </div>
+  <auro-tabgroup id="tab-selected-example">
+    <auro-tab slot="tab">
+      <div>
+        <span>Flights</span>
+        <span role="img" aria-label="airplane emoji">✈️</span>
+      </div>
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+        <span>Tab 1 Content</span>
+    </auro-tabpanel>
+  </auro-tabgroup>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.html) -->
+<!-- The below code snippet is automatically added from ../apiExamples/custom-content.html -->
+
+```html
+<div style="margin-bottom: 36px;">
+  <button onClick="addListener()">Add event listener</button>
+  <button onClick="removeListener()">Remove event listener</button>
+</div>
+<auro-tabgroup id="tab-selected-example">
+  <auro-tab slot="tab">
+    <div>
+      <span>Flights</span>
+      <span role="img" aria-label="airplane emoji">✈️</span>
+    </div>
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+  </auro-tabpanel>
+</auro-tabgroup>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/utils/onTabSelected.js) -->
+<!-- The below code snippet is automatically added from ../demo/utils/onTabSelected.js -->
+
+```js
+function onTabSelected(e) {
+  alert(`Tab selected: ${e.target.innerText}`);
+}
+
+function addListener() {
+  window.addEventListener('tab-selected', onTabSelected)
+}
+
+function removeListener() {
+  window.removeEventListener('tab-selected', onTabSelected)
+}
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ## Accessibility
 
 ### Tab Role

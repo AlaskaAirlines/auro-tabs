@@ -400,7 +400,7 @@ export class AuroTabgroup extends LitElement {
     const activeTab = tabs.find((tab) => tab.selected);
     this.sliderStyles = {
       width: activeTab ? `${activeTab.clientWidth}px` : 0,
-      left: activeTab ? `${activeTab.offsetLeft - 2}px` : 0,
+      left: activeTab ? `${activeTab.offsetLeft - 0.5}px` : 0,
     };
     this.requestUpdate();
   }
