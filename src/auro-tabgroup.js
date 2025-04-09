@@ -497,14 +497,14 @@ export class AuroTabgroup extends LitElement {
     const sliderStyles = styleMap(this.sliderStyles);
 
     return html`
-    <div class="tabgroupContainer" role="tablist">
-      ${this.renderLeftScrollTab()}
-      <div class="tabgroup">
-        <slot name="tab"></slot>
-        <div class="slider" style=${sliderStyles}></div>
+      <div class="tabgroupContainer" role="tablist">
+    ${this.renderLeftScrollTab()}
+        <div class="tabgroup">
+          <slot name="tab"></slot>
+          <div class="slider" style=${sliderStyles}></div>
+        </div>
+    ${this.renderRightScrollTab()}
       </div>
-      ${this.renderRightScrollTab()}
-    </div>
     <slot name="panel"></slot>
     `;
   }

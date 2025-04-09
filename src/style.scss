@@ -19,16 +19,16 @@
 :host {
   position: relative;
   display: block;
-  overflow: hidden visible;
-  padding: 0 2px;
-  margin: 0 -2px;
 }
 
 .tabgroupContainer {
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--ds-size-50, $ds-size-50) - 1px);
-  margin-bottom: calc(var(--ds-size-50, $ds-size-50) + 1px);
+  padding: 0 var(--ds-size-25, $ds-size-25);
+  padding-bottom: var(--ds-size-75, $ds-size-75);
+  margin: 0 calc(var(--ds-size-25, $ds-size-25) * -1);
+  margin-bottom: var(--ds-size-50, $ds-size-50);
+  overflow-x: hidden;
   transition: scroll .5s ease-in-out;
 }
 
@@ -59,7 +59,6 @@
   top: 0;
   display: flex;
   overflow: hidden;
-  height: calc(100% - var(--ds-size-50, $ds-size-50));
   align-items: center;
   padding: 0;
   border: none;
@@ -76,15 +75,18 @@
   padding-bottom: var(--ds-size-75, $ds-size-75);
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
   color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
-  line-height: 24px;
 
   &:hover {
     color: var(--ds-color-ui-hover-default, $ds-color-ui-hover-default);
   }
 }
 
+.chevronLeft {
+  left: calc(var(--ds-size-25, $ds-size-25) * -1);
+}
+
 .chevronRight {
-  right: 0;
+  right: calc(var(--ds-size-25, $ds-size-25) * -1);
 }
 
 @media screen and (max-width: $ds-grid-breakpoint-md) {
