@@ -97,6 +97,25 @@ Example below:
 
 </auro-accordion>
 
+#### Custom tab content
+
+Auro tab supports injecting rich content (html) inside the tab.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/utils/onTabSelected.js) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Accessibility
 
 ### Tab Role
@@ -184,3 +203,4 @@ This will create a new custom element that you can use in your HTML that will fu
 </custom-tabgroup>
 ```
 </auro-accordion>
+
