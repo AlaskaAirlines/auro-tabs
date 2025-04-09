@@ -19,11 +19,13 @@
 :host {
   position: relative;
   display: block;
+  overflow: hidden visible;
+  padding: 0 2px;
+  margin: 0 -2px;
 }
 
 .tabgroupContainer {
   display: flex;
-  overflow: hidden visible;
   flex-direction: column;
   padding-bottom: calc(var(--ds-size-50, $ds-size-50) - 1px);
   margin-bottom: calc(var(--ds-size-50, $ds-size-50) + 1px);
@@ -85,7 +87,7 @@
   right: 0;
 }
 
-@media screen and (min-width: $ds-grid-breakpoint-md) {
+@media screen and (max-width: $ds-grid-breakpoint-md) {
   .tabgroupContainer {
     overflow-x: scroll;
   }
