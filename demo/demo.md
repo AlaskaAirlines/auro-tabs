@@ -342,7 +342,7 @@ Example below:
       <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
         No Panel
       </auro-tab>
-    </auro-tabgroup>  
+    </auro-tabgroup>
   </div>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -405,11 +405,38 @@ Example below:
     <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
       No Panel
     </auro-tab>
-  </auro-tabgroup>  
+  </auro-tabgroup>
 </div>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
+
+## Custom tab content
+
+Auro tab doesn't have to be a simple text. You can add any HTML element inside the `auro-tab` element, though styles may need to be adjusted to fit your needs.
+
+<div class="exampleWrapper">
+  <auro-tabgroup id="tab-selected-example">
+    <auro-tab slot="tab">
+      <div class="custom-tab">
+        <span>Flights</span>
+        <span role="img" aria-label="airplane emoji">✈️</span>
+      </div>
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab slot="tab">
+      <div class="custom-tab">
+        <span>Rentals</span>
+        <span role="img" aria-label="car emoji">🚗</span>
+      </div>
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 2 Content</span>
+    </auro-tabpanel>
+  </auro-tabgroup>
+</div>
 
 ## Accessibility
 
