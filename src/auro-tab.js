@@ -24,6 +24,13 @@ export class AuroTab extends AuroHyperlink {
     super();
 
     this.disabled = false;
+
+    /**
+     * The associated AuroTabpanel that will be displayed when this tab is selected.
+     * @type {AuroTabpanel}
+     * @readonly
+     */
+    this.panel = null;
   }
 
   // This function is to define props used within the scope of this component
@@ -66,12 +73,14 @@ export class AuroTab extends AuroHyperlink {
       this.setAttribute('tabindex', this.selected ? 0 : -1);
       this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
 
-      const event = new Event('tab-selected', {
-        bubbles: true,
-        composed: true,
-        detail: this.selected
-      });
-      this.dispatchEvent(event);
+      if (this.selected) {
+        const event = new Event('tab-selected', {
+          bubbles: true,
+          composed: true,
+          detail: this.selected
+        });
+        this.dispatchEvent(event);
+      }
     }
   }
 }

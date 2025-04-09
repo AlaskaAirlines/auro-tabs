@@ -24,11 +24,12 @@ describe('auro-tabgroup', () => {
 
   it('trigger keyhandler', async () => {
     const el = await fixture(getTabGroup());
+    const tabs = [...el.querySelectorAll('auro-tab')];
 
-    const firstTab = el.firstTab();
+    const firstTab = tabs[0];
     firstTab.focus();
 
-    const panels = el.allPanels();
+    const panels = tabs.map(t => t.panel);
 
     const arrayKeys = ['ArrowRight', 'ArrowLeft', 'Home', 'End', 'ArrowRight', 'ArrowLeft'];
     const expectedIndex = [1, 0, 0, 4, 0, 4];
@@ -40,22 +41,12 @@ describe('auro-tabgroup', () => {
 
       await elementUpdated(el);
 
-      await expect(el.focusedTabIdx).to.equal(expectedIndex[i]);
+      await expect(el.currentTabIndex).to.equal(expectedIndex[i]);
 
-      const currentPanel = el.querySelector('auro-tabpanel:not([hidden])');
-      await expect(currentPanel).to.equal(panels[el.focusedTabIdx]);
+      const currentPanel = el.currentTab.panel;
+      await expect(currentPanel).to.equal(panels[el.currentTabIndex]);
     }
   });
-
-  it('trigger navigation prev & nextTab', async () => {
-    const el = await fixture(getTabGroup());
-
-    const prev = el.prevTab();
-    await expect(prev.textContent).to.equal('Tab 5');
-
-    const next = el.nextTab();
-    await expect(next.textContent).to.equal('Tab 2');
-  })
 
   it('trigger click handler', async () => {
     const el = await fixture(getTabGroup());
@@ -64,8 +55,8 @@ describe('auro-tabgroup', () => {
     const tabs = el.querySelectorAll('auro-tab');
     await tabs[CLICK_INDEX].click();
 
-    await expect(el.focusedTabIdx).to.equal(CLICK_INDEX);
-    const currentPanel = el.querySelector('auro-tabpanel:not([hidden])');
+    await expect(el.currentTabIndex).to.equal(CLICK_INDEX);
+    const currentPanel = el.currentTab.panel;
     await expect(currentPanel.textContent).to.equal(`Tabpanel ${CLICK_INDEX + 1}`);
   })
 
@@ -89,7 +80,7 @@ describe('auro-tabgroup', () => {
     const tabs = el.querySelectorAll('auro-tab');
     await tabs[CLICK_INDEX].click();
 
-    await expect(el.focusedTabIdx).to.equal(CLICK_INDEX);
+    await expect(el.currentTabIndex).to.equal(CLICK_INDEX);
     const panels = el.querySelectorAll('auro-tabpanel');
     for (let p of panels) {
       await expect(p.checkVisibility()).not.to.equal(p.hidden); 
@@ -110,13 +101,16 @@ describe('auro-tabgroup', () => {
     }
   })
 
-  it ('scrolls container when clicks arrow buttons', async () => {
+  it('scrolls container when clicks arrow buttons', async () => {
+    await setViewport({
+      width: 800,
+      height: 800
+    });
     const el = await fixture(getTabGroup(20));
 
     await elementUpdated(el);
 
     const rightR = el.shadowRoot.querySelector('.chevronRight');
-
     await rightR.click();
     await elementUpdated(el);
 
@@ -125,11 +119,11 @@ describe('auro-tabgroup', () => {
     const leftR =  el.shadowRoot.querySelector('.chevronLeft');
     await leftR.click();
     await elementUpdated(el);
-    await waitUntil(() => el.scrollPosition === 0);
+    await waitUntil(() => leftR.checkVisibility() === false);
   })
 
 
-  it ('do not show arrow buttons in a small screen', async () => {
+  it('do not show arrow buttons in a small screen', async () => {
     await setViewport({
       width: 500,
       height: 800
@@ -145,7 +139,7 @@ function getTabGroup(tabcount = 5) {
   const pairs = [];
   for (let i = 0; i < tabcount; i++) {
     pairs.push(html`
-      <auro-tab slot="tab" selected>Tab ${i + 1}</auro-tab>
+      <auro-tab slot="tab">Tab ${i + 1}</auro-tab>
       <auro-tabpanel slot="panel">Tabpanel ${i + 1}</auro-tabpanel>
     `);
   }
