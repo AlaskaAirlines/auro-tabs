@@ -25,7 +25,7 @@
   display: flex;
   overflow: hidden visible;
   flex-direction: column;
-  padding-bottom: calc(var(--ds-size-150, $ds-size-150) - 1px);
+  padding-bottom: calc(var(--ds-size-50, $ds-size-50) - 1px);
   margin-bottom: calc(var(--ds-size-50, $ds-size-50) + 1px);
   transition: scroll .5s ease-in-out;
 }
@@ -36,10 +36,8 @@
   overflow: unset;
   width: fit-content;
   flex-wrap: nowrap;
-  //padding-right: var(--ds-size-25, $ds-size-25);
   padding-bottom: 0;
   border-bottom: 1px solid var(--ds-color-border-divider-default, $ds-color-border-divider-default);
-  //margin-left: var(--ds-size-25, $ds-size-25);
 }
 
 .slider  {
@@ -58,7 +56,8 @@
   z-index: 10;
   top: 0;
   display: flex;
-  height: inherit;
+  overflow: hidden;
+  height: calc(100% - var(--ds-size-50, $ds-size-50));
   align-items: center;
   padding: 0;
   border: none;
@@ -69,10 +68,13 @@
 .icon {
   display: flex;
   width: calc(var(--ds-size-400, $ds-size-400) - var(--ds-size-50, $ds-size-50));
-  height: calc(var(--ds-size-500, $ds-size-500) - var(--ds-size-50, $ds-size-50) - 1px);
+  height: 100%;
   align-items: center;
+  padding-top: var(--ds-size-50, $ds-size-50);
+  padding-bottom: var(--ds-size-75, $ds-size-75);
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
   color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
+  line-height: 24px;
 
   &:hover {
     color: var(--ds-color-ui-hover-default, $ds-color-ui-hover-default);
@@ -83,7 +85,7 @@
   right: 0;
 }
 
-@media (width <= 767px) {
+@media screen and (min-width: $ds-grid-breakpoint-md) {
   .tabgroupContainer {
     overflow-x: scroll;
   }
