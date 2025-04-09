@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers,max-lines */
+/* eslint-disable no-magic-numbers,max-lines, id-length, no-plusplus */
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
@@ -10,6 +10,8 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 // Import touch detection lib
 import styleCss from "./style-css.js";
+
+import { TabIndexUtil } from "./tabindexUtil.js";
 
 // Import icon
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6';
@@ -29,8 +31,6 @@ const KEYCODE = {
  * `<auro-tabpanel>`. This element is stateless, meaning that no values are
  * cached and therefore, changes during runtime work.
  *
- * @prop {Number} scrollPosition - Tabgroup container scroll position.
- * @prop {Object} sliderStyles - Slider styles.
  * @slot tab - Slot component named for auro-tab.
  * @slot panel - Slot component named for auro-tabpanel.
  */
@@ -40,10 +40,21 @@ export class AuroTabgroup extends LitElement {
   constructor() {
     super();
 
+    /**
+     * @private
+     */
     this.scrollPosition = 0;
+
+    /**
+     * @private
+     */
     this.sliderStyles = {};
 
-    this.addEventListener('tab-selected', () => this.setSliderStyles());
+
+    /**
+     * @private
+     */
+    this.focusedTabIdx = -1;
   }
 
   // This function is to define props used within the scope of this component
@@ -65,29 +76,21 @@ export class AuroTabgroup extends LitElement {
     return [styleCss];
   }
 
-  async firstUpdated() {
-    this.tabSlot = this.shadowRoot.querySelector('slot[name=tab]');
-    this.panelSlot = this.shadowRoot.querySelector('slot[name=panel]');
-
-    await this.updateComplete;
-    this.tabSlot.addEventListener('slotchange', this.onSlotChange);
-    this.panelSlot.addEventListener('slotchange', this.onSlotChange);
-    this.addEventListener('keydown', this.onKeyDown);
-    this.addEventListener('click', this.onClick);
-
+  firstUpdated() {
     this.setAttribute('aria-busy', "true");
 
     this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
-
-    await Promise.all([
-      customElements.whenDefined('auro-tab'),
-      customElements.whenDefined('auro-tabpanel'),
-    ]);
-
-    this.linkPanels();
-    this.setSliderStyles();
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.setSliderStyles = this.setSliderStyles.bind(this);
+    this.addEventListener('tab-selected', this.setSliderStyles);
+    this.addEventListener('keydown', this.onKeyDown);
+    this.addEventListener('click', this.onClick);
+  };
 
   disconnectedCallback() {
     this.removeEventListener('keydown', this.onKeyDown);
@@ -97,17 +100,10 @@ export class AuroTabgroup extends LitElement {
   /**
    * `onSlotChange()` is called whenever an element is added or removed from
    * one of the shadow DOM slots.
+   * @private
    */
   onSlotChange() {
-    this.linkPanels();
-  }
-
-  /**
-   * Function handler to link the tab with next sibling of tabpanel.
-   * And select a 'selected' tab if defined or default to first tab.
-   */
-  linkPanels() {
-    const tabs = this.allTabs();
+    const tabs = this.allTabs;
     // that controls it.
     tabs.forEach((tab) => {
       const panel = tab.nextElementSibling;
@@ -116,120 +112,54 @@ export class AuroTabgroup extends LitElement {
           // eslint-disable-next-line no-console
           console.error(`Tab #${tab.id} is not a` +
               `sibling of a <auro-tabpanel>`);
-          return;
+        } else {
+          panel.hidden = true;
+          tab.panel = panel;
+          tab.setAttribute('aria-controls', panel.id);
+          panel.setAttribute('aria-labelledby', tab.id);
         }
-
-        tab.setAttribute('aria-controls', panel.id);
-        panel.setAttribute('aria-labelledby', tab.id);
+      }
+      if (tab.selected) {
+        this.selectTab(tab);
       }
     });
 
-    // select a tab if defined or select the first tab
-    const selectedTab = tabs.find((tab) => tab.selected) || tabs[0];
-    this.selectTab(selectedTab);
-  }
-
-  /**
-   * Function to get all of the auro-tabpanel.
-   * @returns {Array} Array of auro-tabpanel element.
-   */
-  allPanels() {
-    return Array.from(this.querySelectorAll('auro-tabpanel'));
+    if (this.focusedTabIdx === -1) {
+      this.selectTab(tabs[0]);
+    }
   }
 
   /**
    * Function to get all of the auro-tab.
+   * @private
    * @returns {Array} Array of auro-tab element.
    */
-  allTabs() {
+  get allTabs() {
     return Array.from(this.querySelectorAll('auro-tab'));
   }
 
   /**
-   * Function to get the panel for given auro-tab.
-   * @param {HTMLElement} tab Auro-tab element.
-   * @returns {HTMLElement | null} Auro-tabpanel element.
-   */
-  panelForTab(tab) {
-    const panelId = tab.getAttribute('aria-controls');
-    if (panelId) {
-      return this.querySelector(`#${panelId}`);
-    }
-    return null;
-  }
-
-  /**
-   * Function to get previous tab of the selected one.
-   * @returns {HTMLElement} Auro-tab element.
-   */
-  prevTab() {
-    const tabs = this.allTabs();
-    // Use `findIndex()` to find the index of the currently
-    // selected element and subtracts one to get the index of the previous
-    // element.
-    const newIdx =
-      tabs.findIndex((tab) => tab.selected) - 1;
-    // Add `tabs.length` to make sure the index is a positive number
-    // and get the modulus to wrap around if necessary.
-    return tabs[(newIdx + tabs.length) % tabs.length];
-  }
-
-  /**
-   * Function to get next tab of the selected one.
-   * @returns {HTMLElement} Auro-tab element.
-   */
-  nextTab() {
-    const tabs = this.allTabs();
-    const newIdx = tabs.findIndex((tab) => tab.selected) + 1;
-    return tabs[newIdx % tabs.length];
-  }
-
-  /**
-   * Function to get the very first tab.
-   * @returns {HTMLElement} Auro-tab element.
-   */
-  firstTab() {
-    const tabs = this.allTabs();
-    return tabs[0];
-  }
-
-  /**
-   * Function to get the very last tab.
-   * @returns {HTMLElement} Auro-tab element.
-   */
-  lastTab() {
-    const tabs = this.allTabs();
-    return tabs[tabs.length - 1];
-  }
-
-  /**
-   * Function to reset the selected state of the tabs & hide the panel.
-   */
-  reset() {
-    const tabs = this.allTabs();
-    const panels = this.allPanels();
-
-    tabs.forEach((tab) => {
-      tab.selected = false;
-    });
-    panels.forEach((panel) => {
-      panel.hidden = true;
-    });
-  }
-
-  /**
    * Function handler when selecting an auro-tab.
+   * @private
    * @param {HTMLElement} newTab Selected auro-tab.
    * @returns {void}
    */
   selectTab(newTab) {
+    const tabs = this.allTabs;
+    this.focusedTabIdx = -1;
     // Deselect all tabs and hide all panels.
-    this.reset();
-    newTab.selected = true;
+    for (let i = 0; i < tabs.length; i++) {
+      const tab = tabs[i];
+      if (tab === newTab) {
+        this.focusedTabIdx = i;
+      }
+      tab.selected = tab === newTab;
 
-    const tabs = this.allTabs();
-    // Set focused tab index.
-    this.focusedTabIdx = tabs.findIndex((tab) => tab === newTab);
+      if (tab.panel) {
+        tab.panel.hidden = tab !== newTab;
+      }
+    }
+
 
     // This will scroll the container to selected tab to nearly centered
     // of the relative viewport if possible.
@@ -242,26 +172,27 @@ export class AuroTabgroup extends LitElement {
       });
     }
 
-    // Get the panel that the `newTab` is associated with.
-    const newPanel = this.panelForTab(newTab);
     // If that panel doesn’t exist, abort.
-    if (!newPanel) {
+    if (!newTab.panel) {
       // eslint-disable-next-line no-console
       console.error(`No panel with id ${newTab.id}`);
-      return;
     }
-    newPanel.hidden = false;
+  }
+
+  get currentTabIndex() {
+    return this.focusedTabIdx;
+  }
+
+  get currentTab() {
+    return this.allTabs[this.focusedTabIdx];
   }
 
   /**
-   * Function handler when user do a keyboard action
-   * when the focus is inside auro-tabgroup.
    * @private
    * @param {KeyboardEvent} event HTML onkeydown keyboard event.
    * @returns {void}
    */
   onKeyDown(event) {
-
     // Don’t handle modifier shortcuts typically used by assistive technology.
     if (event.altKey) {
       return;
@@ -269,64 +200,22 @@ export class AuroTabgroup extends LitElement {
 
     // The switch-case will determine which tab should be marked as focused
     // depending on the key that was pressed.
-    const tabs = this.allTabs();
-    let focusedIdx = this.focusedTabIdx;
-
-    // we check if previous tab have 'disabled' attribute and check the following previous tab for the same thing,
-    // and keeps goind on until we found the one that's not disabled.
-    const findPreviousNotDisabledIndex = () => {
-      const decrement = () => {
-        if (focusedIdx === 0) {
-          focusedIdx = tabs.length - 1;
-        } else {
-          focusedIdx -= 1;
-        }
-      };
-      // do increment for first time.
-      decrement();
-
-      while (tabs[focusedIdx].hasAttribute('disabled')) {
-        decrement();
-      }
-      return focusedIdx;
-    };
-
-    // we check if next tab have 'disabled' attribute and check the following next tab for the same thing,
-    // and keeps goind on until we found the one that's not disabled.
-    const findNextNotDisabledIndex = () => {
-      const increment = () => {
-        if (focusedIdx === tabs.length - 1) {
-          focusedIdx = 0;
-        } else {
-          focusedIdx += 1;
-        }
-      };
-      // do increment for first time.
-      increment();
-
-      while (tabs[focusedIdx].hasAttribute('disabled')) {
-        increment();
-      }
-      return focusedIdx;
-    };
-
-    let newTab = null;
+    const tabs = this.allTabs;
+    let newIdx = 0;
     // keyboard support
     // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
     switch (event.key) {
       case KEYCODE.LEFT:
-        this.focusedTabIdx = findPreviousNotDisabledIndex();
-        newTab = tabs[this.focusedTabIdx];
+        newIdx = TabIndexUtil.getPreviousNotDisabledIndex(this.focusedTabIdx, tabs);
         break;
       case KEYCODE.RIGHT:
-        this.focusedTabIdx = findNextNotDisabledIndex();
-        newTab = tabs[this.focusedTabIdx];
+        newIdx = TabIndexUtil.findNextNotDisabledIndex(this.focusedTabIdx, tabs);
         break;
       case KEYCODE.HOME:
-        newTab = this.firstTab();
+        newIdx = 0;
         break;
       case KEYCODE.END:
-        newTab = this.lastTab();
+        newIdx = tabs.length - 1;
         break;
       default:
         // Any other key press is ignored and passed back to the browser.
@@ -339,6 +228,7 @@ export class AuroTabgroup extends LitElement {
     event.preventDefault();
 
     // Focus to the new tab, that has been determined in the switch-case.
+    const newTab = tabs[newIdx];
     if (newTab) {
       newTab.focus();
       this.selectTab(newTab);
@@ -369,20 +259,17 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function to set the slider position & width
-   * when a tab is selected.
    * @private
+   * @param {Event} event Dispatched from auro-tab.
    */
-  setSliderStyles () {
+  setSliderStyles (event) {
     this.sliderStyles.width = 0;
-    const tabs = this.allTabs();
 
-    const activeTab = tabs.find((tab) => tab.selected);
+    const tab = event.target;
     this.sliderStyles = {
-      width: activeTab ? `${activeTab.clientWidth}px` : 0,
-      left: activeTab ? `${activeTab.offsetLeft - 0.5}px` : 0,
+      width: `${tab.clientWidth}px`,
+      left: `${tab.offsetLeft - 0.5}px`,
     };
-    this.requestUpdate();
   }
 
   /**
@@ -418,6 +305,7 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * Function handler for the scroll button click action.
+   * @private
    * @param {string} direction Direction of the scroll.
    */
   scrollTab(direction) {
@@ -445,51 +333,19 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Getter for arrow left icon HTML.
    * @private
-   * @returns {HTMLElement}
+   * @returns { Boolean }
    */
-  get arrowLeftIcon() {
-    return html`
-    <button class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
-      <div class="icon">${this.generateIcon(chevronLeft)}</div>
-    </button>`;
+  get visibleLeftChevron() {
+    return (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
   }
 
   /**
-   * Getter for arrow right icon HTML.
    * @private
-   * @returns {HTMLElement}
+   * @returns { Boolean }
    */
-  get arrowRightIcon() {
-    return html`
-    <button class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
-      <div class="icon">${this.generateIcon(chevronRight)}</div>
-    </button>`;
-  }
-
-  /**
-   * Conditional rendering for left scroll button.
-   * @returns {HTMLElement | null} Arrow left icon.
-   * @private
-   */
-  renderLeftScrollTab() {
-    if ((this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0) {
-      return this.arrowLeftIcon;
-    }
-    return null;
-  }
-
-  /**
-   * Conditional rendering for right scroll button.
-   * @returns {HTMLElement | null} Arrow right icon.
-   * @private
-   */
-  renderRightScrollTab() {
-    if ((this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0) {
-      return this.arrowRightIcon;
-    }
-    return null;
+  get visibleRightChevron() {
+    return (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
   }
 
   // function that renders the HTML and CSS into the scope of the component
@@ -498,14 +354,20 @@ export class AuroTabgroup extends LitElement {
 
     return html`
       <div class="tabgroupContainer" role="tablist">
-    ${this.renderLeftScrollTab()}
+      ${this.visibleLeftChevron ? html`
+        <button class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
+          <div class="icon">${this.generateIcon(chevronLeft)}</div>
+        </button>` : ''}
         <div class="tabgroup">
-          <slot name="tab"></slot>
+          <slot name="tab" @slotchange=${this.onSlotChange}></slot>
           <div class="slider" style=${sliderStyles}></div>
         </div>
-    ${this.renderRightScrollTab()}
+      ${this.visibleRightChevron ? html`
+        <button class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
+          <div class="icon">${this.generateIcon(chevronRight)}</div>
+        </button>` : ''}
       </div>
-    <slot name="panel"></slot>
+    <slot name="panel" @slotchange=${this.onSlotChange}></slot>
     `;
   }
 }
