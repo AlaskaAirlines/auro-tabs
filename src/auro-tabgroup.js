@@ -50,11 +50,15 @@ export class AuroTabgroup extends LitElement {
      */
     this.sliderStyles = {};
 
-
     /**
      * @private
      */
     this.focusedTabIdx = -1;
+
+    /**
+     * @private
+     */
+    this.resizeObserver = undefined;
   }
 
   // This function is to define props used within the scope of this component
@@ -81,6 +85,13 @@ export class AuroTabgroup extends LitElement {
 
     this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.setSliderStyles({ target: this.currentTab });
+    });
+
+    const tabGroup = this.tabGroupContainer.querySelector('.tabgroup');
+    this.resizeObserver.observe(tabGroup, { box : 'border-box' });
   }
 
   connectedCallback() {
@@ -147,6 +158,7 @@ export class AuroTabgroup extends LitElement {
   selectTab(newTab) {
     const tabs = this.allTabs;
     this.focusedTabIdx = -1;
+
     // Deselect all tabs and hide all panels.
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
