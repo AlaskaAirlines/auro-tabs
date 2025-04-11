@@ -5,7 +5,8 @@
 // ---------------------------------------------------------------------
 
 import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
-import { v4 as uuidv4 } from 'uuid';
+
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import touch detection lib
 import styleCss from "./tab-style-css.js";
@@ -31,6 +32,8 @@ export class AuroTab extends AuroHyperlink {
      * @readonly
      */
     this.panel = null;
+
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tab');
   }
 
   // This function is to define props used within the scope of this component
@@ -54,10 +57,22 @@ export class AuroTab extends AuroHyperlink {
     return [styleCss];
   }
 
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-tab"] - The name of element that you want to register to.
+   *
+   * @example
+   * Aurotab.register("custom-tab") // this will register this element to <custom-tab/>
+   *
+   */
+  static register(name = "auro-tab") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTab);
+  }
+
   firstUpdated() {
     // give a unique id to the tab
     if (!this.id) {
-      this.id = `auro-tab-generated-${uuidv4()}`;
+      this.id = `auro-tab-generated-${window.crypto.randomUUID()}`;
     }
     this.setAttribute('role', 'tab');
 
@@ -83,9 +98,4 @@ export class AuroTab extends AuroHyperlink {
       }
     }
   }
-}
-
-// default internal definition
-if (!customElements.get("auro-tab")) {
-  customElements.define("auro-tab", AuroTab);
 }
