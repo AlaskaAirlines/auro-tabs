@@ -23,8 +23,7 @@
     "@aurodesignsystem/design-tokens": "^4.13.0",
     "@aurodesignsystem/webcorestylesheets": "^6.1.0",
     "chalk": "^5.4.1",
-    "lit": "^3.2.1",
-    "uuid": "^11.1.0"
+    "lit": "^3.2.1"
   },
   "devDependencies": {
     "@aurodesignsystem/auro-library": "^3.0.11",
@@ -129,7 +128,7 @@
   "scripts": {
     "build": "npm-run-all build:sass sass:render dist:js bundler postinstall build:api types build:docs",
     "build:ci": "npm-run-all sweep build",
-    "build:api": "wca analyze 'src/auro-*.js' --outFiles docs/api.md",
+    "build:api": "wca analyze 'scripts/wca/*.js' --outFiles docs/api.md",
     "build:docs": "node ./node_modules/@aurodesignsystem/auro-library/scripts/build/generateDocs.mjs",
     "build:dev:assets": "npm-run-all build:sass:component postCss:component sass:render",
     "build:sass": "npm-run-all build:sass:component postCss:component sass:render",

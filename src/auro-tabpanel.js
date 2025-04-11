@@ -5,7 +5,7 @@
 
 // If using litElement base class
 import { LitElement, html } from "lit";
-import { v4 as uuidv4 } from 'uuid';
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import touch detection lib
 import styleCss from "./tabpanel-style-css.js";
@@ -13,7 +13,6 @@ import styleCss from "./tabpanel-style-css.js";
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-tabpanel element should only be used for auro-tabs only.
- *
  */
 
 // build the component class
@@ -26,8 +25,10 @@ export class AuroTabpanel extends LitElement {
     this.setAttribute('tabindex', 0);
 
     if (!this.id) {
-      this.id = `auro-tabpanel-generated-${uuidv4()}`;
+      this.id = `auro-tabpanel-generated-${window.crypto.randomUUID()}`;
     }
+
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabpanel');
   }
 
   static get styles() {
@@ -43,6 +44,19 @@ export class AuroTabpanel extends LitElement {
     };
   }
 
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-tabpanel"] - The name of element that you want to register to.
+   *
+   * @example
+   * Aurotab.register("custom-tabpanel") // this will register this element to <custom-tab/>
+   *
+   */
+  static register(name = "auro-tabpanel") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabpanel);
+  }
+
+
   updated(changedProperties) {
     if (changedProperties.has('hidden')) {
       this.setAttribute('tabindex', this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
@@ -55,9 +69,4 @@ export class AuroTabpanel extends LitElement {
       <slot></slot>
     `;
   }
-}
-
-// default internal definition
-if (!customElements.get("auro-tabpanel")) {
-  customElements.define("auro-tabpanel", AuroTabpanel);
 }

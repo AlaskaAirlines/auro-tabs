@@ -1,8 +1,6 @@
 import { fixture, html, expect, elementUpdated, waitUntil } from '@open-wc/testing';
 import { setViewport } from '@web/test-runner-commands';
-import '../src/auro-tabgroup';
-import '../src/auro-tab';
-import '../src/auro-tabpanel';
+import '../index.js';
 
 describe('auro-tabgroup', () => {
   it('auro-tabgroup is accessible', async () => {
