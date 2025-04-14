@@ -1,16 +1,15 @@
-/* eslint-disable no-magic-numbers,max-lines, id-length, no-plusplus */
+/* eslint-disable no-magic-numbers, max-lines, id-length, no-plusplus */
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
 
-// If using litElement base class
 import { LitElement, html } from "lit";
 import { styleMap } from 'lit/directives/style-map.js';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// Import touch detection lib
+// Import styles
 import styleCss from "./style-css.js";
 
 import { TabIndexUtil } from "./tabindexUtil.js";
@@ -26,7 +25,6 @@ const KEYCODE = {
   END: 'End',
 };
 
-// See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-tabgroup element is a container element for tabs and panels.
  * All children of `<auro-tabgroup>` should be either `<auro-tab>` or
@@ -56,18 +54,8 @@ export class AuroTabgroup extends LitElement {
      * @private
      */
     this.focusedTabIdx = -1;
-
-    /**
-     * @private
-     */
-    this.resizeObserver = undefined;
-
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabgroup');
   }
 
-  // This function is to define props used within the scope of this component
-  // Be sure to review  https://lit.dev/docs/components/properties/
-  // to understand how to use reflected attributes with your property settings.
   static get properties() {
     return {
       ...super.properties,
@@ -125,7 +113,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * `onSlotChange()` is called whenever an element is added or removed from
+   * @description `onSlotChange()` is called whenever an element is added or removed from
    * one of the shadow DOM slots.
    * @private
    */
@@ -157,7 +145,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function to get all of the auro-tab.
+   * @description Function to get all of the auro-tabs.
    * @private
    * @returns {Array} Array of auro-tab element.
    */
@@ -166,7 +154,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function handler when selecting an auro-tab.
+   * @description Function handler when selecting an auro-tab.
    * @private
    * @param {HTMLElement} newTab Selected auro-tab.
    * @returns {void}
@@ -216,6 +204,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Function handler for keyDown event.
    * @private
    * @param {KeyboardEvent} event HTML onkeydown keyboard event.
    * @returns {void}
@@ -264,6 +253,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Function handler for click event.
    * @private
    * @param {Event} event HTML click Event.
    * `onClick()` handles clicks inside the tab panel.
@@ -287,6 +277,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Sets the slider styles for the active tab.
    * @private
    * @param {Event} event Dispatched from auro-tab.
    */
@@ -301,7 +292,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function to generate icon based in icon param.
+   * @description Function to generate icon based in icon param.
    * @private
    * @param {string} icon SVG string.
    * @returns {HTMLElement}
@@ -312,7 +303,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function to save the tab group container scroll position state.
+   * @description Function to save the tab group container scroll position state.
    * @private
    */
   onTabGroupScroll() {
@@ -320,7 +311,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Getter for tab group container scroll size.
+   * @description Getter for tab group container scroll size.
    * @private
    * @returns {Number}
    */
@@ -332,7 +323,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * Function handler for the scroll button click action.
+   * @description Function handler for the scroll button click action.
    * @private
    * @param {string} direction Direction of the scroll.
    */
@@ -361,6 +352,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Returns whether or not the left chevron should be visible.
    * @private
    * @returns { Boolean }
    */
@@ -369,6 +361,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Returns whether or not the right chevron should be visible.
    * @private
    * @returns { Boolean }
    */

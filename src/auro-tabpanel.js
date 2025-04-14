@@ -7,12 +7,12 @@
 import { LitElement, html } from "lit";
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// Import touch detection lib
+// Import tab panel styles
 import styleCss from "./tabpanel-style-css.js";
 
-// See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-tabpanel element should only be used for auro-tabs only.
+ * Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
+ * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
 
 // build the component class

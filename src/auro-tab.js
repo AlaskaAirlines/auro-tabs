@@ -8,12 +8,12 @@ import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperli
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// Import touch detection lib
+// Import tab styles
 import styleCss from "./tab-style-css.js";
 
-// See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-tabpanel element should only be used for auro-tabgroup only.
+ * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
+ * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  *
  * @attr {Boolean} selected - Mark the tab as selected tab.
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
@@ -36,9 +36,6 @@ export class AuroTab extends AuroHyperlink {
     AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tab');
   }
 
-  // This function is to define props used within the scope of this component
-  // Be sure to review  https://lit.dev/docs/components/properties/
-  // to understand how to use reflected attributes with your property settings.
   static get properties() {
     return {
       ...super.properties,
