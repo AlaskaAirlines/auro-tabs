@@ -8,6 +8,8 @@
 import { LitElement, html } from "lit";
 import { styleMap } from 'lit/directives/style-map.js';
 
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 // Import touch detection lib
 import styleCss from "./style-css.js";
 
@@ -55,10 +57,9 @@ export class AuroTabgroup extends LitElement {
      */
     this.focusedTabIdx = -1;
 
-    /**
-     * @private
-     */
     this.resizeObserver = undefined;
+
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabgroup');
   }
 
   // This function is to define props used within the scope of this component
@@ -78,6 +79,18 @@ export class AuroTabgroup extends LitElement {
 
   static get styles() {
     return [styleCss];
+  }
+
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-tabgroup"] - The name of element that you want to register to.
+   *
+   * @example
+   * Aurotab.register("custom-tabgroup") // this will register this element to <custom-tab/>
+   *
+   */
+  static register(name = "auro-tabgroup") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabgroup);
   }
 
   firstUpdated() {
@@ -382,9 +395,4 @@ export class AuroTabgroup extends LitElement {
     <slot name="panel" @slotchange=${this.onSlotChange}></slot>
     `;
   }
-}
-
-// default internal definition
-if (!customElements.get("auro-tabgroup")) {
-  customElements.define("auro-tabgroup", AuroTabgroup);
 }
