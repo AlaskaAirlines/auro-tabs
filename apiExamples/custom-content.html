@@ -1,16 +1,20 @@
-<div style="margin-bottom: 36px;">
-  <button onClick="addListener()">Add event listener</button>
-  <button onClick="removeListener()">Remove event listener</button>
-</div>
-
-<auro-tabgroup id="tab-selected-example">
-  <auro-tab slot="tab">
-    <div>
+<auro-tabgroup id="custom-tab-example">
+  <auro-tab class="custom-tab" slot="tab">
+    <div class="custom-tab">
       <span>Flights</span>
       <span role="img" aria-label="airplane emoji">✈️</span>
     </div>
   </auro-tab>
   <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab class="custom-tab" slot="tab">
+    <div class="custom-tab">
+      <span>Rentals</span>
+      <span role="img" aria-label="car emoji">🚗</span>
+    </div>
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 2 Content</span>
   </auro-tabpanel>
 </auro-tabgroup>

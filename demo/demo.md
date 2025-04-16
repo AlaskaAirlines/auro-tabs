@@ -413,30 +413,57 @@ Example below:
 
 ## Custom tab content
 
-Auro tab doesn't have to be a simple text. You can add any HTML element inside the `auro-tab` element, though styles may need to be adjusted to fit your needs.
+Auro tab also supports rich content inside of a tab. Instead of passing simple text, use html markup as needed to fit
+your design spec. The wrapper `auro-tabgroup` also exposes two css parts for custom sliders (active indicator) -
+`slider` and the parent `slider-positioner`.
+
+Note: `slider` css is not overwritten by the JavaScript logic, while `slider-positioner` **width** and **left** properties
+are used internally to position the slider and will be automatically overwritten.
 
 <div class="exampleWrapper">
-  <auro-tabgroup id="tab-selected-example">
-    <auro-tab slot="tab">
-      <div class="custom-tab">
-        <span>Flights</span>
-        <span role="img" aria-label="airplane emoji">✈️</span>
-      </div>
-    </auro-tab>
-    <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tab slot="tab">
-      <div class="custom-tab">
-        <span>Rentals</span>
-        <span role="img" aria-label="car emoji">🚗</span>
-      </div>
-    </auro-tab>
-    <auro-tabpanel slot="panel">
-      <span>Tab 2 Content</span>
-    </auro-tabpanel>
-  </auro-tabgroup>
+<auro-tabgroup id="custom-tab-example">
+  <auro-tab slot="tab">
+    <div class="custom-tab">
+      <span>Flights</span>
+      <span role="img" aria-label="airplane emoji">✈️</span>
+    </div>
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab slot="tab">
+    <div class="custom-tab">
+      <span>Rentals</span>
+      <span role="img" aria-label="car emoji">🚗</span>
+    </div>
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 2 Content</span>
+  </auro-tabpanel>
+</auro-tabgroup>
 </div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+    <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.html) -->
+    <!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+CSS used in the example above:
+```css
+#custom-tab-example::part(slider) {
+  height: 5px;
+  margin-top: -3px; /* slider-positioner has a smaller height by default */
+  border-radius: 1rem;
+  width: 50px;
+}
+
+.custom-tab {
+  display: flex;
+  flex-direction: column;
+}
+```
+
 
 ## Accessibility
 
