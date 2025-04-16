@@ -418,19 +418,24 @@ Auro tab supports injecting rich content (html) inside the tab.
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
   <!-- The below content is automatically added from ../apiExamples/custom-content.html -->
-  <div style="margin-bottom: 36px;">
-    <button onClick="addListener()">Add event listener</button>
-    <button onClick="removeListener()">Remove event listener</button>
-  </div>
-  <auro-tabgroup id="tab-selected-example">
-    <auro-tab slot="tab">
-      <div>
+  <auro-tabgroup id="custom-tab-example">
+    <auro-tab class="custom-tab" slot="tab">
+      <div class="custom-tab">
         <span>Flights</span>
         <span role="img" aria-label="airplane emoji">✈️</span>
       </div>
     </auro-tab>
     <auro-tabpanel slot="panel">
-        <span>Tab 1 Content</span>
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tab class="custom-tab" slot="tab">
+      <div class="custom-tab">
+        <span>Rentals</span>
+        <span role="img" aria-label="car emoji">🚗</span>
+      </div>
+    </auro-tab>
+    <auro-tabpanel slot="panel">
+      <span>Tab 2 Content</span>
     </auro-tabpanel>
   </auro-tabgroup>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -441,19 +446,24 @@ Auro tab supports injecting rich content (html) inside the tab.
 <!-- The below code snippet is automatically added from ../apiExamples/custom-content.html -->
 
 ```html
-<div style="margin-bottom: 36px;">
-  <button onClick="addListener()">Add event listener</button>
-  <button onClick="removeListener()">Remove event listener</button>
-</div>
-<auro-tabgroup id="tab-selected-example">
-  <auro-tab slot="tab">
-    <div>
+<auro-tabgroup id="custom-tab-example">
+  <auro-tab class="custom-tab" slot="tab">
+    <div class="custom-tab">
       <span>Flights</span>
       <span role="img" aria-label="airplane emoji">✈️</span>
     </div>
   </auro-tab>
   <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
+    <span>Tab 1 Content</span>
+  </auro-tabpanel>
+  <auro-tab class="custom-tab" slot="tab">
+    <div class="custom-tab">
+      <span>Rentals</span>
+      <span role="img" aria-label="car emoji">🚗</span>
+    </div>
+  </auro-tab>
+  <auro-tabpanel slot="panel">
+    <span>Tab 2 Content</span>
   </auro-tabpanel>
 </auro-tabgroup>
 ```

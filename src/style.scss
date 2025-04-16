@@ -39,17 +39,24 @@
   width: fit-content;
   flex-wrap: nowrap;
   padding-bottom: 0;
-  border-bottom: 1px solid var(--ds-color-border-divider-default, $ds-color-border-divider-default);
 }
 
-.slider  {
+.sliderPositioner  {
   position: absolute;
   bottom: -1px;
   left: 0;
+  display: flex;
   width: 0;
   height: calc(var(--ds-size-25, $ds-size-25) + 1px);
-  background-color: var(--ds-color-ui-active-default, $ds-color-ui-active-default) ;
+  align-items: center;
+  justify-content: center;
   transition: all .25s;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  background-color: var(--ds-color-ui-active-default, $ds-color-ui-active-default);
 }
 
 .chevronLeft,

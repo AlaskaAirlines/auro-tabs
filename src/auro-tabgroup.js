@@ -383,15 +383,17 @@ export class AuroTabgroup extends LitElement {
     return html`
       <div class="tabgroupContainer" role="tablist">
       ${this.visibleLeftChevron ? html`
-        <button class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
+        <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
           <div class="icon">${this.generateIcon(chevronLeft)}</div>
         </button>` : ''}
         <div class="tabgroup">
           <slot name="tab" @slotchange=${this.onSlotChange}></slot>
-          <div class="slider" style=${sliderStyles}></div>
+          <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
+            <div part="slider" class="slider"></div>
+          </div>
         </div>
       ${this.visibleRightChevron ? html`
-        <button class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
+        <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
           <div class="icon">${this.generateIcon(chevronRight)}</div>
         </button>` : ''}
       </div>
