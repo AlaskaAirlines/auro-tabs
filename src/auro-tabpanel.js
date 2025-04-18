@@ -3,7 +3,6 @@
 
 // ---------------------------------------------------------------------
 
-// If using litElement base class
 import { LitElement, html } from "lit";
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
@@ -14,34 +13,45 @@ import styleCss from "./tabpanel-style-css.js";
  * Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
  * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
-
-// build the component class
 export class AuroTabpanel extends LitElement {
 
-  constructor() {
-    super();
+  static get properties() {
+    return {
 
-    this.setAttribute('role', 'tabpanel');
-    this.setAttribute('tabindex', 0);
-
-    if (!this.id) {
-      this.id = `auro-tabpanel-generated-${window.crypto.randomUUID()}`;
-    }
-
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabpanel');
+      /**
+       * @property {boolean} hidden - Indicates whether the panel is hidden.
+       * @default false
+       */
+      hidden: {
+        type: Boolean,
+        reflect: true
+      },
+    };
   }
 
   static get styles() {
     return [styleCss];
   }
 
-  static get properties() {
-    return {
-      hidden: {
-        type: Boolean,
-        reflect: true
-      },
-    };
+  constructor() {
+    super();
+
+    AuroTabpanel.incrementInstanceCount();
+
+    this.setId();
+    this.setAttributes();
+    this.handleTagName();
+  }
+
+  /**
+   * @static
+   * @private
+   * @description Increments the instance count of this component.
+   * @method incrementInstanceCount
+   * @returns {void}
+   */
+  static incrementInstanceCount() {
+    AuroTabpanel.instanceCount = (AuroTabpanel.instanceCount || 0) + 1;
   }
 
   /**
@@ -56,6 +66,36 @@ export class AuroTabpanel extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabpanel);
   }
 
+  /**
+   * @description Handles the tag name of the component.
+   * @method handleTagName
+   * @returns {void}
+   * @private
+   */
+  handleTagName() {
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabpanel');
+  }
+
+  /**
+   * @private
+   * @description Sets the unique ID for this instance of the component.
+   * @method setId
+   * @returns {void}
+   */
+  setId() {
+    this.id = this.id || `auro-tabpanel-${AuroTabpanel.instanceCount}`;
+  }
+
+  /**
+   * @private
+   * @description Sets the relevant attributes on the parent element for this component.
+   * @method setAttributes
+   * @returns {void}
+   */
+  setAttributes() {
+    this.setAttribute('role', 'tabpanel');
+    this.setAttribute('tabindex', 0);
+  }
 
   updated(changedProperties) {
     if (changedProperties.has('hidden')) {
@@ -63,7 +103,6 @@ export class AuroTabpanel extends LitElement {
     }
   }
 
-  // function that renders the HTML and CSS into the scope of the component
   render() {
     return html`
       <slot></slot>
