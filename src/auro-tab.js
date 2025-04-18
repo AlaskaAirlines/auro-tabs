@@ -18,31 +18,25 @@ import styleCss from "./tab-style-css.js";
  * @attr {Boolean} selected - Mark the tab as selected tab.
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
-
-// build the component class
 export class AuroTab extends AuroHyperlink {
-  constructor() {
-    super();
-
-    this.disabled = false;
-
-    /**
-     * The associated AuroTabpanel that will be displayed when this tab is selected.
-     * @type {AuroTabpanel}
-     * @readonly
-     */
-    this.panel = null;
-
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tab');
-  }
 
   static get properties() {
     return {
       ...super.properties,
+
+      /**
+       * @property {boolean} selected - Indicates whether the tab is selected.
+       * @default false
+       */
       selected: {
         type: Boolean,
         reflect: true
       },
+
+      /**
+       * @property {boolean} disabled - Indicates whether the tab is disabled.
+       * @default false
+       */
       disabled: {
         type: Boolean,
         reflect: true
@@ -52,6 +46,111 @@ export class AuroTab extends AuroHyperlink {
 
   static get styles() {
     return [styleCss];
+  }
+
+  constructor() {
+    super();
+
+    AuroTab.incrementInstanceCount();
+
+    this.handleTagName();
+    this.setId();
+    this.setInitialValues();
+    this.setAttributes();
+  }
+
+  /**
+   * @static
+   * @private
+   * @description Increments the instance count of this component.
+   * @method incrementInstanceCount
+   * @returns {void}
+   */
+  static incrementInstanceCount() {
+    AuroTab.instanceCount = (AuroTab.instanceCount || 0) + 1;
+  }
+
+  /**
+   * @private
+   * @description Sets the unique ID for this instance of the component.
+   * @method setId
+   * @returns {void}
+   */
+  setId() {
+    this.id = this.id || `auro-tab-${AuroTab.instanceCount}`;
+  }
+
+  /**
+   * @description Sets the initial values for the component.
+   * @method setInitialValues
+   * @private
+   */
+  setInitialValues() {
+
+    // Dynamic properties
+    this.disabled = false;
+
+    // Static properties
+    /**
+     * @property {AuroTabpanel} panel - The associated AuroTabpanel that will be displayed when this tab is selected.
+     * @readonly
+     */
+    this.panel = null;
+  }
+
+  /**
+   * @private
+   * @description Sets the relevant attributes on the parent element for this component.
+   * @method setAttributes
+   */
+  setAttributes() {
+    this.setAttribute('role', 'tab');
+  }
+
+  /**
+   * @description Handles any custom tag naming of the component.
+   * @method handleTagName
+   * @private
+   */
+  handleTagName() {
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tab');
+  }
+
+  /**
+   * @description Applies changes to the component required for proper a11y functionality
+   * @method applyA11y
+   * @private
+   */
+  applyA11y() {
+
+    // remove nested anchor tag's role to avoid nested interactive elements issue. WCAG 4.1.2
+    const anchor = this.shadowRoot.querySelector('a');
+    if (anchor) {
+      anchor.setAttribute('role', 'none');
+    }
+  }
+
+  /**
+   * @description Updates the selected state of the tab and emits the tab-selected event.
+   * @method updateSelected
+   * @returns {void}
+   * @private
+   */
+  updateSelected() {
+
+    // Update relevant attributes
+    this.setAttribute('tabindex', this.selected ? 0 : -1);
+    this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
+
+    // Emit event if this tab is selected
+    if (this.selected) {
+      const event = new Event('tab-selected', {
+        bubbles: true,
+        composed: true,
+        detail: this.selected
+      });
+      this.dispatchEvent(event);
+    }
   }
 
   /**
@@ -67,32 +166,12 @@ export class AuroTab extends AuroHyperlink {
   }
 
   firstUpdated() {
-    // give a unique id to the tab
-    if (!this.id) {
-      this.id = `auro-tab-generated-${window.crypto.randomUUID()}`;
-    }
-    this.setAttribute('role', 'tab');
-
-    const anchor = this.shadowRoot.querySelector('a');
-    if (anchor) {
-      // remove anchor's role to avoid nested interactive elements issue. WCAG 4.1.2
-      anchor.setAttribute('role', 'none');
-    }
+    this.applyA11y();
   }
 
   updated(changedProperties) {
     if (changedProperties.has('selected')) {
-      this.setAttribute('tabindex', this.selected ? 0 : -1);
-      this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
-
-      if (this.selected) {
-        const event = new Event('tab-selected', {
-          bubbles: true,
-          composed: true,
-          detail: this.selected
-        });
-        this.dispatchEvent(event);
-      }
+      this.updateSelected();
     }
   }
 }
