@@ -38,9 +38,9 @@ export class AuroTabpanel extends LitElement {
 
     AuroTabpanel.incrementInstanceCount();
 
+    this.handleTagName();
     this.setId();
     this.setAttributes();
-    this.handleTagName();
   }
 
   /**
@@ -67,7 +67,7 @@ export class AuroTabpanel extends LitElement {
   }
 
   /**
-   * @description Handles the tag name of the component.
+   * @description Handles any custom tag naming of the component.
    * @method handleTagName
    * @returns {void}
    * @private
