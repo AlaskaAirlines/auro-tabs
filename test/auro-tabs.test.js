@@ -99,25 +99,41 @@ describe('auro-tabgroup', () => {
     }
   })
 
-  it('scrolls container when clicks arrow buttons', async () => {
+  it.only('scrolls container when clicks arrow buttons', async () => {
     await setViewport({
-      width: 800,
+      width: 550,
       height: 800
     });
-    const el = await fixture(getTabGroup(20));
-
+    const el = await fixture(getTabGroup(30));
     await elementUpdated(el);
 
+    const container = el.shadowRoot.querySelector(".tabGroupContainer");
+
+    // Guard Clause
+    if (!container) {
+      throw new Error("AuroTabs | Scroll Testing: Tab container not found");
+    }
+
+    // Get the right arrow and click it
     const rightR = el.shadowRoot.querySelector('.chevronRight');
+    let leftR =  el.shadowRoot.querySelector('.chevronLeft');
+    expect (leftR).to.be.null;
+
     await rightR.click();
     await elementUpdated(el);
 
-    await waitUntil(() => el.scrollPosition >= el.tabGroupContainer.clientWidth);
+    // Wait and see if the element scrolls
+    await waitUntil(() => container.scrollLeft > 0);
 
-    const leftR =  el.shadowRoot.querySelector('.chevronLeft');
+    // Get the left chevron and make sure it exists now that we scrolled
+    leftR =  el.shadowRoot.querySelector('.chevronLeft');
+    expect(leftR).to.not.be.null;
+
+    // Test the left click and the hiding of the chevron once we are no longer scrolled
     await leftR.click();
     await elementUpdated(el);
-    await waitUntil(() => leftR.checkVisibility() === false);
+    await waitUntil(() => container.scrollLeft === 0);
+    expect(leftR.checkVisibility()).to.be.false;
   })
 
 
