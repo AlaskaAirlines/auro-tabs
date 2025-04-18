@@ -56,6 +56,29 @@ export class AuroTabgroup extends LitElement {
        */
       sliderStyles: {
         type: Object,
+      },
+
+      /**
+       * @property {Boolean} rightChevronIsVisible - Whether or not the right chevron is visible.
+       * @default false
+       * @private
+       */
+      rightChevronIsVisible: {
+        type: Boolean,
+        attribute: false,
+        reflect: false,
+        default: true
+      },
+
+      /**
+       * @property {Boolean} leftChevronIsVisible - Whether or not the left chevron is visible.
+       * @default false
+       * @private
+       */
+      leftChevronIsVisible: {
+        type: Boolean,
+        attribute: false,
+        reflect: false
       }
     };
   }
@@ -91,26 +114,6 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Returns whether or not the left chevron should be visible.
-   * @returns { Boolean }
-   * @private
-   * @readonly
-   */
-  get visibleLeftChevron() {
-    return (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
-  }
-
-  /**
-   * @description Returns whether or not the right chevron should be visible.
-   * @returns { Boolean }
-   * @private
-   * @readonly
-   */
-  get visibleRightChevron() {
-    return (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
-  }
-
-  /**
    * @description Getter for tab group container scroll size.
    * @returns {Number}
    * @private
@@ -124,7 +127,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Whether or not the DOM is currently loading/updating elements
+   * @description Whether or not the DOM is currently loading/updating elements.
    * @returns {Boolean}
    */
   get busy() {
@@ -465,14 +468,15 @@ export class AuroTabgroup extends LitElement {
   /**
    * @description Function to set the resize observer for the tab group and set it to observe the tabGroup.
    * @method setResizeObserver
+   * @param {HTMLElement} tabGroupContainer The tab group container element.
    * @private
    */
-  setResizeObserver() {
+  setResizeObserver(tabGroupContainer) {
     this.resizeObserver = new ResizeObserver(() => {
       this.setSliderStyles({ target: this.currentTab });
     });
 
-    const tabGroup = this.tabGroupContainer.querySelector('.tabgroup');
+    const tabGroup = tabGroupContainer.querySelector('.tabgroup');
     this.resizeObserver.observe(tabGroup, { box : 'border-box' });
   }
 
@@ -486,9 +490,23 @@ export class AuroTabgroup extends LitElement {
     this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
   }
 
+  /**
+   * @description Update the chevron visibility when the state of the component changes.
+   * @method updateChevronVisibility
+   * @private
+   */
+  updateChevronVisibility() {
+    this.leftChevronIsVisible = (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
+    this.rightChevronIsVisible = (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
+  };
+
   firstUpdated() {
     this.setupTabGroupContainer();
-    this.setResizeObserver();
+    this.setResizeObserver(this.tabGroupContainer);
+  }
+
+  updated() {
+    this.updateChevronVisibility();
   }
 
   connectedCallback() {
@@ -506,20 +524,22 @@ export class AuroTabgroup extends LitElement {
 
     return html`
       <div class="tabgroupContainer" role="tablist">
-      ${this.visibleLeftChevron ? html`
-        <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
-          <div class="icon">${this.generateIcon(chevronLeft)}</div>
-        </button>` : ''}
+        ${this.leftChevronIsVisible ? html`
+          <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
+            <div class="icon">${this.generateIcon(chevronLeft)}</div>
+          </button>`
+        : ''}
         <div class="tabgroup">
           <slot name="tab" @slotchange=${this.onSlotChange}></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
             <div part="slider" class="slider"></div>
           </div>
         </div>
-      ${this.visibleRightChevron ? html`
-        <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
-          <div class="icon">${this.generateIcon(chevronRight)}</div>
-        </button>` : ''}
+        ${this.rightChevronIsVisible ? html`
+          <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
+            <div class="icon">${this.generateIcon(chevronRight)}</div>
+          </button>`
+        : ''}
       </div>
     <slot name="panel" @slotchange=${this.onSlotChange}></slot>
     `;
