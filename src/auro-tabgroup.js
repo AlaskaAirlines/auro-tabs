@@ -34,42 +34,158 @@ const KEYCODE = {
  * @slot tab - Slot component named for auro-tab.
  * @slot panel - Slot component named for auro-tabpanel.
  */
-
-// build the component class
 export class AuroTabgroup extends LitElement {
-  constructor() {
-    super();
-
-    /**
-     * @private
-     */
-    this.scrollPosition = 0;
-
-    /**
-     * @private
-     */
-    this.sliderStyles = {};
-
-    /**
-     * @private
-     */
-    this.focusedTabIdx = -1;
-  }
 
   static get properties() {
     return {
       ...super.properties,
+
+      /**
+       * @property {number} scrollPosition - The current scroll position of the tab group container.
+       * @default 0
+       * @private
+       */
       scrollPosition: {
         type: Number
       },
+
+      /**
+       * @property {Object} sliderStyles - The styles for the slider element.
+       * @default {}
+       * @private
+       */
       sliderStyles: {
-        type: Object
+        type: Object,
       }
     };
   }
 
+  /**
+   * @description All auro-tab elements in the tab group.
+   * @returns {Array<HTMLElement>}
+   * @private
+   * @readonly
+   */
+  get allTabs() {
+    return Array.from(this.querySelectorAll('auro-tab'));
+  }
+
+  /**
+   * @description The index of the currently selected tab.
+   * @returns {number}
+   * @private
+   * @readonly
+   */
+  get currentTabIndex() {
+    return this.focusedTabIdx;
+  }
+
+  /**
+   * @description Reference to the currently selected tab.
+   * @returns {HTMLElement}
+   * @private
+   * @readonly
+   */
+  get currentTab() {
+    return this.allTabs[this.focusedTabIdx];
+  }
+
+  /**
+   * @description Returns whether or not the left chevron should be visible.
+   * @returns { Boolean }
+   * @private
+   * @readonly
+   */
+  get visibleLeftChevron() {
+    return (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
+  }
+
+  /**
+   * @description Returns whether or not the right chevron should be visible.
+   * @returns { Boolean }
+   * @private
+   * @readonly
+   */
+  get visibleRightChevron() {
+    return (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
+  }
+
+  /**
+   * @description Getter for tab group container scroll size.
+   * @returns {Number}
+   * @private
+   * @readonly
+   */
+  get scrollSize () {
+    if (this.tabGroupContainer) {
+      return this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth;
+    }
+    return 0;
+  }
+
+  get busy() {
+    return this.getAttribute('aria-busy') === "true";
+  }
+
+  set busy(isBusy) {
+    this.setAttribute('aria-busy', String(isBusy));
+  }
+
   static get styles() {
     return [styleCss];
+  }
+
+  constructor() {
+    super();
+
+    this.handleTagName();
+    this.setInitialValues();
+    this.bindMethods();
+  }
+
+  /**
+   * @description Handles any custom tag naming of the component.
+   * @method handleTagName
+   * @private
+   */
+  handleTagName() {
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabgroup');
+  }
+
+  /**
+   * @description Sets the initial values for the component.
+   * @method setInitialValues
+   * @private
+   */
+  setInitialValues() {
+
+    // Dynamic Properties
+    this.scrollPosition = 0;
+    this.sliderStyles = {};
+
+    // Static Properties
+    /**
+     * @property {number} focusedTabIdx - The index of the currently focused tab.
+     * @default -1
+     * @private
+     */
+    this.focusedTabIdx = -1;
+
+    /**
+     * @property {ResizeObserver} resizeObserver - The resize observer for the tab group.
+     * @default undefined
+     * @private
+     */
+    this.resizeObserver = undefined;
+  }
+
+  /**
+   * @description Binds methods to the class instance where required (do NOT bind all methods).
+   * @method bindMethods
+   * @private
+   */
+  bindMethods() {
+    this.setSliderStyles = this.setSliderStyles.bind(this);
   }
 
   /**
@@ -84,80 +200,80 @@ export class AuroTabgroup extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabgroup);
   }
 
-  firstUpdated() {
-    this.setAttribute('aria-busy', "true");
-
-    this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
-    this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
-
-    this.resizeObserver = new ResizeObserver(() => {
-      this.setSliderStyles({ target: this.currentTab });
-    });
-
-    const tabGroup = this.tabGroupContainer.querySelector('.tabgroup');
-    this.resizeObserver.observe(tabGroup, { box : 'border-box' });
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.setSliderStyles = this.setSliderStyles.bind(this);
+  /**
+   * @description Function to add event listeners to the component.
+   * @method addEventListeners
+   * @private
+   */
+  addEventListeners() {
     this.addEventListener('tab-selected', this.setSliderStyles);
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('click', this.onClick);
-  };
+  }
 
-  disconnectedCallback() {
+  /**
+   * @description Function to remove event listeners from the component.
+   * @method removeEventListeners
+   * @private
+   */
+  removeEventListeners() {
     this.removeEventListener('keydown', this.onKeyDown);
     this.removeEventListener('click', this.onClick);
   }
 
   /**
-   * @description `onSlotChange()` is called whenever an element is added or removed from
+   * @description Handler for when an element is added or removed from
    * one of the shadow DOM slots.
+   * @method onSlotChange
    * @private
    */
   onSlotChange() {
+
+    // Update busy state to reflect changes are happening in the DOM
+    this.busy = true;
+
+    // Get all the tabs in the tab group.
     const tabs = this.allTabs;
-    // that controls it.
+
     tabs.forEach((tab) => {
-      const panel = tab.nextElementSibling;
-      if (panel) {
-        if (panel.tagName.toLowerCase() !== 'auro-tabpanel') {
-          // eslint-disable-next-line no-console
-          console.error(`Tab #${tab.id} is not a` +
-              `sibling of a <auro-tabpanel>`);
-        } else {
-          panel.hidden = true;
-          tab.panel = panel;
-          tab.setAttribute('aria-controls', panel.id);
-          panel.setAttribute('aria-labelledby', tab.id);
+
+      // Get the sibling
+      const sibling = tab.nextElementSibling;
+
+      if (sibling) {
+
+        // If the sibling is not a tab panel, throw an error.
+        if (sibling.tagName.toLowerCase() !== 'auro-tabpanel') {
+          throw new Error(`Tab #${tab.id} is not a sibling of an <auro-tabpanel>`);
         }
+
+        // The sibling is a panel, connect the tab and panel and set their initial states.
+        const panel = sibling;
+        panel.hidden = true;
+        tab.panel = panel;
+        tab.setAttribute('aria-controls', panel.id);
+        panel.setAttribute('aria-labelledby', tab.id);
       }
+
+      // Select the tab if it is marked as selected
       if (tab.selected) {
         this.selectTab(tab);
       }
     });
 
+    // If none of the tabs were set to be focused, focus the first tab
     if (this.focusedTabIdx === -1) {
       this.selectTab(tabs[0]);
     }
-  }
 
-  /**
-   * @description Function to get all of the auro-tabs.
-   * @private
-   * @returns {Array} Array of auro-tab element.
-   */
-  get allTabs() {
-    return Array.from(this.querySelectorAll('auro-tab'));
+    // We are no longer busy making changes
+    this.busy = false;
   }
 
   /**
    * @description Function handler when selecting an auro-tab.
    * @private
    * @param {HTMLElement} newTab Selected auro-tab.
-   * @returns {void}
    */
   selectTab(newTab) {
     const tabs = this.allTabs;
@@ -195,19 +311,10 @@ export class AuroTabgroup extends LitElement {
     }
   }
 
-  get currentTabIndex() {
-    return this.focusedTabIdx;
-  }
-
-  get currentTab() {
-    return this.allTabs[this.focusedTabIdx];
-  }
-
   /**
    * @description Function handler for keyDown event.
    * @private
    * @param {KeyboardEvent} event HTML onkeydown keyboard event.
-   * @returns {void}
    */
   onKeyDown(event) {
     // Don’t handle modifier shortcuts typically used by assistive technology.
@@ -254,9 +361,9 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * @description Function handler for click event.
-   * @private
+   * @method onClick
    * @param {Event} event HTML click Event.
-   * `onClick()` handles clicks inside the tab panel.
+   * @private
    */
   onClick(event) {
     const roleIsNotTab = event.target.getAttribute('role') !== 'tab';
@@ -278,13 +385,23 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * @description Sets the slider styles for the active tab.
+   * @param {Event<tab-selected>} event Dispatched from auro-tab.
    * @private
-   * @param {Event} event Dispatched from auro-tab.
    */
   setSliderStyles (event) {
+
+    // Set the slider width to zero by default
     this.sliderStyles.width = 0;
 
+    // Get the tab that was focused
     const tab = event.target;
+
+    // Guard Clause: ensure we have a tab to work with
+    if (!tab) {
+      return;
+    }
+
+    // Update the slider styles based on the tab that was focused
     this.sliderStyles = {
       width: `${tab.clientWidth}px`,
       left: `${tab.offsetLeft - 0.5}px`,
@@ -293,9 +410,9 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * @description Function to generate icon based in icon param.
-   * @private
    * @param {string} icon SVG string.
    * @returns {HTMLElement}
+   * @private
    */
   generateIcon(icon) {
     const dom = new DOMParser().parseFromString(icon.svg, 'text/html');
@@ -304,6 +421,7 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * @description Function to save the tab group container scroll position state.
+   * @method onTabGroupScroll
    * @private
    */
   onTabGroupScroll() {
@@ -311,21 +429,10 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Getter for tab group container scroll size.
-   * @private
-   * @returns {Number}
-   */
-  get scrollSize () {
-    if (this.tabGroupContainer) {
-      return this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth;
-    }
-    return 0;
-  }
-
-  /**
    * @description Function handler for the scroll button click action.
-   * @private
+   * @method scrollTab
    * @param {string} direction Direction of the scroll.
+   * @private
    */
   scrollTab(direction) {
     if (this.tabGroupContainer) {
@@ -352,21 +459,41 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Returns whether or not the left chevron should be visible.
+   * @description Function to set the resize observer for the tab group and set it to observe the tabGroup.
+   * @method setResizeObserver
    * @private
-   * @returns { Boolean }
    */
-  get visibleLeftChevron() {
-    return (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
+  setResizeObserver() {
+    this.resizeObserver = new ResizeObserver(() => {
+      this.setSliderStyles({ target: this.currentTab });
+    });
+
+    const tabGroup = this.tabGroupContainer.querySelector('.tabgroup');
+    this.resizeObserver.observe(tabGroup, { box : 'border-box' });
   }
 
   /**
-   * @description Returns whether or not the right chevron should be visible.
+   * @description Function to setup the tab group container.
+   * @method setupTabGroupContainer
    * @private
-   * @returns { Boolean }
    */
-  get visibleRightChevron() {
-    return (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
+  setupTabGroupContainer() {
+    this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
+    this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
+  }
+
+  firstUpdated() {
+    this.setupTabGroupContainer();
+    this.setResizeObserver();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListeners();
+  };
+
+  disconnectedCallback() {
+    this.removeEventListeners();
   }
 
   // function that renders the HTML and CSS into the scope of the component
