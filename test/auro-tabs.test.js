@@ -99,7 +99,7 @@ describe('auro-tabgroup', () => {
     }
   })
 
-  it.only('scrolls container when clicks arrow buttons', async () => {
+  it('scrolls container when clicks arrow buttons', async () => {
     await setViewport({
       width: 550,
       height: 800
@@ -145,7 +145,7 @@ describe('auro-tabgroup', () => {
     const el = await fixture(getTabGroup(20));
 
     const arrows = el.shadowRoot.querySelector('.chevronRight, .chevronLeft');
-    await expect(arrows.checkVisibility()).to.be.false;
+    await expect(arrows).to.be.null;
   });
 });
 
