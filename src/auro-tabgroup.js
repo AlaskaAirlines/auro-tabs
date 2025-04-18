@@ -123,6 +123,10 @@ export class AuroTabgroup extends LitElement {
     return 0;
   }
 
+  /**
+   * @description Getter for busy state.
+   * @returns {Boolean}
+   */
   get busy() {
     return this.getAttribute('aria-busy') === "true";
   }
