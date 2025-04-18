@@ -124,7 +124,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Getter for busy state.
+   * @description Whether or not the DOM is currently loading/updating elements
    * @returns {Boolean}
    */
   get busy() {
