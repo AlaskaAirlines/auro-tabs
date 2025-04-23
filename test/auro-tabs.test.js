@@ -1,6 +1,6 @@
 import { fixture, html, expect, elementUpdated, waitUntil } from '@open-wc/testing';
 import { setViewport } from '@web/test-runner-commands';
-import '../index.js';
+import '../demo';
 
 describe('auro-tabgroup', () => {
   it('auro-tabgroup is accessible', async () => {
@@ -81,7 +81,7 @@ describe('auro-tabgroup', () => {
     await expect(el.currentTabIndex).to.equal(CLICK_INDEX);
     const panels = el.querySelectorAll('auro-tabpanel');
     for (let p of panels) {
-      await expect(p.checkVisibility()).not.to.equal(p.hidden); 
+      await expect(p.checkVisibility()).not.to.equal(p.hidden);
     }
   })
 

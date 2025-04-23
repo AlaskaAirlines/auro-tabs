@@ -7,7 +7,7 @@ import { LitElement, html } from "lit";
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import tab panel styles
-import styleCss from "./tabpanel-style-css.js";
+import styleCss from "./tabpanel-style.scss";
 
 /**
  * Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.

@@ -2,7 +2,8 @@
 import { AuroTab } from '../../src/auro-tab.js';
 
 /**
- * The auro-tabpanel element should only be used for auro-tabgroup only.
+ * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
+ * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
 class AuroTabWCA extends AuroTab {}
 

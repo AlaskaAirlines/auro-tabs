@@ -43,8 +43,9 @@
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
       import 'https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js';
-      import {registerAll} from '../index.js';
-      fetch('/demo/demo.md')
+      import {registerAll} from './index.min.js';
+
+      fetch('./index.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);
@@ -64,6 +65,7 @@
       }
 
       .custom-tab {
+        padding: 5px 15px;
         display: flex;
         flex-direction: column;
       }

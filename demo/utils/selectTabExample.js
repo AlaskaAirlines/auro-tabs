@@ -1,15 +1,15 @@
-function selectFirstTab() {
+export function selectFirstTab() {
   const tabs = document.querySelector('#select-tab-example')
-  tabs.selectTab(tabs.firstTab())
+  tabs.selectTab(tabs.allTabs[0])
 }
 
-function selectSecondTab() {
+export function selectSecondTab() {
   const tabs = document.querySelector('#select-tab-example')
-  const tabItems = tabs.allTabs()
+  const tabItems = tabs.allTabs
   tabs.selectTab([...tabItems][1])
 }
 
-function selectLastTab() {
+export function selectLastTab() {
   const tabs = document.querySelector('#select-tab-example')
-  tabs.selectTab(tabs.lastTab())
+  tabs.selectTab(tabs.allTabs[tabs.allTabs.length - 1])
 }

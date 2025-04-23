@@ -97,21 +97,24 @@ Example below:
 
 </auro-accordion>
 
-#### Custom tab content
+## Custom tab content
 
-Auro tab supports injecting rich content (html) inside the tab.
+Auro tab also supports rich content inside of a tab. Instead of passing simple text, use html markup as needed to fit
+your design spec. The wrapper `auro-tabgroup` also exposes two css parts for custom sliders (active indicator) -
+`slider` and the parent `slider-positioner`.
+
+Note: `slider` css is not overwritten by the JavaScript logic, while `slider-positioner` **width** and **left** properties
+are used internally to position the slider and will be automatically overwritten.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
+
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/utils/onTabSelected.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>

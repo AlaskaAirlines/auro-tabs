@@ -32,28 +32,27 @@
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
       import 'https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js';
-      import {registerComponent} from '../index.js';
-      fetch('/demo/apiExamples.md')
+
+      import { addListener, onTabSelected, removeListener, selectFirstTab, selectLastTab, selectSecondTab } from './api.min.js';
+
+      addListener()
+
+      // Attach the imported functions to the global `window` object
+      window.onTabSelected = onTabSelected;
+      window.selectFirstTab = selectFirstTab;
+      window.selectLastTab = selectLastTab;
+      window.selectSecondTab = selectSecondTab;
+
+      fetch('./apiExamples.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);
           document.querySelector('main').innerHTML = rawHtml;
           Prism.highlightAll();
         });
-
-      registerComponent('custom-tabgroup');
-      registerComponent('custom-tab', 'tab');
-      registerComponent('custom-tabpanel', 'tabpanel');
     </script>
-    <script type="module" src="../src/auro-tabgroup.js"></script>
-    <script type="module" src="../src/auro-tab.js"></script>
-    <script type="module" src="../src/auro-tabpanel.js"></script>
-    
+
     <!-- If additional elements are needed for the demo, add them here. -->
     <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
-
-    <!-- This reference will need to be addressed with the demo wrapper of the hyperlink docsite page-->
-    <script src="./utils/onTabSelected.js"></script>
-    <script src="./utils/selectTabExample.js"></script>
   </body>
 </html>
