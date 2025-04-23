@@ -10,7 +10,7 @@ import { styleMap } from 'lit/directives/style-map.js';
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import styles
-import styleCss from "./style-css.js";
+import styleCss from "./style.scss";
 
 import { TabIndexUtil } from "./tabindexUtil.js";
 
@@ -38,8 +38,6 @@ export class AuroTabgroup extends LitElement {
 
   static get properties() {
     return {
-      ...super.properties,
-
       /**
        * @property {number} scrollPosition - The current scroll position of the tab group container.
        * @default 0
@@ -242,8 +240,7 @@ export class AuroTabgroup extends LitElement {
     // Get all the tabs in the tab group.
     const tabs = this.allTabs;
 
-    tabs.forEach((tab) => {
-
+    for (const tab of tabs) {
       // Get the sibling
       const sibling = tab.nextElementSibling;
 
@@ -266,7 +263,7 @@ export class AuroTabgroup extends LitElement {
       if (tab.selected) {
         this.selectTab(tab);
       }
-    });
+    }
 
     // If none of the tabs were set to be focused, focus the first tab
     if (this.focusedTabIdx === -1) {

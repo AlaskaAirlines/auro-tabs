@@ -9,7 +9,12 @@
   // this seems to be important for making the a-tag get proper height
   display: flex;
 
-  a {
+  [auro-hyperlink]::part(link) {
+    padding: 0 0;
+    line-height: unset;
+  }
+
+  [auro-hyperlink] {
     padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300) var(--ds-size-75, $ds-size-75);
     color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
     cursor: pointer;
@@ -22,7 +27,7 @@
 }
 
 :host([selected]) {
-  a {
+  [auro-hyperlink] {
     color: var(--ds-color-text-ui-hover-default, $ds-color-text-ui-hover-default);
   }
 }
@@ -30,13 +35,13 @@
 :host([disabled]) {
   pointer-events: none;
 
-  a {
+  [auro-hyperlink] {
     color: var(--ds-color-text-ui-disabled-default, $ds-color-text-ui-disabled-default);
   }
 }
 
 :host(:hover) {
-  a {
+  [auro-hyperlink] {
     background-color: var(--ds-color-ui-bkg-hover-default, $ds-color-ui-bkg-hover-default);
   }
 }
