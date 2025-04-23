@@ -3,13 +3,17 @@
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
+import {LitElement} from "lit";
+import {html} from "lit/static-html.js";
 
-import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
-
+import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
+import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
+import hyperlinkVersion from "./hyperlinkVersion.js";
+
 // Import tab styles
-import styleCss from "./tab-style-css.js";
+import styleCss from "./tab-style.scss";
 
 /**
  * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
@@ -18,11 +22,9 @@ import styleCss from "./tab-style-css.js";
  * @attr {Boolean} selected - Mark the tab as selected tab.
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
-export class AuroTab extends AuroHyperlink {
-
+export class AuroTab extends LitElement {
   static get properties() {
     return {
-      ...super.properties,
 
       /**
        * @property {boolean} selected - Indicates whether the tab is selected.
@@ -50,6 +52,20 @@ export class AuroTab extends AuroHyperlink {
 
   constructor() {
     super();
+
+    /**
+     * Generate unique names for dependency components.
+     * @private
+     */
+    const versioning = new AuroDependencyVersioning();
+
+    /**
+     * Dynamically generated hyperlink tag for tabs.
+     * @private
+     * @type {string}
+     */
+    this.hyperlinkTag = versioning.generateTag("auro-tab-hyperlink", hyperlinkVersion, AuroHyperlink);
+
 
     AuroTab.incrementInstanceCount();
 
@@ -173,5 +189,13 @@ export class AuroTab extends AuroHyperlink {
     if (changedProperties.has('selected')) {
       this.updateSelected();
     }
+  }
+
+  render() {
+    return html`
+      <${this.hyperlinkTag} tabindex="-1" href="#/" role="tab">
+        <slot></slot>
+      </${this.hyperlinkTag}>
+    `
   }
 }

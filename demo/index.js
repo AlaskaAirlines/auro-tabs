@@ -1,11 +1,11 @@
 /* eslint-disable max-classes-per-file */
-import { AuroTabgroup } from './src/auro-tabgroup';
-import { AuroTab } from './src/auro-tab';
-import { AuroTabpanel } from './src/auro-tabpanel';
+import { AuroTabgroup } from '../src/auro-tabgroup';
+import { AuroTab } from '../src/auro-tab';
+import { AuroTabpanel } from '../src/auro-tabpanel';
 
-AuroTabgroup.register();
-AuroTab.register();
 AuroTabpanel.register();
+AuroTab.register();
+AuroTabgroup.register();
 
 /**
  * Register Custom Element with `${prefix}-tab`, `${prefix}-tabgroup` and `${prefix}-tabpanel`.

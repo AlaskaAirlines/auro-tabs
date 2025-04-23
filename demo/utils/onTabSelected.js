@@ -1,11 +1,11 @@
-function onTabSelected(e) {
+export function onTabSelected(e) {
   alert(`Tab selected: ${e.target.innerText}`);
 }
 
-function addListener() {
+export function addListener() {
   window.addEventListener('tab-selected', onTabSelected)
 }
 
-function removeListener() {
+export function removeListener() {
   window.removeEventListener('tab-selected', onTabSelected)
 }

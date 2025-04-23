@@ -17,6 +17,8 @@ src/*.css.map
 ## dist files
 dist/
 build/
+*.min.*
+*.md
 
 ## Code coverage reports
 coverage/
