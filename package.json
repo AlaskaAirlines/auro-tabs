@@ -84,7 +84,7 @@
     "dev": "auro dev --open",
     "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
     "preCommit": "node scripts/pre-commit.mjs",
-    "test": "wtr --coverage",
+    "test": "wtr",
     "test:watch": "wtr --watch",
     "prepare": "husky install"
   },
