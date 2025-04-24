@@ -48,6 +48,12 @@
     "lint-staged": "^15.5.1",
     "sass": "^1.81.0",
     "semantic-release": "^24.2.3",
+    "stylelint": "^16.16.0",
+    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.11.1",
     "typescript": "^5.8.2",
     "wc-sass-render": "^1.4.0",
     "web-component-analyzer": "^2.0.0",
@@ -76,9 +82,8 @@
   "scripts": {
     "build": "auro build",
     "dev": "auro dev --open",
-    "lint": "biome check --fix --no-errors-on-unmatched",
+    "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
     "preCommit": "node scripts/pre-commit.mjs",
-    "postCss:component": "node ./scripts/postCss.js",
     "test": "wtr --coverage",
     "test:watch": "wtr --watch",
     "prepare": "husky install"
@@ -92,7 +97,8 @@
     "NOTICE"
   ],
   "lint-staged": {
-    "*": ["biome check --fix --no-errors-on-unmatched"]
+    "*": ["biome check --fix --no-errors-on-unmatched"],
+    "*.{scss,css}": ["stylelint --fix"]
   },
   "exports": {
     "./readme.md": "./README.md",
