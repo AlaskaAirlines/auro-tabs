@@ -3,8 +3,8 @@
 
 // ---------------------------------------------------------------------
 
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 import { LitElement, html } from "lit";
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import tab panel styles
 import styleCss from "./tabpanel-style.scss";
@@ -14,17 +14,15 @@ import styleCss from "./tabpanel-style.scss";
  * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
 export class AuroTabpanel extends LitElement {
-
   static get properties() {
     return {
-
       /**
        * @property {boolean} hidden - Indicates whether the panel is hidden.
        * @default false
        */
       hidden: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
     };
   }
@@ -73,7 +71,10 @@ export class AuroTabpanel extends LitElement {
    * @private
    */
   handleTagName() {
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabpanel');
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(
+      this,
+      "auro-tabpanel",
+    );
   }
 
   /**
@@ -93,13 +94,13 @@ export class AuroTabpanel extends LitElement {
    * @returns {void}
    */
   setAttributes() {
-    this.setAttribute('role', 'tabpanel');
-    this.setAttribute('tabindex', 0);
+    this.setAttribute("role", "tabpanel");
+    this.setAttribute("tabindex", 0);
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('hidden')) {
-      this.setAttribute('tabindex', this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
+    if (changedProperties.has("hidden")) {
+      this.setAttribute("tabindex", this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
     }
   }
 

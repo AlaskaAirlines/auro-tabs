@@ -3,11 +3,11 @@
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
-import {LitElement} from "lit";
-import {html} from "lit/static-html.js";
+import { LitElement } from "lit";
+import { html } from "lit/static-html.js";
 
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 
 import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
 import hyperlinkVersion from "./hyperlinkVersion.js";
@@ -25,14 +25,13 @@ import styleCss from "./tab-style.scss";
 export class AuroTab extends LitElement {
   static get properties() {
     return {
-
       /**
        * @property {boolean} selected - Indicates whether the tab is selected.
        * @default false
        */
       selected: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -41,7 +40,7 @@ export class AuroTab extends LitElement {
        */
       disabled: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
     };
   }
@@ -64,8 +63,11 @@ export class AuroTab extends LitElement {
      * @private
      * @type {string}
      */
-    this.hyperlinkTag = versioning.generateTag("auro-tab-hyperlink", hyperlinkVersion, AuroHyperlink);
-
+    this.hyperlinkTag = versioning.generateTag(
+      "auro-tab-hyperlink",
+      hyperlinkVersion,
+      AuroHyperlink,
+    );
 
     AuroTab.incrementInstanceCount();
 
@@ -102,7 +104,6 @@ export class AuroTab extends LitElement {
    * @private
    */
   setInitialValues() {
-
     // Dynamic properties
     this.disabled = false;
 
@@ -120,7 +121,7 @@ export class AuroTab extends LitElement {
    * @method setAttributes
    */
   setAttributes() {
-    this.setAttribute('role', 'tab');
+    this.setAttribute("role", "tab");
   }
 
   /**
@@ -129,7 +130,10 @@ export class AuroTab extends LitElement {
    * @private
    */
   handleTagName() {
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tab');
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(
+      this,
+      "auro-tab",
+    );
   }
 
   /**
@@ -138,11 +142,10 @@ export class AuroTab extends LitElement {
    * @private
    */
   applyA11y() {
-
     // remove nested anchor tag's role to avoid nested interactive elements issue. WCAG 4.1.2
-    const anchor = this.shadowRoot.querySelector('a');
+    const anchor = this.shadowRoot.querySelector("a");
     if (anchor) {
-      anchor.setAttribute('role', 'none');
+      anchor.setAttribute("role", "none");
     }
   }
 
@@ -153,17 +156,16 @@ export class AuroTab extends LitElement {
    * @private
    */
   updateSelected() {
-
     // Update relevant attributes
-    this.setAttribute('tabindex', this.selected ? 0 : -1);
-    this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
+    this.setAttribute("tabindex", this.selected ? 0 : -1);
+    this.setAttribute("aria-selected", this.selected ? "true" : "false");
 
     // Emit event if this tab is selected
     if (this.selected) {
-      const event = new Event('tab-selected', {
+      const event = new Event("tab-selected", {
         bubbles: true,
         composed: true,
-        detail: this.selected
+        detail: this.selected,
       });
       this.dispatchEvent(event);
     }
@@ -186,7 +188,7 @@ export class AuroTab extends LitElement {
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('selected')) {
+    if (changedProperties.has("selected")) {
       this.updateSelected();
     }
   }
@@ -196,6 +198,6 @@ export class AuroTab extends LitElement {
       <${this.hyperlinkTag} tabindex="-1" href="#/" role="tab">
         <slot></slot>
       </${this.hyperlinkTag}>
-    `
+    `;
   }
 }

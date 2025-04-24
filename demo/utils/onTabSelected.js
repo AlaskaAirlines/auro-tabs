@@ -3,9 +3,9 @@ export function onTabSelected(e) {
 }
 
 export function addListener() {
-  window.addEventListener('tab-selected', onTabSelected)
+  window.addEventListener("tab-selected", onTabSelected);
 }
 
 export function removeListener() {
-  window.removeEventListener('tab-selected', onTabSelected)
+  window.removeEventListener("tab-selected", onTabSelected);
 }
