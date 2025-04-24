@@ -1,5 +1,4 @@
-
-import { AuroTabgroup } from '../../src/auro-tabgroup.js';
+import { AuroTabgroup } from "../../src/auro-tabgroup.js";
 
 /**
  * The auro-tabgroup element is a container element for tabs and panels.
