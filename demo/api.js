@@ -1,8 +1,8 @@
-import "../src/registered"
-import {addListener} from './utils/onTabSelected'
+import "../src/registered";
+import { addListener } from "./utils/onTabSelected";
 
 // Register the listener
-addListener()
+addListener();
 
-export * from "./utils/onTabSelected"
-export * from "./utils/selectTabExample"
+export * from "./utils/onTabSelected";
+export * from "./utils/selectTabExample";

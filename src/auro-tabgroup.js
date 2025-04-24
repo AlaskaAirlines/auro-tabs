@@ -5,9 +5,9 @@
 // ---------------------------------------------------------------------
 
 import { LitElement, html } from "lit";
-import { styleMap } from 'lit/directives/style-map.js';
+import { styleMap } from "lit/directives/style-map.js";
 
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 
 // Import styles
 import styleCss from "./style.scss";
@@ -15,14 +15,14 @@ import styleCss from "./style.scss";
 import { TabIndexUtil } from "./tabindexUtil.js";
 
 // Import icon
-import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6';
-import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6';
+import chevronLeft from "@alaskaairux/icons/dist/icons/interface/chevron-left_es6";
+import chevronRight from "@alaskaairux/icons/dist/icons/interface/chevron-right_es6";
 
 const KEYCODE = {
-  LEFT: 'ArrowLeft',
-  RIGHT: 'ArrowRight',
-  HOME: 'Home',
-  END: 'End',
+  LEFT: "ArrowLeft",
+  RIGHT: "ArrowRight",
+  HOME: "Home",
+  END: "End",
 };
 
 /**
@@ -35,7 +35,6 @@ const KEYCODE = {
  * @slot panel - Slot component named for auro-tabpanel.
  */
 export class AuroTabgroup extends LitElement {
-
   static get properties() {
     return {
       /**
@@ -44,7 +43,7 @@ export class AuroTabgroup extends LitElement {
        * @private
        */
       scrollPosition: {
-        type: Number
+        type: Number,
       },
 
       /**
@@ -65,7 +64,7 @@ export class AuroTabgroup extends LitElement {
         type: Boolean,
         attribute: false,
         reflect: false,
-        default: true
+        default: true,
       },
 
       /**
@@ -76,8 +75,8 @@ export class AuroTabgroup extends LitElement {
       leftChevronIsVisible: {
         type: Boolean,
         attribute: false,
-        reflect: false
-      }
+        reflect: false,
+      },
     };
   }
 
@@ -88,7 +87,7 @@ export class AuroTabgroup extends LitElement {
    * @readonly
    */
   get allTabs() {
-    return Array.from(this.querySelectorAll('auro-tab'));
+    return Array.from(this.querySelectorAll("auro-tab"));
   }
 
   /**
@@ -117,9 +116,11 @@ export class AuroTabgroup extends LitElement {
    * @private
    * @readonly
    */
-  get scrollSize () {
+  get scrollSize() {
     if (this.tabGroupContainer) {
-      return this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth;
+      return (
+        this.tabGroupContainer.scrollWidth - this.tabGroupContainer.clientWidth
+      );
     }
     return 0;
   }
@@ -129,11 +130,11 @@ export class AuroTabgroup extends LitElement {
    * @returns {Boolean}
    */
   get busy() {
-    return this.getAttribute('aria-busy') === "true";
+    return this.getAttribute("aria-busy") === "true";
   }
 
   set busy(isBusy) {
-    this.setAttribute('aria-busy', String(isBusy));
+    this.setAttribute("aria-busy", String(isBusy));
   }
 
   static get styles() {
@@ -154,7 +155,10 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   handleTagName() {
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-tabgroup');
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(
+      this,
+      "auro-tabgroup",
+    );
   }
 
   /**
@@ -163,7 +167,6 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   setInitialValues() {
-
     // Dynamic Properties
     this.scrollPosition = 0;
     this.sliderStyles = {};
@@ -211,9 +214,9 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   addEventListeners() {
-    this.addEventListener('tab-selected', this.setSliderStyles);
-    this.addEventListener('keydown', this.onKeyDown);
-    this.addEventListener('click', this.onClick);
+    this.addEventListener("tab-selected", this.setSliderStyles);
+    this.addEventListener("keydown", this.onKeyDown);
+    this.addEventListener("click", this.onClick);
   }
 
   /**
@@ -222,8 +225,8 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   removeEventListeners() {
-    this.removeEventListener('keydown', this.onKeyDown);
-    this.removeEventListener('click', this.onClick);
+    this.removeEventListener("keydown", this.onKeyDown);
+    this.removeEventListener("click", this.onClick);
   }
 
   /**
@@ -233,7 +236,6 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   onSlotChange() {
-
     // Update busy state to reflect changes are happening in the DOM
     this.busy = true;
 
@@ -245,18 +247,19 @@ export class AuroTabgroup extends LitElement {
       const sibling = tab.nextElementSibling;
 
       if (sibling) {
-
         // If the sibling is not a tab panel, throw an error.
-        if (sibling.tagName.toLowerCase() !== 'auro-tabpanel') {
-          throw new Error(`Tab #${tab.id} is not a sibling of an <auro-tabpanel>`);
+        if (sibling.tagName.toLowerCase() !== "auro-tabpanel") {
+          throw new Error(
+            `Tab #${tab.id} is not a sibling of an <auro-tabpanel>`,
+          );
         }
 
         // The sibling is a panel, connect the tab and panel and set their initial states.
         const panel = sibling;
         panel.hidden = true;
         tab.panel = panel;
-        tab.setAttribute('aria-controls', panel.id);
-        panel.setAttribute('aria-labelledby', tab.id);
+        tab.setAttribute("aria-controls", panel.id);
+        panel.setAttribute("aria-labelledby", tab.id);
       }
 
       // Select the tab if it is marked as selected
@@ -296,7 +299,6 @@ export class AuroTabgroup extends LitElement {
       }
     }
 
-
     // This will scroll the container to selected tab to nearly centered
     // of the relative viewport if possible.
     if (this.scrollSize > 0) {
@@ -334,10 +336,16 @@ export class AuroTabgroup extends LitElement {
     // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
     switch (event.key) {
       case KEYCODE.LEFT:
-        newIdx = TabIndexUtil.getPreviousNotDisabledIndex(this.focusedTabIdx, tabs);
+        newIdx = TabIndexUtil.getPreviousNotDisabledIndex(
+          this.focusedTabIdx,
+          tabs,
+        );
         break;
       case KEYCODE.RIGHT:
-        newIdx = TabIndexUtil.findNextNotDisabledIndex(this.focusedTabIdx, tabs);
+        newIdx = TabIndexUtil.findNextNotDisabledIndex(
+          this.focusedTabIdx,
+          tabs,
+        );
         break;
       case KEYCODE.HOME:
         newIdx = 0;
@@ -370,13 +378,13 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   onClick(event) {
-    const roleIsNotTab = event.target.getAttribute('role') !== 'tab';
-    const closestTab = event.target.closest(['[role=tab]']);
+    const roleIsNotTab = event.target.getAttribute("role") !== "tab";
+    const closestTab = event.target.closest(["[role=tab]"]);
 
     // If the click was not targeted on a tab element itself,
     // it was a click inside the a panel or on empty space. Nothing to do.
     // actually this is going to be a known issue for custom auro-tab component name in the future
-    if (roleIsNotTab && !closestTab && event.target.localName !== 'auro-tab') {
+    if (roleIsNotTab && !closestTab && event.target.localName !== "auro-tab") {
       return;
     }
 
@@ -392,8 +400,7 @@ export class AuroTabgroup extends LitElement {
    * @param {Event<tab-selected>} event Dispatched from auro-tab.
    * @private
    */
-  setSliderStyles (event) {
-
+  setSliderStyles(event) {
     // Set the slider width to zero by default
     this.sliderStyles.width = 0;
 
@@ -419,7 +426,7 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   generateIcon(icon) {
-    const dom = new DOMParser().parseFromString(icon.svg, 'text/html');
+    const dom = new DOMParser().parseFromString(icon.svg, "text/html");
     return dom.body.firstChild;
   }
 
@@ -441,7 +448,7 @@ export class AuroTabgroup extends LitElement {
   scrollTab(direction) {
     if (this.tabGroupContainer) {
       switch (direction) {
-        case 'prev':
+        case "prev":
           if (this.tabGroupContainer.scrollLeft > 0) {
             this.tabGroupContainer.scrollBy({
               left: -this.tabGroupContainer.clientWidth,
@@ -449,7 +456,7 @@ export class AuroTabgroup extends LitElement {
             });
           }
           break;
-        case 'next':
+        case "next":
           if (this.tabGroupContainer.scrollLeft < this.scrollSize) {
             this.tabGroupContainer.scrollBy({
               left: this.tabGroupContainer.clientWidth,
@@ -473,8 +480,8 @@ export class AuroTabgroup extends LitElement {
       this.setSliderStyles({ target: this.currentTab });
     });
 
-    const tabGroup = tabGroupContainer.querySelector('.tabgroup');
-    this.resizeObserver.observe(tabGroup, { box : 'border-box' });
+    const tabGroup = tabGroupContainer.querySelector(".tabgroup");
+    this.resizeObserver.observe(tabGroup, { box: "border-box" });
   }
 
   /**
@@ -483,8 +490,11 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   setupTabGroupContainer() {
-    this.tabGroupContainer = this.shadowRoot.querySelector('.tabgroupContainer');
-    this.tabGroupContainer.addEventListener('scroll', () => this.onTabGroupScroll());
+    this.tabGroupContainer =
+      this.shadowRoot.querySelector(".tabgroupContainer");
+    this.tabGroupContainer.addEventListener("scroll", () =>
+      this.onTabGroupScroll(),
+    );
   }
 
   /**
@@ -493,9 +503,13 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   updateChevronVisibility() {
-    this.leftChevronIsVisible = (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) && this.scrollSize > 0;
-    this.rightChevronIsVisible = (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) && this.scrollSize > 0;
-  };
+    this.leftChevronIsVisible =
+      (this.scrollPosition >= this.scrollSize || this.scrollPosition !== 0) &&
+      this.scrollSize > 0;
+    this.rightChevronIsVisible =
+      (this.scrollPosition === 0 || this.scrollPosition < this.scrollSize) &&
+      this.scrollSize > 0;
+  }
 
   firstUpdated() {
     this.setupTabGroupContainer();
@@ -509,7 +523,7 @@ export class AuroTabgroup extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListeners();
-  };
+  }
 
   disconnectedCallback() {
     this.removeEventListeners();
@@ -521,22 +535,28 @@ export class AuroTabgroup extends LitElement {
 
     return html`
       <div class="tabgroupContainer" role="tablist">
-        ${this.leftChevronIsVisible ? html`
-          <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab('prev')} tabindex="-1">
+        ${
+          this.leftChevronIsVisible
+            ? html`
+          <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab("prev")} tabindex="-1">
             <div class="icon">${this.generateIcon(chevronLeft)}</div>
           </button>`
-        : ''}
+            : ""
+        }
         <div class="tabgroup">
           <slot name="tab" @slotchange=${this.onSlotChange}></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
             <div part="slider" class="slider"></div>
           </div>
         </div>
-        ${this.rightChevronIsVisible ? html`
-          <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab('next')} tabindex="-1">
+        ${
+          this.rightChevronIsVisible
+            ? html`
+          <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab("next")} tabindex="-1">
             <div class="icon">${this.generateIcon(chevronRight)}</div>
           </button>`
-        : ''}
+            : ""
+        }
       </div>
     <slot name="panel" @slotchange=${this.onSlotChange}></slot>
     `;

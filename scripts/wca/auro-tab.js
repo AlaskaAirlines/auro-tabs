@@ -1,5 +1,4 @@
-
-import { AuroTab } from '../../src/auro-tab.js';
+import { AuroTab } from "../../src/auro-tab.js";
 
 /**
  * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.

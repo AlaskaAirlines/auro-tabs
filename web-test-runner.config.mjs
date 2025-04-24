@@ -6,8 +6,8 @@ export default {
       statements: 80,
       branches: 80,
       functions: 80,
-      lines: 80
-    }
+      lines: 80,
+    },
   },
   testRunnerHtml: (testFramework) => `<html>
       <head>

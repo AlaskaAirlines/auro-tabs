@@ -1,7 +1,7 @@
+import { AuroTab } from "../src/auro-tab";
 /* eslint-disable max-classes-per-file */
-import { AuroTabgroup } from '../src/auro-tabgroup';
-import { AuroTab } from '../src/auro-tab';
-import { AuroTabpanel } from '../src/auro-tabpanel';
+import { AuroTabgroup } from "../src/auro-tabgroup";
+import { AuroTabpanel } from "../src/auro-tabpanel";
 
 AuroTabpanel.register();
 AuroTab.register();
