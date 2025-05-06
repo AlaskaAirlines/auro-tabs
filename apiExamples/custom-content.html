@@ -1,20 +1,29 @@
-<auro-tabgroup id="custom-tab-example">
-  <auro-tab slot="tab">
-    <div class="custom-tab">
-      <span>Flights</span>
-      <span role="img" aria-label="airplane emoji">✈️</span>
-    </div>
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab slot="tab">
-    <div class="custom-tab">
-      <span>Rentals</span>
-      <span role="img" aria-label="car emoji">🚗</span>
-    </div>
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 2 Content</span>
-  </auro-tabpanel>
+<i>
+  This example is intended to mimic the new Borealis tab implementation
+  for the homepage design.
+</i>
+
+<auro-tabgroup variant="unstyled" id="custom-tab-example">
+  <div slot="tabs">
+    <auro-tab variant="unstyled">
+      <div class="custom-tab">
+        <span>Flights</span>
+        <span role="img" aria-label="airplane emoji">✈️</span>
+      </div>
+    </auro-tab>
+    <auro-tab variant="unstyled">
+      <div class="custom-tab">
+        <span>Rentals</span>
+        <span role="img" aria-label="car emoji">🚗</span>
+      </div>
+    </auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel>
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tabpanel>
+      <span>Tab 2 Content</span>
+    </auro-tabpanel>
+  </div>
 </auro-tabgroup>

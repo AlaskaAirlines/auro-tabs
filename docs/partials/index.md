@@ -14,13 +14,19 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/useCases.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
+### BETA COMPONENT, BOREALIS USE ONLY
+Borealis developers please ignore this message!
+
+Default styles are NOT SUPPORTED AT THE TIME OF PUBLICATION :) DO NOT USE THIS WITHOUT CONSULTING THE AURO ENGINEERING AND DESIGN TEAM(S).
+
+As Auro-Tab does not currently have default styling, you are expected to bring your own styles. Please consult your design team
+and/or the Auro team for guidance on how to style your tabs.
+
 ## Example(s)
 
-## Default
+### Basic example (unstyled)
 
-`auro-tabpanel` needs to be defined directly after `auro-tab` so that it can be paired.
-If there is a use-case where a tab doesn't have a tabpanel, then leave the tabpanel undefined.
-Example below:
+Some examples include some default styling! A fresh tab install will look like the following:
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
@@ -32,74 +38,11 @@ Example below:
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-## States
-
-There are five states which `auro-tabs` supported:
-- default
-- hover
-- focus
-- selected
-- disabled
-
-Try hover & focus state by forcing the `<a>` element state inside auro-tab with css styles console.
-
-Selected and Disabled state can be set directly with property: `selected` or `disabled` to the auro-tab itself.
-Although, `selected` is automatically added on tab clicked.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/states.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/states.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-
-## Scroll behaviour
-
-`auro-tabs` in desktop breakpoint (>=768px) will show a button in left & right side, when the number of `auro-tab` exceeds the container size. In mobile breakpoint (<767px), it will normally show a browser scrollbar under the tabgroup.
-
-Example below:
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/scroll.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/scroll.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-#### Container width: 400px
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/scroll-400.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/scroll-400.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
 </auro-accordion>
 
 ## Custom tab content
 
-Auro tab also supports rich content inside of a tab. Instead of passing simple text, use html markup as needed to fit
+Auro tab also supports rich content inside a tab. Instead of passing simple text, use html markup as needed to fit
 your design spec. The wrapper `auro-tabgroup` also exposes two css parts for custom sliders (active indicator) -
 `slider` and the parent `slider-positioner`.
 
