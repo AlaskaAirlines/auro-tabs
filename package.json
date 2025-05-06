@@ -22,7 +22,7 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@aurodesignsystem/auro-cli": "^2.1.0",
+    "@aurodesignsystem/auro-cli": "^2.2.0-rc-59.1",
     "@aurodesignsystem/auro-config": "^1.0.1",
     "@aurodesignsystem/auro-hyperlink": "^5.0.1",
     "@aurodesignsystem/auro-library": "^3.0.13",

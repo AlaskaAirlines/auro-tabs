@@ -6,44 +6,25 @@
 @import "@aurodesignsystem/webcorestylesheets/src/essentials";
 
 :host {
-  // this seems to be important for making the a-tag get proper height
-  display: flex;
-
-  [auro-hyperlink] {
-    &::part(link) {
-      padding: 0;
-      line-height: unset;
-    }
-
-    padding: var(--ds-size-50, $ds-size-50) var(--ds-size-300, $ds-size-300) var(--ds-size-75, $ds-size-75);
-    color: var(--ds-color-ui-default-default, $ds-color-ui-default-default);
+  #tab-root {
     cursor: pointer;
-    font-family: var(--ds-font-family-default, $ds-font-family-default), sans-serif;
-    font-weight: var(--ds-text-body-default-weight);
-    text-align: center;
-    text-decoration: none;
+
+    // While this is technically "styling", white-space: nowrap; is required
+    // to ensure tabs don't bunch up their text on word breaks.
     white-space: nowrap;
   }
 }
 
 :host([selected]) {
-  [auro-hyperlink] {
-    color: var(--ds-color-text-ui-hover-default, $ds-color-text-ui-hover-default);
-  }
+  // empty for now
 }
 
 :host([disabled]) {
   pointer-events: none;
-
-  [auro-hyperlink] {
-    color: var(--ds-color-text-ui-disabled-default, $ds-color-text-ui-disabled-default);
-  }
 }
 
 :host(:hover) {
-  [auro-hyperlink] {
-    background-color: var(--ds-color-ui-bkg-hover-default, $ds-color-ui-bkg-hover-default);
-  }
+  // empty for now
 }
 
 :host(:focus-within),

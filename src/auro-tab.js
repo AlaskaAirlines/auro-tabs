@@ -23,6 +23,8 @@ import styleCss from "./tab-style.scss";
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
 export class AuroTab extends LitElement {
+  #parentTabgroup = null;
+
   static get properties() {
     return {
       /**
@@ -40,6 +42,15 @@ export class AuroTab extends LitElement {
        */
       disabled: {
         type: Boolean,
+        reflect: true,
+      },
+
+      /**
+       * @property {"default" | "unstyled" | string} variant - The variant of the tab.
+       * @default false
+       */
+      variant: {
+        type: String,
         reflect: true,
       },
     };
@@ -75,6 +86,9 @@ export class AuroTab extends LitElement {
     this.setId();
     this.setInitialValues();
     this.setAttributes();
+
+    this.#setParentTabgroup();
+    this.#parentTabgroup.tabs.add(this);
   }
 
   /**
@@ -183,6 +197,18 @@ export class AuroTab extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTab);
   }
 
+  #setParentTabgroup() {
+    const parentTabgroup = this.closest("auro-tabgroup, [auro-tabgroup]");
+    if (!parentTabgroup) {
+      console.warn(
+        "AuroTab | #getParentTabGroup: Could not find parent auro-tabgroup. Did you put this tab in a <auro-tabgroup> element?",
+      );
+      return;
+    }
+
+    this.#parentTabgroup = parentTabgroup;
+  }
+
   firstUpdated() {
     this.applyA11y();
   }
@@ -195,9 +221,9 @@ export class AuroTab extends LitElement {
 
   render() {
     return html`
-      <${this.hyperlinkTag} tabindex="-1" href="#/" role="tab">
+      <div id="tab-root" part="tab-root">
         <slot></slot>
-      </${this.hyperlinkTag}>
+      </div>
     `;
   }
 }

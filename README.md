@@ -77,23 +77,27 @@ import "@aurodesignsystem/auro-tabs";
 
 ```html
 <auro-tabgroup>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Baggage Info
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    More
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    No Panel
-  </auro-tab>
+  <div slot="tabs">
+    <auro-tab>
+      Baggage Info
+    </auro-tab>
+    <auro-tab>
+      Help
+    </auro-tab>
+    <auro-tab>
+      More
+    </auro-tab>
+    <auro-tab>
+      No Panel
+    </auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  </div>
 </auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
@@ -138,23 +142,27 @@ The `<auro-tabs>` element should be used in situations where users:
 
 ```html
 <auro-tabgroup>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Baggage Info
-  </auro-tab>
-  <auro-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    More
-  </auro-tab>
-  <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-  <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    No Panel
-  </auro-tab>
+  <div slot="tabs">
+    <auro-tab>
+      Baggage Info
+    </auro-tab>
+    <auro-tab>
+      Help
+    </auro-tab>
+    <auro-tab>
+      More
+    </auro-tab>
+    <auro-tab>
+      No Panel
+    </auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel slot="panel">
+      <span>Tab 1 Content</span>
+    </auro-tabpanel>
+    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+  </div>
 </auro-tabgroup>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->

@@ -8,6 +8,7 @@ import { LitElement, html } from "lit";
 import { styleMap } from "lit/directives/style-map.js";
 
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+import { ChildItemService } from "./child-service";
 
 // Import styles
 import styleCss from "./style.scss";
@@ -15,8 +16,6 @@ import styleCss from "./style.scss";
 import { TabIndexUtil } from "./tabindexUtil.js";
 
 // Import icon
-import chevronLeft from "@alaskaairux/icons/dist/icons/interface/chevron-left_es6";
-import chevronRight from "@alaskaairux/icons/dist/icons/interface/chevron-right_es6";
 
 const KEYCODE = {
   LEFT: "ArrowLeft",
@@ -82,12 +81,12 @@ export class AuroTabgroup extends LitElement {
 
   /**
    * @description All auro-tab elements in the tab group.
-   * @returns {Array<HTMLElement>}
+   * @returns {Array<AuroTab>}
    * @private
    * @readonly
    */
   get allTabs() {
-    return Array.from(this.querySelectorAll("auro-tab"));
+    return this.tabs.current;
   }
 
   /**
@@ -147,6 +146,13 @@ export class AuroTabgroup extends LitElement {
     this.handleTagName();
     this.setInitialValues();
     this.bindMethods();
+
+    this.tabs = new ChildItemService();
+    this.panels = new ChildItemService();
+
+    this.onSlotChange = this.onSlotChange.bind(this);
+    this.tabs.subscribe(this.onSlotChange);
+    this.panels.subscribe(this.onSlotChange);
   }
 
   /**
@@ -208,6 +214,28 @@ export class AuroTabgroup extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabgroup);
   }
 
+  associateTabsWithPanels() {
+    this.allTabs.forEach((currentTab, i) => {
+      const matchingPanel = this.panels.getItemByIndex(i);
+
+      if (!matchingPanel) {
+        return;
+      }
+
+      // Hide panel
+      matchingPanel.hidden = true;
+
+      // Associate tab with the panel, and vice versa
+      currentTab.panel = matchingPanel;
+      currentTab.setAttribute("aria-controls", matchingPanel.id);
+      matchingPanel.setAttribute("aria-labelledby", currentTab.id);
+
+      if (currentTab.selected) {
+        this.selectTab(currentTab);
+      }
+    });
+  }
+
   /**
    * @description Function to add event listeners to the component.
    * @method addEventListeners
@@ -239,38 +267,11 @@ export class AuroTabgroup extends LitElement {
     // Update busy state to reflect changes are happening in the DOM
     this.busy = true;
 
-    // Get all the tabs in the tab group.
-    const tabs = this.allTabs;
-
-    for (const tab of tabs) {
-      // Get the sibling
-      const sibling = tab.nextElementSibling;
-
-      if (sibling) {
-        // If the sibling is not a tab panel, throw an error.
-        if (sibling.tagName.toLowerCase() !== "auro-tabpanel") {
-          throw new Error(
-            `Tab #${tab.id} is not a sibling of an <auro-tabpanel>`,
-          );
-        }
-
-        // The sibling is a panel, connect the tab and panel and set their initial states.
-        const panel = sibling;
-        panel.hidden = true;
-        tab.panel = panel;
-        tab.setAttribute("aria-controls", panel.id);
-        panel.setAttribute("aria-labelledby", tab.id);
-      }
-
-      // Select the tab if it is marked as selected
-      if (tab.selected) {
-        this.selectTab(tab);
-      }
-    }
+    this.associateTabsWithPanels();
 
     // If none of the tabs were set to be focused, focus the first tab
-    if (this.focusedTabIdx === -1) {
-      this.selectTab(tabs[0]);
+    if (this.focusedTabIdx === -1 && this.allTabs[0].panel) {
+      this.selectTab(this.allTabs[0]);
     }
 
     // We are no longer busy making changes
@@ -535,30 +536,15 @@ export class AuroTabgroup extends LitElement {
 
     return html`
       <div class="tabgroupContainer" role="tablist">
-        ${
-          this.leftChevronIsVisible
-            ? html`
-          <button part="chevron left" class="chevronLeft" @click=${() => this.scrollTab("prev")} tabindex="-1">
-            <div class="icon">${this.generateIcon(chevronLeft)}</div>
-          </button>`
-            : ""
-        }
-        <div class="tabgroup">
-          <slot name="tab" @slotchange=${this.onSlotChange}></slot>
+        <div part="tabgroup" class="tabgroup">
+          <slot name="tabs"></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
             <div part="slider" class="slider"></div>
           </div>
         </div>
-        ${
-          this.rightChevronIsVisible
-            ? html`
-          <button part="chevron right" class="chevronRight" @click=${() => this.scrollTab("next")} tabindex="-1">
-            <div class="icon">${this.generateIcon(chevronRight)}</div>
-          </button>`
-            : ""
-        }
       </div>
-    <slot name="panel" @slotchange=${this.onSlotChange}></slot>
+
+      <slot name="panels"></slot>
     `;
   }
 }
