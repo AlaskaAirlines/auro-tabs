@@ -9,6 +9,13 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 |------------|------------|-----------|---------|-------------------------------|
 | `disabled` | `disabled` | `Boolean` | "false" | Mark the tab as disabled tab. |
 | `selected` | `selected` | `Boolean` | "false" | Mark the tab as selected tab. |
+| `variant`  | `variant`  | `string`  | "false" |                               |
+
+## Methods
+
+| Method               | Type       |
+|----------------------|------------|
+| `#setParentTabgroup` | `(): void` |
 
 ## Events
 
@@ -26,9 +33,18 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property | Type      |
-|----------|-----------|
-| `busy`   | `boolean` |
+| Property       | Type      |
+|----------------|-----------|
+| `busy`         | `boolean` |
+| `onSlotChange` |           |
+| `panels`       |           |
+| `tabs`         |           |
+
+## Methods
+
+| Method                    | Type       |
+|---------------------------|------------|
+| `associateTabsWithPanels` | `(): void` |
 
 ## Slots
 
@@ -48,3 +64,9 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 | Property | Attribute | Type      | Default |
 |----------|-----------|-----------|---------|
 | `hidden` | `hidden`  | `boolean` | "false" |
+
+## Methods
+
+| Method               | Type       |
+|----------------------|------------|
+| `#setParentTabgroup` | `(): void` |
