@@ -545,7 +545,7 @@ export class AuroTabgroup extends LitElement {
     const sliderStyles = styleMap(this.sliderStyles);
 
     return html`
-      <div class="tabgroupContainer" role="tablist">
+      <div part="tabgroup-root" class="tabgroupContainer" role="tablist">
         <div part="tabgroup" class="tabgroup">
           <slot name="tabs"></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>

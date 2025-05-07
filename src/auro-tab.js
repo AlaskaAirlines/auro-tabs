@@ -221,7 +221,7 @@ export class AuroTab extends LitElement {
 
   render() {
     return html`
-      <div id="tab-root" part="tab-root">
+      <div part="tab-root" id="tab-root">
         <slot></slot>
       </div>
     `;
