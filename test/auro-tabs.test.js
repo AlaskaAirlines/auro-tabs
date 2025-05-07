@@ -6,10 +6,11 @@ import {
   waitUntil,
 } from "@open-wc/testing";
 import { setViewport } from "@web/test-runner-commands";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import "../dist/registered.js";
 
 describe("auro-tabgroup", () => {
-  it.skip("auro-tabgroup is accessible", async () => {
+  it("auro-tabgroup is accessible", async () => {
     const el = await fixture(getTabGroup(3));
 
     await expect(el).to.be.accessible();
@@ -28,8 +29,7 @@ describe("auro-tabgroup", () => {
 
   it("trigger keyhandler", async () => {
     const el = await fixture(getTabGroup());
-    const tabs = [...el.querySelectorAll("auro-tab")];
-
+    const tabs = el.allTabs;
     const firstTab = tabs[0];
     firstTab.focus();
 
@@ -65,7 +65,7 @@ describe("auro-tabgroup", () => {
     const el = await fixture(getTabGroup());
 
     const CLICK_INDEX = 3;
-    const tabs = el.querySelectorAll("auro-tab");
+    const tabs = el.allTabs;
     await tabs[CLICK_INDEX].click();
 
     await expect(el.currentTabIndex).to.equal(CLICK_INDEX);
@@ -78,21 +78,25 @@ describe("auro-tabgroup", () => {
   it("shows only selected tab's panel", async () => {
     const el = await fixture(html`
       <auro-tabgroup>
-        <auro-tab slot="tab" selected>Tab 1</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 1</auro-tabpanel>
-        <auro-tab slot="tab">Tab 2</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 2</auro-tabpanel>
-        <auro-tab slot="tab">Tab 3</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 3</auro-tabpanel>
-        <auro-tab slot="tab">Tab 4</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 4</auro-tabpanel>
-        <auro-tab slot="tab">Tab 5</auro-tab>
-        <auro-tabpanel slot="panel">Tabpanel 5</auro-tabpanel>
+        <div slot="tabs">
+          <auro-tab selected>Tab 1</auro-tab>
+          <auro-tab>Tab 2</auro-tab>
+          <auro-tab>Tab 3</auro-tab>
+          <auro-tab>Tab 4</auro-tab>
+          <auro-tab>Tab 5</auro-tab>
+        </div>
+        <div slot="panels">
+          <auro-tabpanel>Tabpanel 1</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 2</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 3</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 4</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 5</auro-tabpanel>
+        </div>
       </auro-tabgroup>
     `);
 
     const CLICK_INDEX = 3;
-    const tabs = el.querySelectorAll("auro-tab");
+    const tabs = el.allTabs;
     await tabs[CLICK_INDEX].click();
 
     await expect(el.currentTabIndex).to.equal(CLICK_INDEX);
@@ -116,7 +120,8 @@ describe("auro-tabgroup", () => {
     }
   });
 
-  it("scrolls container when clicks arrow buttons", async () => {
+  // not relevant until we get designs with arrows again
+  it.skip("scrolls container when clicks arrow buttons", async () => {
     await setViewport({
       width: 550,
       height: 800,
@@ -153,6 +158,7 @@ describe("auro-tabgroup", () => {
     expect(leftR.checkVisibility()).to.be.false;
   });
 
+  // not relevant until we get designs with arrows again
   it.skip("do not show arrow buttons in a small screen", async () => {
     await setViewport({
       width: 500,
@@ -166,13 +172,27 @@ describe("auro-tabgroup", () => {
 });
 
 function getTabGroup(tabcount = 5) {
-  const pairs = [];
+  const tabs = [];
+  const panels = [];
   for (let i = 0; i < tabcount; i++) {
-    pairs.push(html`
-      <auro-tab slot="tab">Tab ${i + 1}</auro-tab>
-      <auro-tabpanel slot="panel">Tabpanel ${i + 1}</auro-tabpanel>
-    `);
+    tabs.push(`<auro-tab>Tab ${i + 1}</auro-tab>`);
+    panels.push(`<auro-tabpanel>Tabpanel ${i + 1}</auro-tabpanel>`);
   }
 
-  return html`<auro-tabgroup>${pairs}</auro-tabgroup>`;
+  // This looks terrible, but is required for force-rendering
+  // all tabs/tabpanels/tabgroup at once.
+  //
+  // This is NOT an issue in a real browser, but we must appease the test gods.
+  const renderedHtml = unsafeHTML(`
+    <auro-tabgroup variant="unstyled">
+      <div slot="tabs">
+        ${tabs.join("\n")}
+      </div>
+      <div slot="panels">
+        ${panels.join("\n")}
+      </div>
+    </auro-tabgroup>
+  `);
+
+  return html`${renderedHtml}`;
 }

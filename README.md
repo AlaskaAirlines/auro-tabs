@@ -92,11 +92,11 @@ import "@aurodesignsystem/auro-tabs";
     </auro-tab>
   </div>
   <div slot="panels">
-    <auro-tabpanel slot="panel">
+    <auro-tabpanel>
       <span>Tab 1 Content</span>
     </auro-tabpanel>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tabpanel><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
   </div>
 </auro-tabgroup>
 ```
@@ -157,11 +157,11 @@ The `<auro-tabs>` element should be used in situations where users:
     </auro-tab>
   </div>
   <div slot="panels">
-    <auro-tabpanel slot="panel">
+    <auro-tabpanel>
       <span>Tab 1 Content</span>
     </auro-tabpanel>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
+    <auro-tabpanel><span>Tab 2 Content</span></auro-tabpanel>
+    <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
   </div>
 </auro-tabgroup>
 ```
