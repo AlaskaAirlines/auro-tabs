@@ -90,6 +90,16 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description All auro-tab elements in the tab group.
+   * @returns {Array<AuroTabpanel>}
+   * @private
+   * @readonly
+   */
+  get allPanels() {
+    return this.panels.current;
+  }
+
+  /**
    * @description The index of the currently selected tab.
    * @returns {number}
    * @private
