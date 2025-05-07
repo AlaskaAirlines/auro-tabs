@@ -117,10 +117,11 @@ export class ChildItemService {
   /**
    * Gets an item by its number (1-based index).
    * @param {Number} number
-   * @returns {AuroScrollerItem}
+   * @returns {HTMLElement}
    */
   getItemByNumber(number) {
     if (
+      this.#items.length === 0 ||
       typeof number !== "number" ||
       number < 0 ||
       number > this.#items.length
