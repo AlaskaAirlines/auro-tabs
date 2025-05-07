@@ -62,6 +62,11 @@ are used internally to position the slider and will be automatically overwritten
 
 </auro-accordion>
 
+CSS used in the example above:
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.css) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ## Accessibility
 
 ### Tab Role

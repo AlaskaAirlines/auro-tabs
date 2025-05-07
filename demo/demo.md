@@ -453,14 +453,21 @@ CSS used in the example above:
 ```css
 #custom-tab-example::part(slider) {
   height: 5px;
-  margin-top: -3px; /* slider-positioner has a smaller height by default */
+  margin-top: -3px;
   border-radius: 1rem;
-  width: 50px;
+  width: 25px;
 }
 
 .custom-tab {
+  padding: 5px 15px 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-panel-wrapper {
+  padding: 1rem;
 }
 ```
 
