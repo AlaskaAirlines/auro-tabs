@@ -31,7 +31,7 @@
   position: relative;
   padding-bottom: 0;
 
-  ::slotted(div[slot="tabs"]) {
+  ::slotted([slot="tabs"]) {
     display: flex;
     overflow: unset;
     width: fit-content;

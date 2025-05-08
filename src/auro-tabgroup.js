@@ -160,9 +160,8 @@ export class AuroTabgroup extends LitElement {
     this.tabs = new ChildItemService();
     this.panels = new ChildItemService();
 
-    this.onSlotChange = this.onSlotChange.bind(this);
-    this.tabs.subscribe(this.onSlotChange);
-    this.panels.subscribe(this.onSlotChange);
+    this.tabs.subscribe(this.#handleTabPanelConnections);
+    this.panels.subscribe(this.#handleTabPanelConnections);
   }
 
   /**
@@ -224,7 +223,12 @@ export class AuroTabgroup extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTabgroup);
   }
 
-  associateTabsWithPanels() {
+  /**
+   * Loop through tabs and match with same-index panels.
+   * @private
+   * @returns {void}
+   */
+  #associateTabsWithPanels() {
     this.allTabs.forEach((currentTab, i) => {
       const matchingPanel = this.panels.getItemByIndex(i);
 
@@ -270,14 +274,13 @@ export class AuroTabgroup extends LitElement {
   /**
    * @description Handler for when an element is added or removed from
    * one of the shadow DOM slots.
-   * @method onSlotChange
    * @private
    */
-  onSlotChange() {
+  #handleTabPanelConnections = () => {
     // Update busy state to reflect changes are happening in the DOM
     this.busy = true;
 
-    this.associateTabsWithPanels();
+    this.#associateTabsWithPanels();
 
     // If none of the tabs were set to be focused, focus the first tab
     if (this.focusedTabIdx === -1 && this.allTabs[0].panel) {
@@ -286,7 +289,7 @@ export class AuroTabgroup extends LitElement {
 
     // We are no longer busy making changes
     this.busy = false;
-  }
+  };
 
   /**
    * @description Function handler when selecting an auro-tab.
@@ -545,16 +548,18 @@ export class AuroTabgroup extends LitElement {
     const sliderStyles = styleMap(this.sliderStyles);
 
     return html`
-      <div part="tabgroup-root" class="tabgroupContainer" role="tablist">
-        <div part="tabgroup" class="tabgroup">
+      <div part="tabgroup__root" class="tabgroupContainer" role="tablist">
+        <div part="tabgroup__tabs" class="tabgroup">
           <slot name="tabs"></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
             <div part="slider" class="slider"></div>
           </div>
         </div>
-      </div>
 
-      <slot name="panels"></slot>
+        <div part="tabgroup__panels">
+            <slot name="panels"></slot>
+        </div>
+      </div>
     `;
   }
 }
