@@ -23,6 +23,10 @@ import styleCss from "./tab-style.scss";
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
 export class AuroTab extends LitElement {
+  /**
+   * @private
+   * @type {AuroTabgroup}
+   */
   #parentTabgroup = null;
 
   static get properties() {
@@ -217,6 +221,10 @@ export class AuroTab extends LitElement {
     if (changedProperties.has("selected")) {
       this.updateSelected();
     }
+  }
+
+  disconnectedCallback() {
+    this.#parentTabgroup.tabs.remove(this);
   }
 
   render() {
