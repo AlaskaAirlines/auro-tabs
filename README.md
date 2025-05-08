@@ -76,7 +76,7 @@ import "@aurodesignsystem/auro-tabs";
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup>
+<auro-tabgroup variant="unstyled">>
   <div slot="tabs">
     <auro-tab>
       Baggage Info
@@ -141,7 +141,7 @@ The `<auro-tabs>` element should be used in situations where users:
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
 
 ```html
-<auro-tabgroup>
+<auro-tabgroup variant="unstyled">>
   <div slot="tabs">
     <auro-tab>
       Baggage Info
