@@ -14,6 +14,10 @@ import styleCss from "./tabpanel-style.scss";
  * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
 export class AuroTabpanel extends LitElement {
+  /**
+   * @private
+   * @type {AuroTabgroup}
+   */
   #parentTabgroup = null;
 
   static get properties() {
@@ -119,6 +123,10 @@ export class AuroTabpanel extends LitElement {
     if (changedProperties.has("hidden")) {
       this.setAttribute("tabindex", this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
     }
+  }
+
+  disconnectedCallback() {
+    this.#parentTabgroup.panels.remove(this);
   }
 
   render() {

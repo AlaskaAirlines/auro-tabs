@@ -33,18 +33,11 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property       | Type      |
-|----------------|-----------|
-| `busy`         | `boolean` |
-| `onSlotChange` |           |
-| `panels`       |           |
-| `tabs`         |           |
-
-## Methods
-
-| Method                    | Type       |
-|---------------------------|------------|
-| `associateTabsWithPanels` | `(): void` |
+| Property | Type      |
+|----------|-----------|
+| `busy`   | `boolean` |
+| `panels` |           |
+| `tabs`   |           |
 
 ## Slots
 
