@@ -1,5 +1,5 @@
 export function onTabSelected(e) {
-  alert(`Tab selected: ${e.target.innerText}`);
+  console.info(`Tab selected: ${e.target.innerText}`);
 }
 
 export function addListener() {

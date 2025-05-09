@@ -80,7 +80,7 @@
   },
   "keywords": ["alaska airlines", "auro", "design system", "web components"],
   "scripts": {
-    "build": "auro build",
+    "build": "npx wca analyze 'scripts/wca/*' --outFiles docs/api.md && auro build",
     "dev": "auro dev --open",
     "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
     "preCommit": "node scripts/pre-commit.mjs",
