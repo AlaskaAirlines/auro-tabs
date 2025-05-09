@@ -37,7 +37,6 @@ const KEYCODE = {
  * @csspart tabgroup__panels - The panel wrapper element.
  * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
  * @csspart slider - The slider element.
- * @csspart tabgroup__panels - The panel wrapper element.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
