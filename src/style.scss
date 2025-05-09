@@ -4,32 +4,55 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
-
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
-
-// Support for auroElement styles
-// @import './node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
+@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
+@import "@aurodesignsystem/webcorestylesheets/src/core";
+@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
+@import "@aurodesignsystem/webcorestylesheets/src/fonts";
+@import "@aurodesignsystem/webcorestylesheets/src/essentials";
 
 
-// Selector is for initial setup only
-// delete when building new custom element
-.testClass {
-  display: inline-block;
-  padding: var(--auro-text-body-size-default);
-  border: 1px solid var(--auro-color-border-error-on-light);
-  color:  var(--auro-color-border-error-on-light);
+::slotted(auro-tabpanel) {
+  flex-basis: 100%;
 }
 
-// Selector for native :focus-visible support
-:focus-visible {
-  background-color: var(--auro-color-border-error-on-light);
-  color: var(--auro-color-base-white);
+:host {
+  position: relative;
+  display: block;
+}
+
+.tabgroupContainer {
+  display: flex;
+  flex-direction: column;
+  transition: scroll .5s ease-in-out;
+}
+
+.tabgroup {
+  position: relative;
+  padding-bottom: 0;
+
+  ::slotted([slot="tabs"]) {
+    display: flex;
+    overflow: unset;
+    width: fit-content;
+    flex-wrap: nowrap;
+  }
+}
+
+.sliderPositioner  {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  display: flex;
+  width: 0;
+  height: calc(var(--ds-size-25, $ds-size-25) + 1px);
+  align-items: center;
+  justify-content: center;
+  transition: all .25s;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  background-color: var(--ds-color-ui-active-default, $ds-color-ui-active-default);
 }
