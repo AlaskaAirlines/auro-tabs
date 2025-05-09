@@ -43,7 +43,7 @@
       window.selectLastTab = selectLastTab;
       window.selectSecondTab = selectSecondTab;
 
-      fetch('./apiExamples.md')
+      fetch('./api.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);
