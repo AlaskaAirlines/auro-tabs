@@ -327,7 +327,7 @@ export class AuroTabgroup extends LitElement {
     // If that panel doesn’t exist, abort.
     if (!newTab.panel) {
       // eslint-disable-next-line no-console
-      console.error(`No panel with id ${newTab.id}`);
+      console.warn(`No panel with id ${newTab.id}`);
     }
   }
 
