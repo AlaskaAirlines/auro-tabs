@@ -46,6 +46,16 @@ cached and therefore, changes during runtime work.
 | `panel` | Slot component named for auro-tabpanel. |
 | `tab`   | Slot component named for auro-tab.      |
 
+## CSS Shadow Parts
+
+| Part                | Description                                      |
+|---------------------|--------------------------------------------------|
+| `slider`            | The slider element.                              |
+| `slider-positioner` | The slider positioner element (non-visual, only used to center slider on tab). |
+| `tabgroup__panels`  | The panel wrapper element.                       |
+| `tabgroup__root`    | The root element of the tab group.               |
+| `tabgroup__tabs`    | The "tabs list" internal wrapper element.        |
+
 
 # auro-tabpanel
 

@@ -32,6 +32,12 @@ const KEYCODE = {
  *
  * @slot tab - Slot component named for auro-tab.
  * @slot panel - Slot component named for auro-tabpanel.
+ * @csspart tabgroup__root - The root element of the tab group.
+ * @csspart tabgroup__tabs - The "tabs list" internal wrapper element.
+ * @csspart tabgroup__panels - The panel wrapper element.
+ * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
+ * @csspart slider - The slider element.
+ * @csspart tabgroup__panels - The panel wrapper element.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
