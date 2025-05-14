@@ -105,6 +105,11 @@ export class ChildItemService {
     this.#notifySubscribers();
   }
 
+  clear() {
+    this.#items = [];
+    this.#notifySubscribers();
+  }
+
   /**
    * Gets an item by its index in the items array.
    * @param {Number} index

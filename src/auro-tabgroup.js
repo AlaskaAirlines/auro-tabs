@@ -288,7 +288,7 @@ export class AuroTabgroup extends LitElement {
     this.#associateTabsWithPanels();
 
     // If none of the tabs were set to be focused, focus the first tab
-    if (this.focusedTabIdx === -1 && this.allTabs[0].panel) {
+    if (this.focusedTabIdx === -1 && this.allTabs[0]?.panel) {
       this.selectTab(this.allTabs[0]);
     }
 
@@ -548,6 +548,25 @@ export class AuroTabgroup extends LitElement {
     this.removeEventListeners();
   }
 
+  /**
+   * @private
+   */
+  #onSlotChange = () => {
+    const tabs = this.querySelectorAll("auro-tab, [auro-tab]");
+    const panels = this.querySelectorAll("auro-tabpanel, [auro-tabpanel]");
+
+    // Clear previous state
+    this.tabs.clear();
+    this.panels.clear();
+
+    // Populate new state
+    tabs.forEach((tab) => this.tabs.add(tab));
+    panels.forEach((panel) => this.panels.add(panel));
+
+    // Connect tabs with panels using child service registrations
+    this.#handleTabPanelConnections();
+  };
+
   // function that renders the HTML and CSS into the scope of the component
   render() {
     const sliderStyles = styleMap(this.sliderStyles);
@@ -555,14 +574,14 @@ export class AuroTabgroup extends LitElement {
     return html`
       <div part="tabgroup__root" class="tabgroupContainer">
         <div part="tabgroup__tabs" class="tabgroup" role="tablist">
-          <slot name="tabs"></slot>
+          <slot name="tabs" @slotchange="${this.#onSlotChange}"></slot>
           <div part="slider-positioner" class="sliderPositioner" style=${sliderStyles}>
             <div part="slider" class="slider"></div>
           </div>
         </div>
 
         <div part="tabgroup__panels">
-            <slot name="panels"></slot>
+            <slot name="panels" @slotchange="${this.#onSlotChange}"></slot>
         </div>
       </div>
     `;

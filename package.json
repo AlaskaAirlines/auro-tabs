@@ -22,7 +22,7 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@aurodesignsystem/auro-cli": "^2.2.0-rc-59.1",
+    "@aurodesignsystem/auro-cli": "^2.3.0",
     "@aurodesignsystem/auro-config": "^1.0.1",
     "@aurodesignsystem/auro-hyperlink": "^5.0.1",
     "@aurodesignsystem/auro-library": "^3.0.13",
@@ -84,8 +84,8 @@
     "dev": "auro dev --open",
     "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
     "preCommit": "node scripts/pre-commit.mjs",
-    "test": "wtr",
-    "test:watch": "wtr --watch",
+    "test": "auro test",
+    "test:watch": "auro test --watch",
     "prepare": "husky install"
   },
   "files": [
@@ -98,6 +98,7 @@
   ],
   "lint-staged": {
     "*": ["biome check --fix --no-errors-on-unmatched"],
+    "*.{js,ts}": ["auro test"],
     "*.{scss,css}": ["stylelint --fix"]
   },
   "exports": {
