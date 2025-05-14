@@ -6,12 +6,30 @@ import {
   waitUntil,
 } from "@open-wc/testing";
 import { setViewport } from "@web/test-runner-commands";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import "../dist/registered.js";
+import "../src/registered.js";
 
 describe("auro-tabgroup", () => {
   it("auro-tabgroup is accessible", async () => {
-    const el = await fixture(getTabGroup(3));
+    const el = await fixture(html`
+      <auro-tabgroup>
+        <div slot="tabs">
+          <auro-tab selected>Tab 1</auro-tab>
+          <auro-tab>Tab 2</auro-tab>
+          <auro-tab>Tab 3</auro-tab>
+          <auro-tab>Tab 4</auro-tab>
+          <auro-tab>Tab 5</auro-tab>
+        </div>
+        <div slot="panels">
+          <auro-tabpanel>Tabpanel 1</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 2</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 3</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 4</auro-tabpanel>
+          <auro-tabpanel>Tabpanel 5</auro-tabpanel>
+        </div>
+      </auro-tabgroup>
+    `);
+
+    await elementUpdated(el);
 
     await expect(el).to.be.accessible();
   });
@@ -29,11 +47,13 @@ describe("auro-tabgroup", () => {
 
   it("trigger keyhandler", async () => {
     const el = await fixture(getTabGroup());
+    await elementUpdated(el);
+
     const tabs = el.allTabs;
+    const panels = el.allPanels;
+
     const firstTab = tabs[0];
     firstTab.focus();
-
-    const panels = tabs.map((t) => t.panel);
 
     const arrayKeys = [
       "ArrowRight",
@@ -171,28 +191,24 @@ describe("auro-tabgroup", () => {
   });
 });
 
-function getTabGroup(tabcount = 5) {
+function getTabGroup(tabCount = 5) {
   const tabs = [];
   const panels = [];
-  for (let i = 0; i < tabcount; i++) {
-    tabs.push(`<auro-tab>Tab ${i + 1}</auro-tab>`);
-    panels.push(`<auro-tabpanel>Tabpanel ${i + 1}</auro-tabpanel>`);
+  for (let i = 0; i < tabCount; i++) {
+    tabs.push(html`<auro-tab>Tab ${i + 1}</auro-tab>`);
+    panels.push(html`<auro-tabpanel>Tabpanel ${i + 1}</auro-tabpanel>`);
   }
 
-  // This looks terrible, but is required for force-rendering
-  // all tabs/tabpanels/tabgroup at once.
-  //
-  // This is NOT an issue in a real browser, but we must appease the test gods.
-  const renderedHtml = unsafeHTML(`
+  const renderedHtml = html`
     <auro-tabgroup variant="unstyled">
       <div slot="tabs">
-        ${tabs.join("\n")}
+        ${tabs}
       </div>
       <div slot="panels">
-        ${panels.join("\n")}
+        ${panels}
       </div>
     </auro-tabgroup>
-  `);
+  `;
 
   return html`${renderedHtml}`;
 }

@@ -45,9 +45,6 @@ export class AuroTabpanel extends LitElement {
     this.handleTagName();
     this.setId();
     this.setAttributes();
-
-    this.#setParentTabgroup();
-    this.#parentTabgroup.panels.add(this);
   }
 
   /**
@@ -126,7 +123,7 @@ export class AuroTabpanel extends LitElement {
   }
 
   disconnectedCallback() {
-    this.#parentTabgroup.panels.remove(this);
+    this.#parentTabgroup?.panels.remove(this);
   }
 
   render() {
