@@ -3,9 +3,13 @@ import { AuroTab } from "../src/auro-tab";
 import { AuroTabgroup } from "../src/auro-tabgroup";
 import { AuroTabpanel } from "../src/auro-tabpanel";
 
+import { registerExampleGroup } from "./generatedTabExample";
+
 AuroTabpanel.register();
 AuroTab.register();
 AuroTabgroup.register();
+
+registerExampleGroup();
 
 /**
  * Register Custom Element with `${prefix}-tab`, `${prefix}-tabgroup` and `${prefix}-tabpanel`.

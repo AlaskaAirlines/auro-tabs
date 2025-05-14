@@ -67,6 +67,21 @@ CSS used in the example above:
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.css) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
+## Generated (looped) tab groups
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/example-tab-group.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Accessibility
 
 ### Tab Role
