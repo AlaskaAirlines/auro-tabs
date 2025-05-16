@@ -43,6 +43,7 @@
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
       import 'https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js';
+
       import {registerAll} from './index.min.js';
 
       fetch('./index.md')
@@ -55,7 +56,6 @@
 
       registerAll('custom');
     </script>
-
     <style>
       /* hover style example */
       .custom-tab:hover,

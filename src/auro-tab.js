@@ -90,9 +90,6 @@ export class AuroTab extends LitElement {
     this.setId();
     this.setInitialValues();
     this.setAttributes();
-
-    this.#setParentTabgroup();
-    this.#parentTabgroup.tabs.add(this);
   }
 
   /**
@@ -224,7 +221,7 @@ export class AuroTab extends LitElement {
   }
 
   disconnectedCallback() {
-    this.#parentTabgroup.tabs.remove(this);
+    this.#parentTabgroup?.tabs.remove(this);
   }
 
   render() {
