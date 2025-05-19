@@ -23,12 +23,6 @@ import styleCss from "./tab-style.scss";
  * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
 export class AuroTab extends LitElement {
-  /**
-   * @private
-   * @type {AuroTabgroup}
-   */
-  #parentTabgroup = null;
-
   static get properties() {
     return {
       /**
@@ -198,18 +192,6 @@ export class AuroTab extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroTab);
   }
 
-  #setParentTabgroup() {
-    const parentTabgroup = this.closest("auro-tabgroup, [auro-tabgroup]");
-    if (!parentTabgroup) {
-      console.warn(
-        "AuroTab | #getParentTabGroup: Could not find parent auro-tabgroup. Did you put this tab in a <auro-tabgroup> element?",
-      );
-      return;
-    }
-
-    this.#parentTabgroup = parentTabgroup;
-  }
-
   firstUpdated() {
     this.applyA11y();
   }
@@ -218,10 +200,6 @@ export class AuroTab extends LitElement {
     if (changedProperties.has("selected")) {
       this.updateSelected();
     }
-  }
-
-  disconnectedCallback() {
-    this.#parentTabgroup?.tabs.remove(this);
   }
 
   render() {

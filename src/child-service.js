@@ -90,6 +90,15 @@ export class ChildItemService {
     this.#notifySubscribers();
   }
 
+  addMany(items) {
+    if (!Array.isArray(items) || items.length === 0)
+      throw new Error("AuroTabService | addMany: Items must be an array");
+
+    this.#previousItems = this.#getPreviousItems();
+    this.#items.push(...items);
+    this.#notifySubscribers();
+  }
+
   /**
    * @param {Object} item - An item to remove from the scroller.
    * @description This method removes an item from the scroller and notifies subscribers.
@@ -106,6 +115,7 @@ export class ChildItemService {
   }
 
   clear() {
+    this.#previousItems = this.#getPreviousItems();
     this.#items = [];
     this.#notifySubscribers();
   }
