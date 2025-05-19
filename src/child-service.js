@@ -90,9 +90,22 @@ export class ChildItemService {
     this.#notifySubscribers();
   }
 
+  /**
+   * @description This method adds multiple items to the service and notifies subscribers.
+   * @param {ArrayLike<any>} items
+   * @returns {void}
+   * @throws {Error} - Throws an error if the items are not iterable.
+   */
   addMany(items) {
-    if (!Array.isArray(items) || items.length === 0)
-      throw new Error("AuroTabService | addMany: Items must be an array");
+    if (
+      !items ||
+      typeof items[Symbol.iterator] !== "function" || // otherwise, check if it's iterable
+      typeof items === "string" // technically string is iterable ;)
+    ) {
+      throw new Error(
+        "AuroTabService | addMany: Items must be iterable (array, etc.)",
+      );
+    }
 
     this.#previousItems = this.#getPreviousItems();
     this.#items.push(...items);
