@@ -560,8 +560,8 @@ export class AuroTabgroup extends LitElement {
     this.panels.clear();
 
     // Populate new state
-    this.tabs.addMany([...tabs]);
-    this.panels.addMany([...panels]);
+    this.tabs.addMany(tabs);
+    this.panels.addMany(panels);
 
     // Connect tabs with panels using child service registrations
     this.#handleTabPanelConnections();
