@@ -45,6 +45,21 @@ describe("ChildItemService", () => {
     expect(called).to.be.true;
   });
 
+  it("should add multiple items and notify subscribers", () => {
+    let called = false;
+    service.subscribe((items, prev) => {
+      called = true;
+      expect(items).to.include(sampleItem1);
+      expect(items).to.include(sampleItem2);
+      expect(prev).to.be.an("array");
+    });
+
+    service.addMany([sampleItem1, sampleItem2]);
+    expect(service.current).to.include(sampleItem1);
+    expect(service.current).to.include(sampleItem2);
+    expect(called).to.be.true;
+  });
+
   it("should remove items and notify subscribers", () => {
     service.add(sampleItem1);
 

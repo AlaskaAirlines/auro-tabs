@@ -11,12 +11,6 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 | `selected` | `selected` | `Boolean` | "false" | Mark the tab as selected tab. |
 | `variant`  | `variant`  | `string`  | "false" |                               |
 
-## Methods
-
-| Method               | Type       |
-|----------------------|------------|
-| `#setParentTabgroup` | `(): void` |
-
 ## Events
 
 | Event          |
@@ -67,9 +61,3 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 | Property | Attribute | Type      | Default |
 |----------|-----------|-----------|---------|
 | `hidden` | `hidden`  | `boolean` | "false" |
-
-## Methods
-
-| Method               | Type       |
-|----------------------|------------|
-| `#setParentTabgroup` | `(): void` |

@@ -14,12 +14,6 @@ import styleCss from "./tabpanel-style.scss";
  * The auro-tabpanel element should only be used inside an AuroTabgroup element.
  */
 export class AuroTabpanel extends LitElement {
-  /**
-   * @private
-   * @type {AuroTabgroup}
-   */
-  #parentTabgroup = null;
-
   static get properties() {
     return {
       /**
@@ -93,18 +87,6 @@ export class AuroTabpanel extends LitElement {
     this.id = this.id || `auro-tabpanel-${AuroTabpanel.instanceCount}`;
   }
 
-  #setParentTabgroup() {
-    const parentTabgroup = this.closest("auro-tabgroup, [auro-tabgroup]");
-    if (!parentTabgroup) {
-      console.warn(
-        "AuroTabPanel | #getParentTabGroup: Could not find parent auro-tabgroup. Did you put this tab panel in a <auro-tabgroup> element?",
-      );
-      return;
-    }
-
-    this.#parentTabgroup = parentTabgroup;
-  }
-
   /**
    * @private
    * @description Sets the relevant attributes on the parent element for this component.
@@ -120,10 +102,6 @@ export class AuroTabpanel extends LitElement {
     if (changedProperties.has("hidden")) {
       this.setAttribute("tabindex", this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
     }
-  }
-
-  disconnectedCallback() {
-    this.#parentTabgroup?.panels.remove(this);
   }
 
   render() {
