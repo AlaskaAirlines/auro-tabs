@@ -6,6 +6,7 @@
     "  2. Go to http://localhost:8000",
     "================================================================================"
   ],
+  "type": "module",
   "name": "@aurodesignsystem/auro-tabs",
   "version": "0.0.0",
   "description": "auro-tabs HTML custom element",
@@ -80,13 +81,13 @@
   },
   "keywords": ["alaska airlines", "auro", "design system", "web components"],
   "scripts": {
-    "build": "npx wca analyze 'scripts/wca/*' --outFiles docs/api.md && auro build",
+    "build": "auro build",
     "dev": "auro dev --open",
     "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
     "preCommit": "node scripts/pre-commit.mjs",
     "test": "auro test",
     "test:watch": "auro test --watch",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "files": [
     "dist/**/*",
@@ -98,7 +99,6 @@
   ],
   "lint-staged": {
     "*": ["biome check --fix --no-errors-on-unmatched"],
-    "*.{js,ts}": ["auro test"],
     "*.{scss,css}": ["stylelint --fix"]
   },
   "exports": {
