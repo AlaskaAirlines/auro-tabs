@@ -25,7 +25,6 @@
   "devDependencies": {
     "@aurodesignsystem/auro-cli": "^2.3.1",
     "@aurodesignsystem/auro-config": "^1.0.1",
-    "@aurodesignsystem/auro-hyperlink": "^5.0.1",
     "@aurodesignsystem/auro-library": "^3.0.13",
     "@aurodesignsystem/design-tokens": "^4.13.0",
     "@aurodesignsystem/webcorestylesheets": "^6.1.0",
@@ -84,7 +83,6 @@
     "build": "auro build",
     "dev": "auro dev --open",
     "lint": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
-    "preCommit": "node scripts/pre-commit.mjs",
     "test": "auro test",
     "test:watch": "auro test --watch",
     "prepare": "husky"
