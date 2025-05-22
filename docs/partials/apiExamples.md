@@ -60,22 +60,3 @@ Tab component will fire `tab-selected` event when selected.
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
-
-### Slot Examples
-
-#### `tab` - `tabpanel`
-
-`<auro-tab slot=tab>` & `<auro-tabpanel slot=tabpanel>` needs to be sibling next to each other to be linked.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
