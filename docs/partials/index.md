@@ -26,7 +26,8 @@ and/or the Auro team for guidance on how to style your tabs.
 
 ### Basic example (unstyled)
 
-Some examples include some default styling! A fresh tab install will look like the following:
+We include very few default styles at the time of writing. The only styles we actively
+ship are focus borders and active-tab slider colors.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
