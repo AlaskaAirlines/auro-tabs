@@ -6,11 +6,7 @@
 import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
 
-import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-
-import { AuroHyperlink } from "@aurodesignsystem/auro-hyperlink/src/auro-hyperlink.js";
-import hyperlinkVersion from "./hyperlinkVersion.js";
 
 // Import tab styles
 import styleCss from "./tab-style.scss";
@@ -60,23 +56,6 @@ export class AuroTab extends LitElement {
 
   constructor() {
     super();
-
-    /**
-     * Generate unique names for dependency components.
-     * @private
-     */
-    const versioning = new AuroDependencyVersioning();
-
-    /**
-     * Dynamically generated hyperlink tag for tabs.
-     * @private
-     * @type {string}
-     */
-    this.hyperlinkTag = versioning.generateTag(
-      "auro-tab-hyperlink",
-      hyperlinkVersion,
-      AuroHyperlink,
-    );
 
     AuroTab.incrementInstanceCount();
 
