@@ -1,4 +1,4 @@
-name: Test & Release
+name: test-and-release
 
 # Controls when the action will run.
 # - For PRs: runs tests on any PR to main, rc/**, or dev branches
