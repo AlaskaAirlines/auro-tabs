@@ -274,6 +274,7 @@ export class AuroTabgroup extends LitElement {
   removeEventListeners() {
     this.removeEventListener("keydown", this.onKeyDown);
     this.removeEventListener("click", this.onClick);
+    this.resizeObserver?.disconnect();
   }
 
   /**
@@ -398,7 +399,7 @@ export class AuroTabgroup extends LitElement {
    */
   onClick(event) {
     const roleIsNotTab = event.target.getAttribute("role") !== "tab";
-    const closestTab = event.target.closest(["[role=tab]"]);
+    const closestTab = event.target.closest("[role=tab]");
 
     // If the click was not targeted on a tab element itself,
     // it was a click inside the a panel or on empty space. Nothing to do.
