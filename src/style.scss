@@ -4,12 +4,7 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
-@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
-@import "@aurodesignsystem/webcorestylesheets/src/core";
-@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
-@import "@aurodesignsystem/webcorestylesheets/src/fonts";
-@import "@aurodesignsystem/webcorestylesheets/src/essentials";
+@use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
 
 
 ::slotted(auro-tabpanel) {
@@ -45,7 +40,7 @@
   left: 0;
   display: flex;
   width: 0;
-  height: calc(var(--ds-size-25, $ds-size-25) + 1px);
+  height: calc(var(--ds-size-25, vac.$ds-size-25) + 1px);
   align-items: center;
   justify-content: center;
   transition: all .25s;
@@ -54,5 +49,5 @@
 .slider {
   width: 100%;
   height: 100%;
-  background-color: var(--ds-color-ui-active-default, $ds-color-ui-active-default);
+  background-color: var(--ds-color-ui-active-default, vac.$ds-color-ui-active-default);
 }

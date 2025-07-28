@@ -25,9 +25,9 @@
   "devDependencies": {
     "@aurodesignsystem/auro-cli": "^2.3.1",
     "@aurodesignsystem/auro-config": "^1.0.1",
-    "@aurodesignsystem/auro-library": "^3.0.13",
-    "@aurodesignsystem/design-tokens": "^4.13.0",
-    "@aurodesignsystem/webcorestylesheets": "^6.1.0",
+    "@aurodesignsystem/auro-library": "^5.3.2",
+    "@aurodesignsystem/design-tokens": "^8.3.0",
+    "@aurodesignsystem/webcorestylesheets": "^10.0.2",
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
