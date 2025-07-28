@@ -27,11 +27,15 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property | Type      |
-|----------|-----------|
-| `busy`   | `boolean` |
-| `panels` |           |
-| `tabs`   |           |
+| Property          | Modifiers | Type             |
+|-------------------|-----------|------------------|
+| `allPanels`       | readonly  | `AuroTabpanel[]` |
+| `allTabs`         | readonly  | `AuroTab[]`      |
+| `busy`            |           | `boolean`        |
+| `currentTab`      | readonly  | `HTMLElement`    |
+| `currentTabIndex` | readonly  | `number`         |
+| `focusedTab`      | readonly  | `HTMLElement`    |
+| `focusedTabIndex` | readonly  | `number`         |
 
 ## Slots
 

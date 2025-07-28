@@ -95,13 +95,6 @@ export class AuroTabpanel extends LitElement {
    */
   setAttributes() {
     this.setAttribute("role", "tabpanel");
-    this.setAttribute("tabindex", 0);
-  }
-
-  updated(changedProperties) {
-    if (changedProperties.has("hidden")) {
-      this.setAttribute("tabindex", this.hidden ? -1 : 0); // eslint-disable-line no-magic-numbers
-    }
   }
 
   render() {

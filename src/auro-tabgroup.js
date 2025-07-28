@@ -22,6 +22,8 @@ const KEYCODE = {
   RIGHT: "ArrowRight",
   HOME: "Home",
   END: "End",
+  SPACE: " ",
+  ENTER: "Enter",
 };
 
 /**
@@ -85,43 +87,74 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description All auro-tab elements in the tab group.
-   * @returns {Array<AuroTab>}
+   * @property {number} focusedTabIdx - The index of the currently focused tab.
+   * @default -1
    * @private
-   * @readonly
    */
-  get allTabs() {
-    return this.tabs.current;
-  }
+  #focusedTabIdx = -1;
+
+  /**
+   * @property {number} currentTabIdx - The index of the currently activated tab.
+   * @default -1
+   * @private
+   */
+  #currentTabIdx = -1;
+
+  #tabs = new ChildItemService();
+  #panels = new ChildItemService();
 
   /**
    * @description All auro-tab elements in the tab group.
+   * @returns {Array<AuroTab>}
+   * @readonly
+   */
+  get allTabs() {
+    return this.#tabs.current;
+  }
+
+  /**
+   * @description All panels in the tab group.
    * @returns {Array<AuroTabpanel>}
-   * @private
    * @readonly
    */
   get allPanels() {
-    return this.panels.current;
+    return this.#panels.current;
   }
 
   /**
    * @description The index of the currently selected tab.
    * @returns {number}
-   * @private
    * @readonly
    */
   get currentTabIndex() {
-    return this.focusedTabIdx;
+    return this.#currentTabIdx;
   }
 
   /**
    * @description Reference to the currently selected tab.
    * @returns {HTMLElement}
-   * @private
    * @readonly
    */
   get currentTab() {
-    return this.allTabs[this.focusedTabIdx];
+    return this.allTabs[this.#currentTabIdx];
+  }
+
+  /**
+   * @description The index of the currently focused tab.
+   * @returns {number}
+   * @readonly
+   */
+  get focusedTabIndex() {
+    return this.#focusedTabIdx;
+  }
+
+  /**
+   * @description Reference to the currently focused tab.
+   * @returns {HTMLElement}
+   * @readonly
+   */
+  get focusedTab() {
+    return this.allTabs[this.#focusedTabIdx];
   }
 
   /**
@@ -162,11 +195,8 @@ export class AuroTabgroup extends LitElement {
     this.setInitialValues();
     this.bindMethods();
 
-    this.tabs = new ChildItemService();
-    this.panels = new ChildItemService();
-
-    this.tabs.subscribe(this.#handleTabPanelConnections);
-    this.panels.subscribe(this.#handleTabPanelConnections);
+    this.#tabs.subscribe(this.#handleTabPanelConnections);
+    this.#panels.subscribe(this.#handleTabPanelConnections);
   }
 
   /**
@@ -190,14 +220,6 @@ export class AuroTabgroup extends LitElement {
     // Dynamic Properties
     this.scrollPosition = 0;
     this.sliderStyles = {};
-
-    // Static Properties
-    /**
-     * @property {number} focusedTabIdx - The index of the currently focused tab.
-     * @default -1
-     * @private
-     */
-    this.focusedTabIdx = -1;
 
     /**
      * @property {ResizeObserver} resizeObserver - The resize observer for the tab group.
@@ -235,7 +257,7 @@ export class AuroTabgroup extends LitElement {
    */
   #associateTabsWithPanels() {
     this.allTabs.forEach((currentTab, i) => {
-      const matchingPanel = this.panels.getItemByIndex(i);
+      const matchingPanel = this.#panels.getItemByIndex(i);
 
       if (!matchingPanel) {
         return;
@@ -289,7 +311,7 @@ export class AuroTabgroup extends LitElement {
     this.#associateTabsWithPanels();
 
     // If none of the tabs were set to be focused, focus the first tab
-    if (this.focusedTabIdx === -1 && this.allTabs[0]?.panel) {
+    if (this.#currentTabIdx === -1 && this.allTabs[0]?.panel) {
       this.selectTab(this.allTabs[0]);
     }
 
@@ -304,13 +326,14 @@ export class AuroTabgroup extends LitElement {
    */
   selectTab(newTab) {
     const tabs = this.allTabs;
-    this.focusedTabIdx = -1;
+    this.#currentTabIdx = -1;
 
     // Deselect all tabs and hide all panels.
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
       if (tab === newTab) {
-        this.focusedTabIdx = i;
+        this.#currentTabIdx = i;
+        this.#focusedTabIdx = i;
       }
       tab.selected = tab === newTab;
 
@@ -357,13 +380,13 @@ export class AuroTabgroup extends LitElement {
     switch (event.key) {
       case KEYCODE.LEFT:
         newIdx = TabIndexUtil.getPreviousNotDisabledIndex(
-          this.focusedTabIdx,
+          this.#focusedTabIdx,
           tabs,
         );
         break;
       case KEYCODE.RIGHT:
         newIdx = TabIndexUtil.findNextNotDisabledIndex(
-          this.focusedTabIdx,
+          this.#focusedTabIdx,
           tabs,
         );
         break;
@@ -373,6 +396,12 @@ export class AuroTabgroup extends LitElement {
       case KEYCODE.END:
         newIdx = tabs.length - 1;
         break;
+      case KEYCODE.SPACE:
+      case KEYCODE.ENTER:
+        event.preventDefault();
+
+        this.selectTab(this.focusedTab);
+        return;
       default:
         // Any other key press is ignored and passed back to the browser.
         return;
@@ -386,8 +415,8 @@ export class AuroTabgroup extends LitElement {
     // Focus to the new tab, that has been determined in the switch-case.
     const newTab = tabs[newIdx];
     if (newTab) {
+      this.#focusedTabIdx = newIdx;
       newTab.focus();
-      this.selectTab(newTab);
     }
   }
 
@@ -557,12 +586,12 @@ export class AuroTabgroup extends LitElement {
     const panels = this.querySelectorAll("auro-tabpanel, [auro-tabpanel]");
 
     // Clear previous state
-    this.tabs.clear();
-    this.panels.clear();
+    this.#tabs.clear();
+    this.#panels.clear();
 
     // Populate new state
-    this.tabs.addMany(tabs);
-    this.panels.addMany(panels);
+    this.#tabs.addMany(tabs);
+    this.#panels.addMany(panels);
 
     // Connect tabs with panels using child service registrations
     this.#handleTabPanelConnections();

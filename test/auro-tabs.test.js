@@ -49,6 +49,9 @@ describe("auro-tabgroup", () => {
     const el = await fixture(getTabGroup());
     await elementUpdated(el);
 
+    // initial state
+    await expect(el.focusedTabIndex).to.equal(0);
+
     const tabs = el.allTabs;
     const panels = el.allPanels;
 
@@ -74,11 +77,23 @@ describe("auro-tabgroup", () => {
 
       await elementUpdated(el);
 
-      await expect(el.currentTabIndex).to.equal(expectedIndex[i]);
-
-      const currentPanel = el.currentTab.panel;
-      await expect(currentPanel).to.equal(panels[el.currentTabIndex]);
+      // only moving focus, not select
+      await expect(el.focusedTabIndex).to.equal(expectedIndex[i]);
     }
+
+    // not actually select the tab
+    el.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "Enter",
+      }),
+    );
+    await expect(el.currentTabIndex).to.equal(el.focusedTabIndex);
+    await expect(el.currentTabIndex).to.equal(
+      expectedIndex[expectedIndex.length - 1],
+    );
+
+    const currentPanel = el.currentTab.panel;
+    await expect(currentPanel).to.equal(panels[el.currentTabIndex]);
   });
 
   it("trigger click handler", async () => {
