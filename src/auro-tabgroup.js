@@ -51,6 +51,15 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
+       * @property {Boolean} selectOnFocus - Whether or not to select the tab on focus.
+       * @default false
+       */
+      selectOnFocus: {
+        type: Boolean,
+        reflect: true,
+      },
+
+      /**
        * @property {Object} sliderStyles - The styles for the slider element.
        * @default {}
        * @private
@@ -188,6 +197,7 @@ export class AuroTabgroup extends LitElement {
    */
   setInitialValues() {
     // Dynamic Properties
+    this.selectOnFocus = false;
     this.scrollPosition = 0;
     this.sliderStyles = {};
 
@@ -213,7 +223,7 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   bindMethods() {
-    this.setSliderStyles = this.setSliderStyles.bind(this);
+    this.setSliderStyles = this.handleTabSelected.bind(this);
   }
 
   /**
@@ -261,7 +271,7 @@ export class AuroTabgroup extends LitElement {
    * @private
    */
   addEventListeners() {
-    this.addEventListener("tab-selected", this.setSliderStyles);
+    this.addEventListener("tab-selected", this.handleTabSelected);
     this.addEventListener("keydown", this.onKeyDown);
     this.addEventListener("click", this.onClick);
   }
@@ -298,8 +308,7 @@ export class AuroTabgroup extends LitElement {
   };
 
   /**
-   * @description Function handler when selecting an auro-tab.
-   * @private
+   * @description Select an auro tab by reference
    * @param {HTMLElement} newTab Selected auro-tab.
    */
   selectTab(newTab) {
@@ -334,6 +343,17 @@ export class AuroTabgroup extends LitElement {
     if (!newTab.panel) {
       // eslint-disable-next-line no-console
       console.warn(`No panel with id ${newTab.id}`);
+    }
+  }
+
+  /**
+   * @description Select a tab by its index.
+   * @param {number} index - The index of the tab to select.
+   */
+  selectTabByIndex(index) {
+    const tab = this.tabs.current[index];
+    if (tab) {
+      this.selectTab(tab);
     }
   }
 
@@ -378,6 +398,8 @@ export class AuroTabgroup extends LitElement {
         return;
     }
 
+    this.focusedTabIdx = newIdx;
+
     // The browser might have some native functionality bound to the arrow
     // keys, home or end. The element calls `preventDefault()` to prevent the
     // browser from taking any actions.
@@ -387,7 +409,10 @@ export class AuroTabgroup extends LitElement {
     const newTab = tabs[newIdx];
     if (newTab) {
       newTab.focus();
-      this.selectTab(newTab);
+
+      if (this.selectOnFocus) {
+        this.selectTab(newTab);
+      }
     }
   }
 
@@ -420,7 +445,7 @@ export class AuroTabgroup extends LitElement {
    * @param {Event<tab-selected>} event Dispatched from auro-tab.
    * @private
    */
-  setSliderStyles(event) {
+  handleTabSelected(event) {
     // Set the slider width to zero by default
     this.sliderStyles.width = 0;
 
@@ -431,6 +456,9 @@ export class AuroTabgroup extends LitElement {
     if (!tab) {
       return;
     }
+
+    // Update the selected tab if it was set externally
+    this.selectTab(tab);
 
     // Update the slider styles based on the tab that was focused
     this.sliderStyles = {
@@ -497,7 +525,7 @@ export class AuroTabgroup extends LitElement {
    */
   setResizeObserver(tabGroupContainer) {
     this.resizeObserver = new ResizeObserver(() => {
-      this.setSliderStyles({ target: this.currentTab });
+      this.handleTabSelected({ target: this.currentTab });
     });
 
     const tabGroup = tabGroupContainer.querySelector(".tabgroup");

@@ -5,11 +5,18 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 
 ## Properties
 
-| Property   | Attribute  | Type      | Default | Description                   |
-|------------|------------|-----------|---------|-------------------------------|
-| `disabled` | `disabled` | `Boolean` | "false" | Mark the tab as disabled tab. |
-| `selected` | `selected` | `Boolean` | "false" | Mark the tab as selected tab. |
-| `variant`  | `variant`  | `string`  | "false" |                               |
+| Property    | Attribute  | Type                   | Default                                          | Description                   |
+|-------------|------------|------------------------|--------------------------------------------------|-------------------------------|
+| `disabled`  | `disabled` | `Boolean`              | "false"                                          | Mark the tab as disabled tab. |
+| `onKeyDown` |            | `(event: any) => void` | "(event) => {\n    if (event.key === \"Enter\" \|\| event.key === \" \") {\n      this.selected = true;\n      event.preventDefault();\n    }\n  }" |                               |
+| `selected`  | `selected` | `Boolean`              | "false"                                          | Mark the tab as selected tab. |
+| `variant`   | `variant`  | `string`               | "false"                                          |                               |
+
+## Methods
+
+| Method              | Type       | Description                            |
+|---------------------|------------|----------------------------------------|
+| `addEventListeners` | `(): void` | Add event listeners for the component. |
 
 ## Events
 
@@ -27,11 +34,19 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property | Type      |
-|----------|-----------|
-| `busy`   | `boolean` |
-| `panels` |           |
-| `tabs`   |           |
+| Property        | Attribute       | Type      | Default |
+|-----------------|-----------------|-----------|---------|
+| `busy`          |                 | `boolean` |         |
+| `panels`        |                 |           |         |
+| `selectOnFocus` | `selectOnFocus` | `boolean` | "false" |
+| `tabs`          |                 |           |         |
+
+## Methods
+
+| Method             | Type                          | Description                                |
+|--------------------|-------------------------------|--------------------------------------------|
+| `selectTab`        | `(newTab: HTMLElement): void` | **newTab**: Selected auro-tab.             |
+| `selectTabByIndex` | `(index: number): void`       | **index**: The index of the tab to select. |
 
 ## Slots
 

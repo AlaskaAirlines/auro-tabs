@@ -63,6 +63,7 @@ export class AuroTab extends LitElement {
     this.setId();
     this.setInitialValues();
     this.setAttributes();
+    this.addEventListeners();
   }
 
   /**
@@ -75,6 +76,21 @@ export class AuroTab extends LitElement {
   static incrementInstanceCount() {
     AuroTab.instanceCount = (AuroTab.instanceCount || 0) + 1;
   }
+
+  /**
+   * Add event listeners for the component.
+   * @returns {void}
+   */
+  addEventListeners() {
+    this.addEventListener("keydown", this.onKeyDown);
+  }
+
+  onKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      this.selected = true;
+      event.preventDefault();
+    }
+  };
 
   /**
    * @private
