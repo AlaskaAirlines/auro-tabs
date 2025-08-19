@@ -27,11 +27,19 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property | Type      |
-|----------|-----------|
-| `busy`   | `boolean` |
-| `panels` |           |
-| `tabs`   |           |
+| Property        | Attribute       | Type      | Default |
+|-----------------|-----------------|-----------|---------|
+| `busy`          |                 | `boolean` |         |
+| `panels`        |                 |           |         |
+| `selectOnFocus` | `selectOnFocus` | `boolean` | "false" |
+| `tabs`          |                 |           |         |
+
+## Methods
+
+| Method             | Type                          | Description                                |
+|--------------------|-------------------------------|--------------------------------------------|
+| `selectTab`        | `(newTab: HTMLElement): void` | **newTab**: Selected auro-tab.             |
+| `selectTabByIndex` | `(index: number): void`       | **index**: The index of the tab to select. |
 
 ## Slots
 
