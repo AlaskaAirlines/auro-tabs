@@ -11,12 +11,6 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 | `selected` | `selected` | `Boolean` | "false" | Mark the tab as selected tab. |
 | `variant`  | `variant`  | `string`  | "false" |                               |
 
-## Events
-
-| Event          |
-|----------------|
-| `tab-selected` |
-
 
 # auro-tabgroup
 
