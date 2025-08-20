@@ -31,6 +31,16 @@ export class AuroTab extends LitElement {
       },
 
       /**
+       * @property {boolean} focused - Indicates whether the tab is focused.
+       * @default false
+       * @private
+       */
+      focused: {
+        type: Boolean,
+        state: true,
+      },
+
+      /**
        * @property {boolean} disabled - Indicates whether the tab is disabled.
        * @default false
        */
@@ -97,6 +107,18 @@ export class AuroTab extends LitElement {
       event.preventDefault();
     }
   };
+
+  /**
+   * Sets the focus state for the tab.
+   * @param {boolean} focused - Whether the tab should be focused.
+   * @private
+   */
+  setFocused(focused) {
+    if (focused) this.focus();
+    this.focused = focused;
+    this.setAttribute("tabindex", focused ? 0 : -1);
+    this.dispatchCustomEvent(focused ? "tab-focused" : "tab-blurred", this);
+  }
 
   /**
    * @private
@@ -167,18 +189,28 @@ export class AuroTab extends LitElement {
    */
   updateSelected() {
     // Update relevant attributes
-    this.setAttribute("tabindex", this.selected ? 0 : -1);
+    this.setAttribute("tabindex", this.selected || this.focused ? 0 : -1);
     this.setAttribute("aria-selected", this.selected ? "true" : "false");
 
     // Emit event if this tab is selected
     if (this.selected) {
-      const event = new Event("tab-selected", {
-        bubbles: true,
-        composed: true,
-        detail: this.selected,
-      });
-      this.dispatchEvent(event);
+      this.dispatchCustomEvent("tab-selected", this);
     }
+  }
+
+  /**
+   * Dispatch a custom event from the component.
+   * @param {string} eventName - The name of the event to dispatch.
+   * @param {*} detail - The detail payload to include with the event.
+   * @private
+   */
+  dispatchCustomEvent(eventName, detail) {
+    const event = new CustomEvent(eventName, {
+      bubbles: true,
+      composed: true,
+      detail,
+    });
+    this.dispatchEvent(event);
   }
 
   /**

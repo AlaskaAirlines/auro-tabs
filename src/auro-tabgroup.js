@@ -224,6 +224,7 @@ export class AuroTabgroup extends LitElement {
    */
   bindMethods() {
     this.handleTabSelected = this.handleTabSelected.bind(this);
+    this.handleTabFocused = this.handleTabFocused.bind(this);
   }
 
   /**
@@ -272,6 +273,7 @@ export class AuroTabgroup extends LitElement {
    */
   addEventListeners() {
     this.addEventListener("tab-selected", this.handleTabSelected);
+    this.addEventListener("tab-focused", this.handleTabFocused);
     this.addEventListener("keydown", this.onKeyDown);
     this.addEventListener("click", this.onClick);
   }
@@ -407,8 +409,12 @@ export class AuroTabgroup extends LitElement {
 
     // Focus to the new tab, that has been determined in the switch-case.
     const newTab = tabs[newIdx];
+
     if (newTab) {
-      newTab.focus();
+      // Set focus states for tabs
+      this.tabs.current.forEach((tab, index) => {
+        tab.setFocused(tab === newTab);
+      });
 
       if (this.selectOnFocus) {
         this.selectTab(newTab);
@@ -465,6 +471,16 @@ export class AuroTabgroup extends LitElement {
       width: `${tab.clientWidth}px`,
       left: `${tab.offsetLeft - 0.5}px`,
     };
+  }
+
+  /**
+   * Handles the tab focus event.
+   * @param {FocusEvent} event - The focus event.
+   * @private
+   */
+  handleTabFocused(event) {
+    const tab = event.target;
+    this.focusedTabIdx = this.tabs.current.indexOf(tab) || 0;
   }
 
   /**
