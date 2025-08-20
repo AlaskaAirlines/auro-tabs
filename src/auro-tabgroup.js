@@ -37,6 +37,7 @@ const KEYCODE = {
  * @csspart tabgroup__panels - The panel wrapper element.
  * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
  * @csspart slider - The slider element.
+ * @attr {Boolean} ondark - Set when the tabgroup is used on a dark background.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
@@ -89,6 +90,15 @@ export class AuroTabgroup extends LitElement {
         type: Boolean,
         attribute: false,
         reflect: false,
+      },
+
+      /**
+       * @property {boolean} ondark - Set when the tabgroup is used on a dark background.
+       * @default false
+       */
+      ondark: {
+        type: Boolean,
+        reflect: true,
       },
     };
   }
@@ -240,6 +250,21 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
+   * @description Propagates the ondark attribute to child tabs.
+   * @method propagateOnDarkToTabs
+   * @private
+   */
+  propagateOnDarkToTabs() {
+    this.allTabs.forEach((tab) => {
+      if (this.ondark) {
+        tab.setAttribute('ondark', '');
+      } else {
+        tab.removeAttribute('ondark');
+      }
+    });
+  }
+
+  /**
    * Loop through tabs and match with same-index panels.
    * @private
    * @returns {void}
@@ -299,6 +324,7 @@ export class AuroTabgroup extends LitElement {
     this.busy = true;
 
     this.#associateTabsWithPanels();
+    this.propagateOnDarkToTabs();
 
     // If none of the tabs were set to be focused, focus the first tab
     if (this.focusedTabIdx === -1 && this.allTabs[0]?.panel) {
@@ -580,8 +606,12 @@ export class AuroTabgroup extends LitElement {
     this.setResizeObserver(this.tabGroupContainer);
   }
 
-  updated() {
+  updated(changedProperties) {
     this.updateChevronVisibility();
+    
+    if (changedProperties.has('ondark')) {
+      this.propagateOnDarkToTabs();
+    }
   }
 
   connectedCallback() {

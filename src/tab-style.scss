@@ -1,8 +1,7 @@
-@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
-@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
+@import "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska";
 @import "@aurodesignsystem/webcorestylesheets/src/core";
 @import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
-@import "@aurodesignsystem/webcorestylesheets/src/fonts";
 @import "@aurodesignsystem/webcorestylesheets/src/essentials";
 
 :host {
@@ -15,16 +14,8 @@
   }
 }
 
-:host([selected]) {
-  // empty for now
-}
-
 :host([disabled]) {
   pointer-events: none;
-}
-
-:host(:hover) {
-  // empty for now
 }
 
 :host(:focus-within),
@@ -43,5 +34,12 @@
     border-radius: var(--ds-border-radius, $ds-border-radius);
     content: '';
     transform: translateX(-50%);
+  }
+}
+
+:host([ondark]:focus-within),
+:host([ondark]:focus:not(:focus-visible)) {
+  &:before {
+    border-color: var(--ds-basic-color-border-inverse, $ds-basic-color-border-inverse);
   }
 }
