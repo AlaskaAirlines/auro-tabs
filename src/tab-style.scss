@@ -1,8 +1,5 @@
-@import "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables";
-@import "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska";
-@import "@aurodesignsystem/webcorestylesheets/src/core";
-@import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
-@import "@aurodesignsystem/webcorestylesheets/src/essentials";
+@use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
+@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 
 :host {
   #tab-root {
@@ -21,7 +18,9 @@
 :host(:focus-within),
 :host(:focus:not(:focus-visible)) {
   position: relative;
-  outline: none;
+  outline-color: unset;
+  outline-style: none;
+  outline-width: unset;
 
   &:before {
     position: absolute;
@@ -29,17 +28,27 @@
     left: 50%;
     display: inline-block;
     width: 100%;
-    height: calc(100% + var(--ds-size-50, $ds-size-50));
-    border: 1px solid var(--ds-color-border-active-default, $ds-color-border-active-default);
-    border-radius: var(--ds-border-radius, $ds-border-radius);
+    height: calc(100% + var(--ds-size-50, vac.$ds-size-50));
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--ds-border-radius, vac.$ds-border-radius);
     content: '';
     transform: translateX(-50%);
   }
 }
 
-:host([ondark]:focus-within),
-:host([ondark]:focus:not(:focus-visible)) {
+/* stylelint-disable no-descending-specificity */
+:host([onDark]:focus-within),
+:host([onDark]:focus:not(:focus-visible)) {
   &:before {
-    border-color: var(--ds-advanced-color-state-focused-inverse, $ds-advanced-color-state-focused-inverse);
+    border-color: var(--ds-advanced-color-state-focused-inverse, v.$ds-advanced-color-state-focused-inverse);
   }
 }
+
+:host(:not([onDark]):focus-within),
+:host(:not([onDark]):focus:not(:focus-visible)) {
+  &:before {
+    border-color: var(--ds-advanced-color-state-focused, v.$ds-advanced-color-state-focused);
+  }
+}
+/* stylelint-enable no-descending-specificity */
