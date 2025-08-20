@@ -81,7 +81,7 @@ Tab component will fire `tab-selected` event when selected.
 
 Set when the tabgroup is used on a dark background.
 
-<div class="exampleWrapper">
+<div class="exampleWrapper--ondark">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/onDark.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>

@@ -257,9 +257,9 @@ export class AuroTabgroup extends LitElement {
   propagateOnDarkToTabs() {
     this.allTabs.forEach((tab) => {
       if (this.ondark) {
-        tab.setAttribute('ondark', '');
+        tab.setAttribute("ondark", "");
       } else {
-        tab.removeAttribute('ondark');
+        tab.removeAttribute("ondark");
       }
     });
   }
@@ -608,8 +608,8 @@ export class AuroTabgroup extends LitElement {
 
   updated(changedProperties) {
     this.updateChevronVisibility();
-    
-    if (changedProperties.has('ondark')) {
+
+    if (changedProperties.has("ondark")) {
       this.propagateOnDarkToTabs();
     }
   }
