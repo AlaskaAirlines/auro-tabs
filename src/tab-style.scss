@@ -40,6 +40,6 @@
 :host([ondark]:focus-within),
 :host([ondark]:focus:not(:focus-visible)) {
   &:before {
-    border-color: var(--ds-basic-color-border-inverse, $ds-basic-color-border-inverse);
+    border-color: var(--ds-advanced-color-state-focused-inverse, $ds-advanced-color-state-focused-inverse);
   }
 }
