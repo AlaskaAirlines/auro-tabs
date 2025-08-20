@@ -4,11 +4,10 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import "@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
-@import "@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
+@import "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables";
+@import "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska";
 @import "@aurodesignsystem/webcorestylesheets/src/core";
 @import "@aurodesignsystem/webcorestylesheets/src/breakpoints";
-@import "@aurodesignsystem/webcorestylesheets/src/fonts";
 @import "@aurodesignsystem/webcorestylesheets/src/essentials";
 
 

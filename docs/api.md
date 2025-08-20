@@ -21,12 +21,13 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property        | Attribute       | Type      | Default |
-|-----------------|-----------------|-----------|---------|
-| `busy`          |                 | `boolean` |         |
-| `panels`        |                 |           |         |
-| `selectOnFocus` | `selectOnFocus` | `boolean` | "false" |
-| `tabs`          |                 |           |         |
+| Property        | Attribute       | Type      | Default | Description                                      |
+|-----------------|-----------------|-----------|---------|--------------------------------------------------|
+| `busy`          |                 | `boolean` |         |                                                  |
+| `ondark`        | `ondark`        | `Boolean` | "false" | Set when the tabgroup is used on a dark background. |
+| `panels`        |                 |           |         |                                                  |
+| `selectOnFocus` | `selectOnFocus` | `boolean` | "false" |                                                  |
+| `tabs`          |                 |           |         |                                                  |
 
 ## Methods
 
