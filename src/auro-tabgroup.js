@@ -396,6 +396,12 @@ export class AuroTabgroup extends LitElement {
       return;
     }
 
+    // Ignore events from non-tab elements and/or non tablist elements
+    const role = event.target.getAttribute("role");
+    if (role !== "tab" && role !== "tablist") {
+      return;
+    }
+
     // The switch-case will determine which tab should be marked as focused
     // depending on the key that was pressed.
     const tabs = this.allTabs;
