@@ -37,11 +37,21 @@ const KEYCODE = {
  * @csspart tabgroup__panels - The panel wrapper element.
  * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
  * @csspart slider - The slider element.
- * @attr {Boolean} ondark - Set when the tabgroup is used on a dark background.
+ * @attr {Boolean} ondark - DEPREACTED - use `appearance` instead.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
     return {
+      /**
+       * Defines whether the component will be on lighter or darker backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      appearance: {
+        type: String,
+        reflect: true,
+      },
+
       /**
        * @property {number} scrollPosition - The current scroll position of the tab group container.
        * @default 0
@@ -93,7 +103,7 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {boolean} ondark - Set when the tabgroup is used on a dark background.
+       * @property {boolean} ondark - DEPREACTED - use `appearance` instead.
        * @default false
        */
       ondark: {
@@ -176,6 +186,8 @@ export class AuroTabgroup extends LitElement {
 
   constructor() {
     super();
+
+    this.appearance = "default";
 
     this.handleTagName();
     this.setInitialValues();
@@ -261,6 +273,8 @@ export class AuroTabgroup extends LitElement {
       } else {
         tab.removeAttribute("ondark");
       }
+
+      tab.setAttribute("appearance", this.appearance);
     });
   }
 
@@ -615,7 +629,10 @@ export class AuroTabgroup extends LitElement {
   updated(changedProperties) {
     this.updateChevronVisibility();
 
-    if (changedProperties.has("ondark")) {
+    if (
+      changedProperties.has("appearance") ||
+      changedProperties.has("ondark")
+    ) {
       this.propagateOnDarkToTabs();
     }
   }

@@ -39,14 +39,18 @@
 
 /* stylelint-disable no-descending-specificity */
 :host([onDark]:focus-within),
-:host([onDark]:focus:not(:focus-visible)) {
+:host([onDark]:focus:not(:focus-visible)),
+:host([appearance="inverse"]:focus-within),
+:host([appearance="inverse"]:focus:not(:focus-visible)) {
   &:before {
     border-color: var(--ds-advanced-color-state-focused-inverse, v.$ds-advanced-color-state-focused-inverse);
   }
 }
 
 :host(:not([onDark]):focus-within),
-:host(:not([onDark]):focus:not(:focus-visible)) {
+:host(:not([onDark]):focus:not(:focus-visible)),
+:host(:not([appearance="inverse"]):focus-within),
+:host(:not([appearance="inverse"]):focus:not(:focus-visible)) {
   &:before {
     border-color: var(--ds-advanced-color-state-focused, v.$ds-advanced-color-state-focused);
   }

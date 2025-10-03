@@ -22,6 +22,16 @@ export class AuroTab extends LitElement {
   static get properties() {
     return {
       /**
+       * Defines whether the component will be on lighter or darker backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      appearance: {
+        type: String,
+        reflect: true,
+      },
+
+      /**
        * @property {boolean} selected - Indicates whether the tab is selected.
        * @default false
        */
@@ -66,6 +76,8 @@ export class AuroTab extends LitElement {
 
   constructor() {
     super();
+
+    this.appearance = "default";
 
     AuroTab.incrementInstanceCount();
 

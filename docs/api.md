@@ -5,11 +5,12 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 
 ## Properties
 
-| Property   | Attribute  | Type      | Default | Description                   |
-|------------|------------|-----------|---------|-------------------------------|
-| `disabled` | `disabled` | `Boolean` | "false" | Mark the tab as disabled tab. |
-| `selected` | `selected` | `Boolean` | "false" | Mark the tab as selected tab. |
-| `variant`  | `variant`  | `string`  | "false" |                               |
+| Property     | Attribute    | Type      | Default     | Description                                      |
+|--------------|--------------|-----------|-------------|--------------------------------------------------|
+| `appearance` | `appearance` | `string`  | "'default'" | Defines whether the component will be on lighter or darker backgrounds. |
+| `disabled`   | `disabled`   | `Boolean` | "false"     | Mark the tab as disabled tab.                    |
+| `selected`   | `selected`   | `Boolean` | "false"     | Mark the tab as selected tab.                    |
+| `variant`    | `variant`    | `string`  | "false"     |                                                  |
 
 
 # auro-tabgroup
@@ -21,13 +22,14 @@ cached and therefore, changes during runtime work.
 
 ## Properties
 
-| Property        | Attribute       | Type      | Default | Description                                      |
-|-----------------|-----------------|-----------|---------|--------------------------------------------------|
-| `busy`          |                 | `boolean` |         |                                                  |
-| `ondark`        | `ondark`        | `Boolean` | "false" | Set when the tabgroup is used on a dark background. |
-| `panels`        |                 |           |         |                                                  |
-| `selectOnFocus` | `selectOnFocus` | `boolean` | "false" |                                                  |
-| `tabs`          |                 |           |         |                                                  |
+| Property        | Attribute       | Type      | Default     | Description                                      |
+|-----------------|-----------------|-----------|-------------|--------------------------------------------------|
+| `appearance`    | `appearance`    | `string`  | "'default'" | Defines whether the component will be on lighter or darker backgrounds. |
+| `busy`          |                 | `boolean` |             |                                                  |
+| `ondark`        | `ondark`        | `Boolean` | "false"     | DEPREACTED - use `appearance` instead.           |
+| `panels`        |                 |           |             |                                                  |
+| `selectOnFocus` | `selectOnFocus` | `boolean` | "false"     |                                                  |
+| `tabs`          |                 |           |             |                                                  |
 
 ## Methods
 

@@ -51,13 +51,15 @@
   height: 100%;
 }
 
-:host(:not([onDark])) {
+:host(:not([onDark])),
+:host(:not([appearance="inverse"])) {
   .slider {
     background-color: var(--ds-advanced-color-state-focused, v.$ds-advanced-color-state-focused);
   }
 }
 
-:host([onDark]) {
+:host([onDark]),
+:host([appearance="inverse"]) {
   .slider {
     background-color: var(--ds-advanced-color-state-focused-inverse, v.$ds-advanced-color-state-focused-inverse);
   }
