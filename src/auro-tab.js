@@ -2,14 +2,13 @@
 // Copyright (c) 2023 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 // ---------------------------------------------------------------------
 import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
 
-import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-
 // Import tab styles
-import styleCss from "./tab-style.scss";
+import styleCss from "./styles/tab-style.scss";
 
 /**
  * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
