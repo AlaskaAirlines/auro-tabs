@@ -1,5 +1,4 @@
 @use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
-@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 
 :host {
   #tab-root {
@@ -29,8 +28,7 @@
     display: inline-block;
     width: 100%;
     height: calc(100% + var(--ds-size-50, vac.$ds-size-50));
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid var(--ds-color-border-active-default, vac.$ds-color-border-active-default);
     border-radius: var(--ds-border-radius, vac.$ds-border-radius);
     content: '';
     transform: translateX(-50%);

@@ -1,6 +1,5 @@
-import { ChildItemService } from "../src/child-service.js"; // adjust the path as needed
-
 import { expect } from "@open-wc/testing";
+import { ChildItemService } from "../src/child-service.js"; // adjust the path as needed
 
 describe("ChildItemService", () => {
   let service;
