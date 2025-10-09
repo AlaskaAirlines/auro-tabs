@@ -4,14 +4,13 @@
 
 // ---------------------------------------------------------------------
 
-import { LitElement, html } from "lit";
-import { styleMap } from "lit/directives/style-map.js";
-
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+import { html, LitElement } from "lit";
+import { styleMap } from "lit/directives/style-map.js";
 import { ChildItemService } from "./child-service";
 
 // Import styles
-import styleCss from "./style.scss";
+import styleCss from "./styles/style.scss";
 
 import { TabIndexUtil } from "./tabindexUtil.js";
 
@@ -418,7 +417,7 @@ export class AuroTabgroup extends LitElement {
 
     if (newTab) {
       // Set focus states for tabs
-      this.tabs.current.forEach((tab, index) => {
+      this.tabs.current.forEach((tab, _index) => {
         tab.setFocused(tab === newTab);
       });
 
