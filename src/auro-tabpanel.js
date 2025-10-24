@@ -17,7 +17,8 @@ export class AuroTabpanel extends LitElement {
   static get properties() {
     return {
       /**
-       * @property {boolean} hidden - Indicates whether the panel is hidden.
+       * Indicates whether the panel is hidden.
+       * @property {boolean} hidden
        * @default false
        */
       hidden: {
