@@ -31,9 +31,6 @@
     <!-- Demo Specific Styles -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/demoWrapper.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/elementDemoStyles.css" />
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-formkit@latest/auro-radio/+esm"></script>
-
   </head>
   <body class="auro-markdown">
     <main></main>
@@ -42,75 +39,30 @@
       import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
       import 'https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js';
 
-      import {registerAll} from './index.min.js';
+      import { addListener, onTabSelected, removeListener, selectFirstTab, selectLastTab, selectSecondTab } from './api.min.js';
 
-      fetch('./index.md')
+      addListener()
+
+      // Attach the imported functions to the global `window` object
+      window.onTabSelected = onTabSelected;
+      window.selectFirstTab = selectFirstTab;
+      window.selectLastTab = selectLastTab;
+      window.selectSecondTab = selectSecondTab;
+
+      fetch('./api.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);
           document.querySelector('main').innerHTML = rawHtml;
           Prism.highlightAll();
         });
-
-      registerAll('custom');
     </script>
+
     <style>
-      /* hover style example */
-      .custom-tab:hover,
-      .custom-tab:focus-within,
-      .custom-tab:focus:not(:focus-visible) {
-        background: #7f7f7f22;
+      auro-tab:focus-visible {
+        outline: none;
       }
-
-      /* :before renders the focus outline, modify this to match your designs */
-      .custom-tab:focus-within:before,
-      .custom-tab:focus:not(:focus-visible):before {
-        border-color: #c21f39;
-      }
-
-      /* [selected] attribute can be used to apply styles to current tab */
-      .custom-tab[selected] {
-        font-weight: 700;
-      }
-
-      .custom-tab-content {
-        display: flex;
-
-        /* explicit width important for modifying active styles */
-        width: 60px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 5px 15px 10px;
-      }
-
-      #custom-tab-example::part(tabgroup__panels) {
-        overflow: hidden;
-        border: 1px solid #22222245;
-        border-radius: 1rem;
-        margin-top: 1rem;
-      }
-
-      #custom-tab-example::part(slider) {
-        width: 20px;
-        height: 5px;
-        border-radius: 1rem;
-        margin-top: -3px;
-      }
-
-      /* below code shows how to visually hide the slider */
-
-      /* #custom-tab-example::part(slider) {
-        width: 0;
-        height: 0;
-      } */
-
-      .custom-panel-wrapper {
-        padding: 1rem;
-      }
-
     </style>
-
 
     <!-- If additional elements are needed for the demo, add them here. -->
     <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
