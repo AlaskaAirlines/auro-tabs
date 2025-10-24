@@ -13,25 +13,25 @@ import styleCss from "./styles/tab-style.scss";
 /**
  * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
  * The auro-tabpanel element should only be used inside an AuroTabgroup element.
- *
- * @attr {Boolean} selected - Mark the tab as selected tab.
- * @attr {Boolean} disabled - Mark the tab as disabled tab.
  */
 export class AuroTab extends LitElement {
   static get properties() {
     return {
       /**
        * Defines whether the component will be on lighter or darker backgrounds.
-       * @property {'default', 'inverse'}
-       * @default 'default'
+       * @type {"default" | "inverse" | string} 
+       * @prop {String} appearance
+       * @default "default"
        */
       appearance: {
         type: String,
         reflect: true,
+        default: "default"
       },
 
       /**
-       * @property {boolean} selected - Indicates whether the tab is selected.
+       * Indicates whether the tab is selected.
+       * @prop {boolean} selected
        * @default false
        */
       selected: {
@@ -40,7 +40,8 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * @property {boolean} focused - Indicates whether the tab is focused.
+       * Indicates whether the tab is focused.
+       * @property {boolean} focused 
        * @default false
        * @private
        */
@@ -50,7 +51,8 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * @property {boolean} disabled - Indicates whether the tab is disabled.
+       * Indicates whether the tab is disabled.
+       * @property {boolean} disabled
        * @default false
        */
       disabled: {
@@ -59,8 +61,10 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * @property {"default" | "unstyled" | string} variant - The variant of the tab.
-       * @default false
+       * The variant of the tab.
+       * @type {"default" | "unstyled" | string}
+       * @property {String} variant
+       * @default "default"
        */
       variant: {
         type: String,
@@ -75,8 +79,6 @@ export class AuroTab extends LitElement {
 
   constructor() {
     super();
-
-    this.appearance = "default";
 
     AuroTab.incrementInstanceCount();
 
@@ -149,6 +151,7 @@ export class AuroTab extends LitElement {
   setInitialValues() {
     // Dynamic properties
     this.disabled = false;
+    this.appearance = "default";
 
     // Static properties
     /**
