@@ -110,38 +110,41 @@ A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alask
 
 There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name, type)` method and pass in a unique name.
-
-`type` can be either `'group(default)' | 'tab' | 'panel'`
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `register(name)` method and pass in a unique name.
 
 ```js
-import '@alaskaairux/auro-tabs';
-registerComponent('custom-tabgroup');
-registerComponent('custom-tab', 'tab');
-registerComponent('custom-tabpanel', 'tabpanel');
+import { AuroTab, AuroTabgroup, AuroTabpanel } '@aurodesignsystem/auro-tabs';
+
+AuroTab.register('custom-tab');
+AuroTabgroup.register('custom-tabgroup');
+AuroTabpanel.register('custom-tabpanel');
 ```
 
 This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabgroup` element.
 
 <div class="exampleWrapper">
-  <custom-tabgroup>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Baggage Info
-    </auro-tab>
-    <auro-tabpanel slot="panel">
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      Help
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      More
-    </auro-tab>
-    <auro-tabpanel slot="panel"><span>Tab 3 Content</span></auro-tabpanel>
-    <auro-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-      No Panel
-    </auro-tab>
+  <custom-tabgroup variant="unstyled">
+    <div slot="tabs">
+      <custom-tab>
+        Baggage Info
+      </custom-tab>
+      <custom-tab>
+        Help
+      </custom-tab>
+      <custom-tab>
+        More
+      </custom-tab>
+      <custom-tab>
+        No Panel
+      </custom-tab>
+    </div>
+    <div slot="panels">
+      <custom-tabpanel>
+        <span>Tab 1 Content</span>
+      </custom-tabpanel>
+      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
+    </div>
   </custom-tabgroup>
 </div>
 
@@ -149,25 +152,29 @@ This will create a new custom element that you can use in your HTML that will fu
   <span slot="trigger">See code</span>
 
 ```html
-<custom-tabgroup class="compact-default">
-  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Baggage Info
-  </custom-tab>
-  <custom-tabpanel slot="panel">
-    <span>Tab 1 Content</span>
-  </custom-tabpanel>
-  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    Help
-  </custom-tab>
-  <custom-tabpanel slot="panel"><span>Tab 2 Content</span></custom-tabpanel>
-  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    More
-  </custom-tab>
-  <custom-tabpanel slot="panel"><span>Tab 3 Content</span></custom-tabpanel>
-  <custom-tab href="#/" relative="http://localhost:8000/demo" slot="tab">
-    No Panel
-  </custom-tab>
-</custom-tabgroup>
+<custom-tabgroup variant="unstyled">
+    <div slot="tabs">
+      <custom-tab>
+        Baggage Info
+      </custom-tab>
+      <custom-tab>
+        Help
+      </custom-tab>
+      <custom-tab>
+        More
+      </custom-tab>
+      <custom-tab>
+        No Panel
+      </custom-tab>
+    </div>
+    <div slot="panels">
+      <custom-tabpanel>
+        <span>Tab 1 Content</span>
+      </custom-tabpanel>
+      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
+    </div>
+  </custom-tabgroup>
 ```
 </auro-accordion>
 

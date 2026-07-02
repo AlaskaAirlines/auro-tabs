@@ -4,10 +4,10 @@
 // ---------------------------------------------------------------------
 
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-import { LitElement, html } from "lit";
+import { html, LitElement } from "lit";
 
 // Import tab panel styles
-import styleCss from "./tabpanel-style.scss";
+import styleCss from "./styles/tabpanel-style.scss";
 
 /**
  * Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
@@ -17,7 +17,8 @@ export class AuroTabpanel extends LitElement {
   static get properties() {
     return {
       /**
-       * @property {boolean} hidden - Indicates whether the panel is hidden.
+       * Indicates whether the panel is hidden.
+       * @property {boolean} hidden
        * @default false
        */
       hidden: {

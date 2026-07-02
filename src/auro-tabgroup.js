@@ -4,14 +4,13 @@
 
 // ---------------------------------------------------------------------
 
-import { LitElement, html } from "lit";
-import { styleMap } from "lit/directives/style-map.js";
-
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+import { html, LitElement } from "lit";
+import { styleMap } from "lit/directives/style-map.js";
 import { ChildItemService } from "./child-service";
 
 // Import styles
-import styleCss from "./style.scss";
+import styleCss from "./styles/style.scss";
 
 import { TabIndexUtil } from "./tabindexUtil.js";
 
@@ -37,14 +36,15 @@ const KEYCODE = {
  * @csspart tabgroup__panels - The panel wrapper element.
  * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
  * @csspart slider - The slider element.
- * @attr {Boolean} ondark - DEPREACTED - use `appearance` instead.
+ * @attr {Boolean} ondark - DEPRECATED - use `appearance` instead.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
     return {
       /**
        * Defines whether the component will be on lighter or darker backgrounds.
-       * @property {'default', 'inverse'}
+       * @type {"default" | "inverse" | string}
+       * @property {String} appearance
        * @default 'default'
        */
       appearance: {
@@ -103,7 +103,7 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {boolean} ondark - DEPREACTED - use `appearance` instead.
+       * @property {boolean} ondark - DEPRECATED - use `appearance` instead.
        * @default false
        */
       ondark: {
@@ -187,8 +187,6 @@ export class AuroTabgroup extends LitElement {
   constructor() {
     super();
 
-    this.appearance = "default";
-
     this.handleTagName();
     this.setInitialValues();
     this.bindMethods();
@@ -222,6 +220,7 @@ export class AuroTabgroup extends LitElement {
     this.scrollPosition = 0;
     this.sliderStyles = {};
     this.selectOnFocus = false;
+    this.appearance = "default";
 
     // Static Properties
     /**
@@ -458,7 +457,7 @@ export class AuroTabgroup extends LitElement {
 
     if (newTab) {
       // Set focus states for tabs
-      this.tabs.current.forEach((tab, index) => {
+      this.tabs.current.forEach((tab, _index) => {
         tab.setFocused(tab === newTab);
       });
 
