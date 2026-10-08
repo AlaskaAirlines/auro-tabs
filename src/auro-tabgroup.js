@@ -43,7 +43,7 @@ export class AuroTabgroup extends LitElement {
     return {
       /**
        * Defines whether the component will be on lighter or darker backgrounds.
-       * @type {"default" | "inverse" | string}
+       * @type {"default" | "inverse"}
        * @property {String} appearance
        * @default 'default'
        */
@@ -53,30 +53,36 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {number} scrollPosition - The current scroll position of the tab group container.
+       * The current scroll position of the tab group container.
+       * @type {number}
        * @default 0
        * @private
        */
       scrollPosition: {
         type: Number,
+        attribute: false,
       },
 
       /**
-       * @property {Boolean} selectOnFocus - Whether or not to select the tab on focus.
+       * Whether or not to select the tab on focus.
+       * @type {boolean}
        * @default false
        */
       selectOnFocus: {
         type: Boolean,
+        attribute: "selectonfocus",
         reflect: true,
       },
 
       /**
-       * @property {Object} sliderStyles - The styles for the slider element.
+       * The inline styles for the slider element.
+       * @type {{ width?: string | number, left?: string }}
        * @default {}
        * @private
        */
       sliderStyles: {
         type: Object,
+        attribute: false,
       },
 
       /**
@@ -103,8 +109,10 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {boolean} ondark - DEPRECATED - use `appearance` instead.
+       * DEPRECATED - use `appearance` instead.
+       * @type {boolean}
        * @default false
+       * @deprecated Use `appearance="inverse"` instead.
        */
       ondark: {
         type: Boolean,

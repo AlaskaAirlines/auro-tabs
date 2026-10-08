@@ -19,7 +19,7 @@ export class AuroTab extends LitElement {
     return {
       /**
        * Defines whether the component will be on lighter or darker backgrounds.
-       * @type {"default" | "inverse" | string} 
+       * @type {"default" | "inverse"}
        * @prop {String} appearance
        * @default "default"
        */
@@ -41,12 +41,13 @@ export class AuroTab extends LitElement {
 
       /**
        * Indicates whether the tab is focused.
-       * @property {boolean} focused 
+       * @property {boolean} focused
        * @default false
        * @private
        */
       focused: {
         type: Boolean,
+        attribute: false,
         state: true,
       },
 
@@ -62,7 +63,7 @@ export class AuroTab extends LitElement {
 
       /**
        * The variant of the tab.
-       * @type {"default" | "unstyled" | string}
+       * @type {"default" | "unstyled"}
        * @property {String} variant
        * @default "default"
        */
