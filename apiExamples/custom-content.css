@@ -27,27 +27,24 @@
   padding: 5px 15px 10px;
 }
 
-#custom-tab-example::part(tabgroup__panels) {
+auro-tabgroup#custom-tab-example::part(tabgroup__panels) {
   overflow: hidden;
   border: 1px solid #22222245;
   border-radius: 1rem;
   margin-top: 1rem;
 }
 
-#custom-tab-example::part(slider) {
+auro-tabgroup#custom-tab-example::part(slider) {
   width: 20px;
   height: 5px;
   border-radius: 1rem;
   margin-top: -3px;
 }
-
 /* below code shows how to visually hide the slider */
-
-/* #custom-tab-example::part(slider) {
+/* auro-tabgroup#custom-tab-example::part(slider) {
   width: 0;
   height: 0;
 } */
-
 .custom-panel-wrapper {
   padding: 1rem;
 }
