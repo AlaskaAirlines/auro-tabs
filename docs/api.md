@@ -5,21 +5,18 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 
 ### Properties & Attributes
 
-| Properties | Attributes | Type                              | Default   | Description                                                             |
-| ---------- | ---------- | --------------------------------- | --------- | ----------------------------------------------------------------------- |
-| appearance | appearance | "default" \| "inverse" \| string  | "default" | Defines whether the component will be on lighter or darker backgrounds. |
-| disabled   | disabled   | boolean                           | false     | Indicates whether the tab is disabled.                                  |
-| selected   | selected   | boolean                           | false     | Indicates whether the tab is selected.                                  |
-| variant    | variant    | "default" \| "unstyled" \| string | "default" | The variant of the tab.                                                 |
-|            | focused    | boolean                           | false     | Indicates whether the tab is focused.                                   |
+| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                             |
+| ---------- | ---------- | --------- | ----------------------- | --------- | ----------------------------------------------------------------------- |
+| appearance | appearance |           | "default" \| "inverse"  | `default` | Defines whether the component will be on lighter or darker backgrounds. |
+| disabled   | disabled   |           | boolean                 | `false`   | Indicates whether the tab is disabled.                                  |
+| selected   | selected   |           | boolean                 | `false`   | Indicates whether the tab is selected.                                  |
+| variant    | variant    |           | "default" \| "unstyled" | `default` | The variant of the tab.                                                 |
 
 ### Methods
 
 | Name     | Parameters                                                          | Return | Description                                       |
 | -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
 | register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
-
----
 
 # auro-tabgroup
 
@@ -30,9 +27,11 @@ cached and therefore, changes during runtime work.
 
 ### Properties & Attributes
 
-| Properties | Attributes | Type                             | Default   | Description                                                             |
-| ---------- | ---------- | -------------------------------- | --------- | ----------------------------------------------------------------------- |
-| appearance | appearance | "default" \| "inverse" \| string | 'default' | Defines whether the component will be on lighter or darker backgrounds. |
+| Properties    | Attributes    | Modifiers | Type                   | Default   | Description                                                             |
+| ------------- | ------------- | --------- | ---------------------- | --------- | ----------------------------------------------------------------------- |
+| appearance    | appearance    |           | "default" \| "inverse" | `default` | Defines whether the component will be on lighter or darker backgrounds. |
+| selectOnFocus | selectonfocus |           | boolean                | `false`   | Whether or not to select the tab on focus.                              |
+| ondark        | ondark        |           | boolean                | `false`   | DEPRECATED - use `appearance` instead.                                  |
 
 ### Methods
 
@@ -57,8 +56,6 @@ cached and therefore, changes during runtime work.
 | tabgroup__root    | The root element of the tab group.                                             |
 | tabgroup__tabs    | The "tabs list" internal wrapper element.                                      |
 
----
-
 # auro-tabpanel
 
 Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
@@ -66,9 +63,9 @@ The auro-tabpanel element should only be used inside an AuroTabgroup element.
 
 ### Properties & Attributes
 
-| Properties | Attributes | Type    | Default | Description                            |
-| ---------- | ---------- | ------- | ------- | -------------------------------------- |
-| hidden     | hidden     | boolean | false   | Indicates whether the panel is hidden. |
+| Properties | Attributes | Modifiers | Type    | Default | Description                            |
+| ---------- | ---------- | --------- | ------- | ------- | -------------------------------------- |
+| hidden     | hidden     |           | boolean | `false` | Indicates whether the panel is hidden. |
 
 ### Methods
 
