@@ -17,7 +17,7 @@
 
 </auro-accordion>
 
-### Method Examples
+### Method examples
 
 #### `selectTab`
 
@@ -38,7 +38,7 @@ Pass an `auro-tab` to `selectTab` to select it in code.
 
 </auro-accordion>
 
-### Event Examples
+### Event examples
 
 #### `tab-selected`
 
@@ -59,7 +59,7 @@ A tab fires `tab-selected` when it's selected.
 
 </auro-accordion>
 
-### Slot Examples
+### Slot examples
 
 #### `tabs` and `panels`
 
