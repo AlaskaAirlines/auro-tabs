@@ -29,7 +29,7 @@ Default styles aren't supported yet. Consult the Auro engineering and design tea
 
 Because `auro-tab` doesn't have default styling, bring your own styles. Ask your design team or the Auro team for guidance on how to style your tabs.
 
-## Example(s)
+## Examples
 
 ### Basic example (unstyled)
 
@@ -325,7 +325,7 @@ The tab list has the `tablist` role, each `auro-tab` has the `tab` role, and eac
 
 ## Recommended use and version control
 
-Every Auro component has two important parts: the [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and the custom element. The class is exported and then used to define the web component. When you import this component as described in the [install](#install) section, the class is imported and the `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` custom elements are defined automatically.
+Every Auro component has two important parts: the [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and the custom element. The class is exported and then used to define the web component. When you install the component as described in the README, the class is imported and the `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` custom elements are defined automatically.
 
 To avoid version conflicts with other copies of the component on the page, use the `register(name)` method with a unique name.
 
