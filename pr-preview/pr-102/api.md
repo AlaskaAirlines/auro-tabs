@@ -186,7 +186,7 @@ The content that shows when its matching tab is selected. Use it only inside an 
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Method Examples
+### Method examples
 
 #### <a name="selectTab"></a>`selectTab`<a href="#" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>
 Pass an `auro-tab` to `selectTab` to select it in code.
@@ -273,7 +273,7 @@ export function removeListener() {
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Event Examples
+### Event examples
 
 #### `tab-selected`
 
@@ -367,7 +367,7 @@ export function removeListener() {
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Slot Examples
+### Slot examples
 
 #### <a name="tabs"></a>`tabs`<a href="#" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a> and `panels`
 

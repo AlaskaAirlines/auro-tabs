@@ -27,13 +27,13 @@ Borealis developers can ignore this note.
 
 Default styles aren't supported yet. Consult the Auro engineering and design teams before you use this component.
 
-Because `auro-tab` doesn't have default styling, bring your own styles. Ask your design team or the Auro team for guidance on how to style your tabs.
+Because the component ships very few default styles, bring your own styles. Ask your design team or the Auro team for guidance on how to style your tabs.
 
 ## Examples
 
 ### Basic example (unstyled)
 
-The component ships very few default styles. The only ones are focus borders and the active-tab slider color.
+The component ships very few default styles, mainly focus borders and the active-tab slider color.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
