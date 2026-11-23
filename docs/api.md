@@ -21,12 +21,12 @@ A tab that shows its matching panel when selected. Use it only inside an `auro-t
 
 ### Properties and attributes
 
-| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                                                                                   |
-| ---------- | ---------- | --------- | ----------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| appearance | appearance |           | "default" \| "inverse"  | `default` | Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you. |
-| disabled   | disabled   |           | boolean                 |           | Skips the tab when the arrow keys move between tabs. Doesn't currently stop clicks, `Enter`, or `Space` from selecting it.    |
-| selected   | selected   |           | boolean                 |           | Shows this tab's panel and hides the others.                                                                                  |
-| variant    | variant    |           | "default" \| "unstyled" |           | Sets the tab's style variant. Doesn't currently change how the tab looks.                                                     |
+| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                                                                                                              |
+| ---------- | ---------- | --------- | ----------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| appearance | appearance |           | "default" \| "inverse"  | `default` | Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you.                            |
+| disabled   | disabled   |           | boolean                 |           | Skips the tab when the arrow keys move between tabs and stops clicks from selecting it. Doesn't currently stop the `selectTab` method from selecting it. |
+| selected   | selected   |           | boolean                 |           | Shows this tab's panel and hides the others.                                                                                                             |
+| variant    | variant    |           | "default" \| "unstyled" |           | Sets the tab's style variant. Doesn't currently change how the tab looks.                                                                                |
 
 ### Methods
 

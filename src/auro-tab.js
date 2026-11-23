@@ -68,7 +68,7 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * Skips the tab when the arrow keys move between tabs. Doesn't currently stop clicks, `Enter`, or `Space` from selecting it.
+       * Skips the tab when the arrow keys move between tabs and stops clicks from selecting it. Doesn't currently stop the `selectTab` method from selecting it.
        * @property {boolean} disabled
        */
       disabled: {

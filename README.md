@@ -76,7 +76,7 @@ If your project can't process JS assets, use the pre-processed assets. Legacy br
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
 
-<pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
@@ -127,7 +127,7 @@ This creates new custom elements `<custom-tabgroup>`, `<custom-tab>`, and `<cust
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
 <!-- The below content is automatically added from ./apiExamples/custom.html -->
-<custom-tabgroup variant="unstyled">
+<custom-tabgroup>
 <div slot="tabs">
 <custom-tab>
         Baggage info
@@ -157,7 +157,7 @@ This creates new custom elements `<custom-tabgroup>`, `<custom-tab>`, and `<cust
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/custom.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/custom.html -->
 
-<pre class="language-html"><code class="language-html">&lt;custom-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;custom-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;custom-tab&gt;
       Baggage info
