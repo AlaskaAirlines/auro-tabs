@@ -114,7 +114,7 @@ AuroTabpanel.register('custom-tabpanel');
 This creates three new custom elements that work the same as `auro-tabgroup`, `auro-tab`, and `auro-tabpanel`, so you can use them in your HTML.
 
 <div class="exampleWrapper">
-  <custom-tabgroup variant="unstyled">
+  <custom-tabgroup>
     <div slot="tabs">
       <custom-tab>
         Baggage info
@@ -143,7 +143,7 @@ This creates three new custom elements that work the same as `auro-tabgroup`, `a
   <span slot="trigger">See code</span>
 
 ```html
-<custom-tabgroup variant="unstyled">
+<custom-tabgroup>
     <div slot="tabs">
       <custom-tab>
         Baggage info
