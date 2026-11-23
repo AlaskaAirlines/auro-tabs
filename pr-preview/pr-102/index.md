@@ -38,7 +38,7 @@ The component ships very few default styles. The only ones are focus borders and
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
 <!-- The below content is automatically added from ../apiExamples/basic.html -->
-<auro-tabgroup variant="unstyled">
+<auro-tabgroup>
 <div slot="tabs">
 <auro-tab>
         Baggage info
@@ -68,7 +68,7 @@ The component ships very few default styles. The only ones are focus borders and
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/basic.html -->
 
-<pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
@@ -107,7 +107,7 @@ Note: The JavaScript never overwrites your CSS for `slider`. It does set the `wi
     This example is intended to mimic the new Borealis tab implementation
     for the homepage design.
 </i>
-<auro-tabgroup variant="unstyled" id="custom-tab-example">
+<auro-tabgroup id="custom-tab-example">
 <div slot="tabs">
 <auro-tab class="custom-tab">
 <div class="custom-tab-content">
@@ -149,7 +149,7 @@ Note: The JavaScript never overwrites your CSS for `slider`. It does set the `wi
   This example is intended to mimic the new Borealis tab implementation
   for the homepage design.
 &lt;/i&gt;
-&#10;&lt;auro-tabgroup variant="unstyled" id="custom-tab-example"&gt;
+&#10;&lt;auro-tabgroup id="custom-tab-example"&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab class="custom-tab"&gt;
       &lt;div class="custom-tab-content"&gt;
@@ -259,7 +259,7 @@ The tab list has the `tablist` role, each `auro-tab` has the `tab` role, and eac
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/role.html) -->
 <!-- The below content is automatically added from ../apiExamples/role.html -->
-<auro-tabgroup variant="unstyled">
+<auro-tabgroup>
 <div slot="tabs">
 <auro-tab>
         Baggage info
@@ -293,7 +293,7 @@ The tab list has the `tablist` role, each `auro-tab` has the `tab` role, and eac
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/role.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/role.html -->
 
-<pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
@@ -337,7 +337,7 @@ AuroTabpanel.register('custom-tabpanel');</code></pre>
 This creates three new custom elements that work the same as `auro-tabgroup`, `auro-tab`, and `auro-tabpanel`, so you can use them in your HTML.
 
 <div class="exampleWrapper">
-<custom-tabgroup variant="unstyled">
+<custom-tabgroup>
 <div slot="tabs">
 <custom-tab>
         Baggage info
@@ -364,7 +364,7 @@ This creates three new custom elements that work the same as `auro-tabgroup`, `a
 <auro-accordion lowProfile justifyRight>
 <span slot="trigger">See code</span>
 
-<pre class="language-html"><code class="language-html">&lt;custom-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;custom-tabgroup&gt;
     &lt;div slot="tabs"&gt;
       &lt;custom-tab&gt;
         Baggage info

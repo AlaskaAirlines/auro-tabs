@@ -22,12 +22,12 @@ A tab that shows its matching panel when selected. Use it only inside an `auro-t
 
 ### Properties and attributes
 
-| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                                                                                   |
-| ---------- | ---------- | --------- | ----------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| appearance | appearance |           | "default" \| "inverse"  | `default` | Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you. |
-| disabled   | disabled   |           | boolean                 |           | Skips the tab when the arrow keys move between tabs. Doesn't currently stop clicks, `Enter`, or `Space` from selecting it.    |
-| selected   | selected   |           | boolean                 |           | Shows this tab's panel and hides the others.                                                                                  |
-| variant    | variant    |           | "default" \| "unstyled" |           | Sets the tab's style variant. Doesn't currently change how the tab looks.                                                     |
+| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                                                                                                              |
+| ---------- | ---------- | --------- | ----------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| appearance | appearance |           | "default" \| "inverse"  | `default` | Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you.                            |
+| disabled   | disabled   |           | boolean                 |           | Skips the tab when the arrow keys move between tabs and stops clicks from selecting it. Doesn't currently stop the `selectTab` method from selecting it. |
+| selected   | selected   |           | boolean                 |           | Shows this tab's panel and hides the others.                                                                                                             |
+| variant    | variant    |           | "default" \| "unstyled" |           | Sets the tab's style variant. Doesn't currently change how the tab looks.                                                                                |
 
 ### Methods
 
@@ -125,7 +125,7 @@ The content that shows when its matching tab is selected. Use it only inside an 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
 <!-- The below content is automatically added from ./../apiExamples/basic.html -->
-<auro-tabgroup variant="unstyled">
+<auro-tabgroup>
 <div slot="tabs">
 <auro-tab>
         Baggage info
@@ -155,7 +155,7 @@ The content that shows when its matching tab is selected. Use it only inside an 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
-<pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
@@ -369,7 +369,7 @@ export function removeListener() {
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
 <!-- The below content is automatically added from ./../apiExamples/basic.html -->
-<auro-tabgroup variant="unstyled">
+<auro-tabgroup>
 <div slot="tabs">
 <auro-tab>
         Baggage info
@@ -399,7 +399,7 @@ export function removeListener() {
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
-<pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
@@ -433,7 +433,7 @@ Use `appearance="inverse"` when the tab group sits on a dark background.
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/inverseAppearance.html) -->
 <!-- The below content is automatically added from ./../apiExamples/inverseAppearance.html -->
 <div style="color: white;">
-<auro-tabgroup variant="unstyled" appearance="inverse">
+<auro-tabgroup appearance="inverse">
 <div slot="tabs">
 <auro-tab>
         Baggage info
@@ -465,7 +465,7 @@ Use `appearance="inverse"` when the tab group sits on a dark background.
 <!-- The below code snippet is automatically added from ./../apiExamples/inverseAppearance.html -->
 
 <pre class="language-html"><code class="language-html">&lt;div style="color: white;"&gt;
-  &lt;auro-tabgroup variant="unstyled" appearance="inverse"&gt;
+  &lt;auro-tabgroup appearance="inverse"&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
       Baggage info
