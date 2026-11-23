@@ -33,7 +33,7 @@ Pass an `auro-tab` to `selectTab` to select it in code.
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/selectTab.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/onTabSelected.js) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/selectTabExample.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
