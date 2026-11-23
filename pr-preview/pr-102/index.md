@@ -235,7 +235,7 @@ CSS used in the example above:
 
 ## Generated (looped) tab groups
 
-Build tabs and panels in a loop when you don't know how many you need until runtime. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
+When you don't know how many tabs you need until runtime, build the tabs and panels in a loop. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
