@@ -31,6 +31,7 @@ import styleCss from "./styles/tab-style.scss";
  * ```
  *
  * @summary An accessible tab that shows its matching panel when selected.
+ * @csspart tab-root - The wrapper element around the tab's content.
  */
 export class AuroTab extends LitElement {
   static get properties() {
@@ -78,6 +79,7 @@ export class AuroTab extends LitElement {
 
       /**
        * Sets the tab's style variant. Doesn't currently change how the tab looks.
+       * @internal
        * @type {"default" | "unstyled"}
        * @property {String} variant
        */
