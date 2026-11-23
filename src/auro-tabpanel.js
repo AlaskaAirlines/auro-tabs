@@ -10,16 +10,32 @@ import { html, LitElement } from "lit";
 import styleCss from "./styles/tabpanel-style.scss";
 
 /**
- * Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
- * The auro-tabpanel element should only be used inside an AuroTabgroup element.
+ * The content that shows when its matching tab is selected. Use it only inside an `auro-tabgroup`.
+ *
+ * **Key capabilities**
+ * - **Hides when its tab isn't selected**: The tab group sets `hidden` on every panel except the selected one.
+ * - **Reachable by keyboard**: A visible panel is always in the keyboard tab order.
+ *
+ * **Example**
+ * ```html
+ * <auro-tabgroup>
+ *   <div slot="tabs">
+ *     <auro-tab>Baggage info</auro-tab>
+ *   </div>
+ *   <div slot="panels">
+ *     <auro-tabpanel>Baggage details</auro-tabpanel>
+ *   </div>
+ * </auro-tabgroup>
+ * ```
+ *
+ * @summary An accessible panel that shows when its matching tab is selected.
  */
 export class AuroTabpanel extends LitElement {
   static get properties() {
     return {
       /**
-       * Indicates whether the panel is hidden.
+       * Hides the panel and removes it from the keyboard tab order. The tab group sets this for you.
        * @property {boolean} hidden
-       * @default false
        */
       hidden: {
         type: Boolean,
@@ -54,11 +70,11 @@ export class AuroTabpanel extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-tabpanel"] - The name of element that you want to register to.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-tabpanel"] - The tag name to register the element under.
    *
    * @example
-   * Aurotab.register("custom-tabpanel") // this will register this element to <custom-tab/>
+   * AuroTabpanel.register("custom-tabpanel") // registers the element as <custom-tabpanel>
    *
    */
   static register(name = "auro-tabpanel") {

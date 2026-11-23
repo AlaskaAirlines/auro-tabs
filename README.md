@@ -12,30 +12,30 @@ The following sections are editable by making changes to the following files:
 | SECTION                | DESCRIPTION                                       | FILE LOCATION                       |
 |------------------------|---------------------------------------------------|-------------------------------------|
 | Description            | Description of the component                      | `./docs/partials/description.md`    |
-| Use Cases              | Examples for when to use this component           | `./docs/partials/useCases.md`       |
-| Additional Information | For use to add any component specific information | `./docs/partials/readmeAddlInfo.md` |
-| Component Example Code | HTML sample code of the components use            | `./apiExamples/basic.html`          |
+| Use cases              | Examples for when to use this component           | `./docs/partials/useCases.md`       |
+| Additional information | For use to add any component specific information | `./docs/partials/readmeAddlInfo.md` |
+| Component example code | HTML sample code of the components use            | `./apiExamples/basic.html`          |
 -->
 
 # Tabs
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/description.md) -->
 <!-- The below content is automatically added from ./docs/partials/description.md -->
-`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of showing a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
+`auro-tabgroup`, `auro-tab`, and `auro-tabpanel` work together to show one panel of content at a time. Each tab has a matching panel, and activating the tab shows that panel. The tabs sit in a row above the panel.
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./docs/partials/readmeAddlInfo.md -->
 <!-- AURO-GENERATED-CONTENT This file is to be used for any additional content that should be included in the README.md which is specific to this component. -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Use Cases
+## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./docs/partials/useCases.md -->
-The `<auro-tabs>` element should be used in situations where users:
+Use `auro-tabgroup` to let people:
 
-* show a list of content without reloading the page or compromising on space
-* need to organize large amount of content that can be separated
+* switch between related sections of content without reloading the page or using more space
+* browse a large amount of content that you can split into separate sections
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Install
@@ -50,10 +50,10 @@ The `<auro-tabs>` element should be used in situations where users:
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
-### Define Dependency in Project
+### Define dependency in project
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/componentImportDescription.md) -->
-Defining the dependency within each project that is using the `<auro-tabs>` component.
+Import the component in each project that uses `<auro-tabs>`.
 
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/componentImport.md) -->
@@ -65,13 +65,13 @@ Defining the dependency within each project that is using the `<auro-tabs>` comp
 ### Use CDN
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/auro-templates/main/templates/default/partials/usage/bundleInstallDescription.md) -->
-In cases where the project is not able to process JS assets, there are pre-processed assets available for use. Legacy browsers such as IE11 are no longer supported.
+If your project can't process JS assets, use the pre-processed assets. Legacy browsers, such as IE11, aren't supported.
 
 <pre class="language-html"><code class="language-html">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-tabs@latest/+esm"&gt;&lt;/script&gt;</code></pre>
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Basic Example
+## Basic example
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./apiExamples/basic.html -->
@@ -79,7 +79,7 @@ In cases where the project is not able to process JS assets, there are pre-proce
 <pre class="language-html"><code class="language-html">&lt;auro-tabgroup variant="unstyled"&gt;
   &lt;div slot="tabs"&gt;
     &lt;auro-tab&gt;
-      Baggage Info
+      Baggage info
     &lt;/auro-tab&gt;
     &lt;auro-tab&gt;
       Help
@@ -88,29 +88,29 @@ In cases where the project is not able to process JS assets, there are pre-proce
       More
     &lt;/auro-tab&gt;
     &lt;auro-tab&gt;
-      No Panel
+      No panel
     &lt;/auro-tab&gt;
   &lt;/div&gt;
   &lt;div slot="panels"&gt;
     &lt;auro-tabpanel&gt;
-      &lt;span&gt;Tab 1 Content&lt;/span&gt;
+      &lt;span&gt;Tab 1 content&lt;/span&gt;
     &lt;/auro-tabpanel&gt;
-    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 2 Content&lt;/span&gt;&lt;/auro-tabpanel&gt;
-    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 3 Content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 2 content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 3 content&lt;/span&gt;&lt;/auro-tabpanel&gt;
   &lt;/div&gt;
 &lt;/auro-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Custom Component Registration for Version Management
+## Custom component registration for version management
 
-There are two key parts to every Auro component: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element definition.
+Every Auro component has two key parts: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element definition.
 The class defines the component’s behavior, while the custom element registers it under a specific name so it can be used in HTML.
 
-When you install the component as described on the `Install` page, the class is imported automatically, and the component is registered globally for you.
+Installing the component as described in the Install section imports the class and registers the component globally for you.
 
-However, if you need to load multiple versions of the same component on a single page (for example, when two projects depend on different versions), you can manually register the class under a custom element name to avoid conflicts.
+However, if you need to load multiple versions of the same component on a single page (for example, when two projects depend on different versions), register the class manually under a custom element name to avoid conflicts.
 
-You can do this by importing only the component class and using the `register(name)` method with a unique name:
+To do this, import only the component class and call the `register(name)` method with a unique name:
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/customRegistration.md) -->
 <!-- The below content is automatically added from ./docs/partials/customRegistration.md -->
@@ -122,7 +122,7 @@ AuroTab.register('custom-tab');
 AuroTabgroup.register('custom-tabgroup');
 AuroTabpanel.register('custom-tabpanel');</code></pre>
 
-This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<custom-tabpanel>` that behave exactly like `<auro-tabgroup>`, `<auro-tab>` and `<auro-tabpanel>`, allowing both to coexist on the same page without interfering with each other.
+This creates new custom elements `<custom-tabgroup>`, `<custom-tab>`, and `<custom-tabpanel>` that behave the same as `<auro-tabgroup>`, `<auro-tab>`, and `<auro-tabpanel>`. Both sets can coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
@@ -130,7 +130,7 @@ This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<c
 <custom-tabgroup variant="unstyled">
 <div slot="tabs">
 <custom-tab>
-        Baggage Info
+        Baggage info
 </custom-tab>
 <custom-tab>
         Help
@@ -139,15 +139,15 @@ This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<c
         More
 </custom-tab>
 <custom-tab>
-        No Panel
+        No panel
 </custom-tab>
 </div>
 <div slot="panels">
 <custom-tabpanel>
-<span>Tab 1 Content</span>
+<span>Tab 1 content</span>
 </custom-tabpanel>
-<custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
-<custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
+<custom-tabpanel><span>Tab 2 content</span></custom-tabpanel>
+<custom-tabpanel><span>Tab 3 content</span></custom-tabpanel>
 </div>
 </custom-tabgroup>
 <!-- AURO-GENERATED-CONTENT:END -->
@@ -160,7 +160,7 @@ This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<c
 <pre class="language-html"><code class="language-html">&lt;custom-tabgroup variant="unstyled"&gt;
   &lt;div slot="tabs"&gt;
     &lt;custom-tab&gt;
-      Baggage Info
+      Baggage info
     &lt;/custom-tab&gt;
     &lt;custom-tab&gt;
       Help
@@ -169,15 +169,15 @@ This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<c
       More
     &lt;/custom-tab&gt;
     &lt;custom-tab&gt;
-      No Panel
+      No panel
     &lt;/custom-tab&gt;
   &lt;/div&gt;
   &lt;div slot="panels"&gt;
     &lt;custom-tabpanel&gt;
-      &lt;span&gt;Tab 1 Content&lt;/span&gt;
+      &lt;span&gt;Tab 1 content&lt;/span&gt;
     &lt;/custom-tabpanel&gt;
-    &lt;custom-tabpanel&gt;&lt;span&gt;Tab 2 Content&lt;/span&gt;&lt;/custom-tabpanel&gt;
-    &lt;custom-tabpanel&gt;&lt;span&gt;Tab 3 Content&lt;/span&gt;&lt;/custom-tabpanel&gt;
+    &lt;custom-tabpanel&gt;&lt;span&gt;Tab 2 content&lt;/span&gt;&lt;/custom-tabpanel&gt;
+    &lt;custom-tabpanel&gt;&lt;span&gt;Tab 3 content&lt;/span&gt;&lt;/custom-tabpanel&gt;
   &lt;/div&gt;
 &lt;/custom-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->

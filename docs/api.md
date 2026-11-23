@@ -1,52 +1,84 @@
 # auro-tab
 
-Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
-The auro-tabpanel element should only be used inside an AuroTabgroup element.
+A tab that shows its matching panel when selected. Use it only inside an `auro-tabgroup`.
 
-### Properties & Attributes
+**Key capabilities**
+- **Shows its panel**: Set `selected` to show the matching panel and hide the others.
+- **Skipped by arrow keys**: Set `disabled` to skip the tab when the arrow keys move between tabs.
+- **Adapts to dark backgrounds**: Set `appearance="inverse"` on the tab group to restyle its tabs for dark backgrounds.
 
-| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                             |
-| ---------- | ---------- | --------- | ----------------------- | --------- | ----------------------------------------------------------------------- |
-| appearance | appearance |           | "default" \| "inverse"  | `default` | Defines whether the component will be on lighter or darker backgrounds. |
-| disabled   | disabled   |           | boolean                 | `false`   | Indicates whether the tab is disabled.                                  |
-| selected   | selected   |           | boolean                 | `false`   | Indicates whether the tab is selected.                                  |
-| variant    | variant    |           | "default" \| "unstyled" | `default` | The variant of the tab.                                                 |
+**Example**
+```html
+<auro-tabgroup>
+  <div slot="tabs">
+    <auro-tab>Baggage info</auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel>Baggage details</auro-tabpanel>
+  </div>
+</auro-tabgroup>
+```
+
+### Properties and attributes
+
+| Properties | Attributes | Modifiers | Type                    | Default   | Description                                                                                                                   |
+| ---------- | ---------- | --------- | ----------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| appearance | appearance |           | "default" \| "inverse"  | `default` | Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you. |
+| disabled   | disabled   |           | boolean                 |           | Skips the tab when the arrow keys move between tabs. Doesn't currently stop clicks, `Enter`, or `Space` from selecting it.    |
+| selected   | selected   |           | boolean                 |           | Shows this tab's panel and hides the others.                                                                                  |
+| variant    | variant    |           | "default" \| "unstyled" |           | Sets the tab's style variant. Doesn't currently change how the tab looks.                                                     |
 
 ### Methods
 
-| Name     | Parameters                                                          | Return | Description                                       |
-| -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
+| Name     | Parameters                                                    | Return | Description                                              |
+| -------- | ------------------------------------------------------------- | ------ | -------------------------------------------------------- |
+| register | `name` (string) - The tag name to register the element under. |        | Registers the element with the browser under a tag name. |
 
 # auro-tabgroup
 
-The auro-tabgroup element is a container element for tabs and panels.
-All children of `<auro-tabgroup>` should be either `<auro-tab>` or
-`<auro-tabpanel>`. This element is stateless, meaning that no values are
-cached and therefore, changes during runtime work.
+Groups tabs and panels so that one panel shows at a time.
 
-### Properties & Attributes
+**Key capabilities**
+- **Selects on focus**: Set `selectonfocus` to select a tab as soon as the arrow keys, `Home`, or `End` move focus to it.
+- **Adapts to dark backgrounds**: Set `appearance="inverse"` to restyle the tabs for dark backgrounds.
+- **Keyboard navigation**: Always on. The left and right arrow keys, `Home`, and `End` move between tabs.
 
-| Properties    | Attributes    | Modifiers | Type                   | Default   | Description                                                             |
-| ------------- | ------------- | --------- | ---------------------- | --------- | ----------------------------------------------------------------------- |
-| appearance    | appearance    |           | "default" \| "inverse" | `default` | Defines whether the component will be on lighter or darker backgrounds. |
-| selectOnFocus | selectonfocus |           | boolean                | `false`   | Whether or not to select the tab on focus.                              |
-| ondark        | ondark        |           | boolean                | `false`   | DEPRECATED - use `appearance` instead.                                  |
+**Example**
+```html
+<auro-tabgroup>
+  <div slot="tabs">
+    <auro-tab>First tab</auro-tab>
+    <auro-tab>Second tab</auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel>First panel</auro-tabpanel>
+    <auro-tabpanel>Second panel</auro-tabpanel>
+  </div>
+</auro-tabgroup>
+```
+
+### Properties and attributes
+
+| Properties    | Attributes    | Modifiers | Type                   | Default   | Description                                                                                                                        |
+| ------------- | ------------- | --------- | ---------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| appearance    | appearance    |           | "default" \| "inverse" | `default` | Sets the color scheme for the background the tabs sit on. Use `inverse` on dark backgrounds.                                       |
+| selectOnFocus | selectonfocus |           | boolean                |           | Selects a tab as soon as the arrow keys, `Home`, or `End` move focus to it. Without it, people press `Enter` or `Space` to select. |
+| ondark        | ondark        |           | boolean                |           | Deprecated: Use `appearance="inverse"` instead.                                                                                    |
 
 ### Methods
 
-| Name     | Parameters                                                          | Return | Description                                       |
-| -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
+| Name     | Parameters                                                    | Return | Description                                              |
+| -------- | ------------------------------------------------------------- | ------ | -------------------------------------------------------- |
+| register | `name` (string) - The tag name to register the element under. |        | Registers the element with the browser under a tag name. |
 
 ### Slots
 
-| Name  | Description                             |
-| ----- | --------------------------------------- |
-| panel | Slot component named for auro-tabpanel. |
-| tab   | Slot component named for auro-tab.      |
+| Name   | Description                                                                          |
+| ------ | ------------------------------------------------------------------------------------ |
+| panels | The `auro-tabpanel` elements, one per tab, in the same order as the tabs.            |
+| tabs   | The `auro-tab` elements for the tab list, wrapped in one element with `slot="tabs"`. |
 
-### CSS Shadow Parts
+### CSS shadow parts
 
 | Name              | Description                                                                    |
 | ----------------- | ------------------------------------------------------------------------------ |
@@ -54,21 +86,36 @@ cached and therefore, changes during runtime work.
 | slider-positioner | The slider positioner element (non-visual, only used to center slider on tab). |
 | tabgroup__panels  | The panel wrapper element.                                                     |
 | tabgroup__root    | The root element of the tab group.                                             |
-| tabgroup__tabs    | The "tabs list" internal wrapper element.                                      |
+| tabgroup__tabs    | The wrapper element for the tabs, with the `tablist` role.                     |
 
 # auro-tabpanel
 
-Represents a panel to be displayed when the corresponding tab is selected in an AuroTabgroup element.
-The auro-tabpanel element should only be used inside an AuroTabgroup element.
+The content that shows when its matching tab is selected. Use it only inside an `auro-tabgroup`.
 
-### Properties & Attributes
+**Key capabilities**
+- **Hides when its tab isn't selected**: The tab group sets `hidden` on every panel except the selected one.
+- **Reachable by keyboard**: A visible panel is always in the keyboard tab order.
 
-| Properties | Attributes | Modifiers | Type    | Default | Description                            |
-| ---------- | ---------- | --------- | ------- | ------- | -------------------------------------- |
-| hidden     | hidden     |           | boolean | `false` | Indicates whether the panel is hidden. |
+**Example**
+```html
+<auro-tabgroup>
+  <div slot="tabs">
+    <auro-tab>Baggage info</auro-tab>
+  </div>
+  <div slot="panels">
+    <auro-tabpanel>Baggage details</auro-tabpanel>
+  </div>
+</auro-tabgroup>
+```
+
+### Properties and attributes
+
+| Properties | Attributes | Modifiers | Type    | Default | Description                                                                                  |
+| ---------- | ---------- | --------- | ------- | ------- | -------------------------------------------------------------------------------------------- |
+| hidden     | hidden     |           | boolean |         | Hides the panel and removes it from the keyboard tab order. The tab group sets this for you. |
 
 ### Methods
 
-| Name     | Parameters                                                          | Return | Description                                       |
-| -------- | ------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of element that you want to register to. |        | This will register this element with the browser. |
+| Name     | Parameters                                                    | Return | Description                                              |
+| -------- | ------------------------------------------------------------- | ------ | -------------------------------------------------------- |
+| register | `name` (string) - The tag name to register the element under. |        | Registers the element with the browser under a tag name. |
