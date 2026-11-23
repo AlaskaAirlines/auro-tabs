@@ -66,6 +66,8 @@ CSS used in the example above:
 
 ## Generated (looped) tab groups
 
+When you don't know how many tabs you need until runtime, build the tabs and panels in a loop. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
+
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -75,6 +77,9 @@ CSS used in the example above:
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/example-tab-group.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/generatedTabExample.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
