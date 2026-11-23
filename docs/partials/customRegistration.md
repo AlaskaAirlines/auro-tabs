@@ -7,4 +7,4 @@ AuroTabgroup.register('custom-tabgroup');
 AuroTabpanel.register('custom-tabpanel');
 ```
 
-This will create new custom elements `<custom-tabgroup>`, `<custom-tab>` and `<custom-tabpanel>` that behave exactly like `<auro-tabgroup>`, `<auro-tab>` and `<auro-tabpanel>`, allowing both to coexist on the same page without interfering with each other.
+This creates new custom elements `<custom-tabgroup>`, `<custom-tab>`, and `<custom-tabpanel>` that behave the same as `<auro-tabgroup>`, `<auro-tab>`, and `<auro-tabpanel>`. Both sets can coexist on the same page without interfering with each other.

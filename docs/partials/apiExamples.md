@@ -1,7 +1,7 @@
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../api.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## API Examples
+## API examples
 
 ### Basic
 
@@ -23,7 +23,7 @@
 
 #### `selectTab`
 
-We can programatically select a tab by passing the auro-tab element to the parameter of `selectTab` method.
+Pass an `auro-tab` to `selectTab` to select it in code.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/selectTab.html) -->
@@ -44,7 +44,7 @@ We can programatically select a tab by passing the auro-tab element to the param
 
 #### `tab-selected`
 
-Tab component will fire `tab-selected` event when selected.
+A tab fires `tab-selected` when it's selected.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/tab-selected.html) -->

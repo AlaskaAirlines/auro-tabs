@@ -1,6 +1,13 @@
+/**
+ * Finds the next tab to focus while skipping disabled tabs.
+ */
 export class TabIndexUtil {
-  // we check if previous tab have 'disabled' attribute and check the following previous tab for the same thing,
-  // and keeps goind on until we found the one that's not disabled.
+  /**
+   * Gets the index of the previous tab that isn't disabled, wrapping to the last tab from the first.
+   * @param {number} focusedIdx - The index of the currently focused tab.
+   * @param {Array<HTMLElement>} tabs - The tabs to search.
+   * @returns {number} The index of the previous tab that isn't disabled.
+   */
   static getPreviousNotDisabledIndex(focusedIdx, tabs) {
     let newIdx = focusedIdx;
     const decrement = () => {
@@ -10,7 +17,7 @@ export class TabIndexUtil {
         newIdx -= 1;
       }
     };
-    // do increment for first time.
+    // do decrement for first time.
     decrement();
 
     while (tabs[newIdx].hasAttribute("disabled")) {
@@ -19,8 +26,12 @@ export class TabIndexUtil {
     return newIdx;
   }
 
-  // we check if next tab have 'disabled' attribute and check the following next tab for the same thing,
-  // and keeps goind on until we found the one that's not disabled.
+  /**
+   * Gets the index of the next tab that isn't disabled, wrapping to the first tab from the last.
+   * @param {number} focusedIdx - The index of the currently focused tab.
+   * @param {Array<HTMLElement>} tabs - The tabs to search.
+   * @returns {number} The index of the next tab that isn't disabled.
+   */
   static findNextNotDisabledIndex(focusedIdx, tabs) {
     let newIdx = focusedIdx;
     const increment = () => {
