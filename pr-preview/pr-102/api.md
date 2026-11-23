@@ -258,17 +258,24 @@ Pass an `auro-tab` to `selectTab` to select it in code.
   &lt;/div&gt;
 &lt;/auro-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/onTabSelected.js) -->
-<!-- The below code snippet is automatically added from ./../demo/utils/onTabSelected.js -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/selectTabExample.js) -->
+<!-- The below code snippet is automatically added from ./../demo/utils/selectTabExample.js -->
 
-<pre class="language-js"><code class="language-js">export function onTabSelected(e) {
-  console.info(`Tab selected: ${e.target.innerText}`);
+<pre class="language-js"><code class="language-js">function getTabs() {
+  const tabGroup = document.querySelector("#select-tab-example");
+  return { tabGroup, tabs: [...tabGroup.querySelectorAll("auro-tab")] };
 }
-export function addListener() {
-  window.addEventListener("tab-selected", onTabSelected);
+&#10;export function selectFirstTab() {
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[0]);
 }
-export function removeListener() {
-  window.removeEventListener("tab-selected", onTabSelected);
+&#10;export function selectSecondTab() {
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[1]);
+}
+&#10;export function selectLastTab() {
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[tabs.length - 1]);
 }</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>

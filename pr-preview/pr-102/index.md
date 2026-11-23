@@ -235,6 +235,8 @@ CSS used in the example above:
 
 ## Generated (looped) tab groups
 
+Build tabs and panels in a loop when you don't know how many you need until runtime. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
+
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
 <!-- The below content is automatically added from ../apiExamples/example-tab-group.html -->
@@ -247,6 +249,70 @@ CSS used in the example above:
 <!-- The below code snippet is automatically added from ../apiExamples/example-tab-group.html -->
 
 <pre class="language-html"><code class="language-html">&lt;example-group-test&gt;&lt;/example-group-test&gt;</code></pre>
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/generatedTabExample.js) -->
+<!-- The below code snippet is automatically added from ../demo/generatedTabExample.js -->
+
+<pre class="language-js"><code class="language-js">import { html, LitElement } from "lit";
+&#10;export class ExampleTabGroup extends LitElement {
+  /**
+   *
+   * @param {number} tabCount
+   * @return {TemplateResult[]}
+   */
+  generateTabs(tabCount) {
+    /** @type {TemplateResult[]} */
+    const tabs = [];
+    for (let i = 0; i &lt;= tabCount; i++) {
+      tabs.push(html`&lt;auro-tab&gt;Auto-generated ${i}&lt;/auro-tab&gt;`);
+    }
+&#10;    return tabs;
+  }
+&#10;  /**
+   *
+   * @param {number} tabCount
+   * @return {TemplateResult[]}
+   */
+  generatePanels(tabCount) {
+    /** @type {TemplateResult[]} */
+    const panels = [];
+    for (let i = 0; i &lt;= tabCount; i++) {
+      panels.push(html`&lt;auro-tabpanel&gt;Auto-generated ${i}&lt;/auro-tabpanel&gt;`);
+    }
+&#10;    return panels;
+  }
+&#10;  renderTabContent() {
+    return html`
+        &lt;span&gt;some content&lt;/span&gt;
+    `;
+  }
+&#10;  renderPanelContent() {
+    return html`
+        &lt;span&gt;some content&lt;/span&gt;
+    `;
+  }
+&#10;  render() {
+    return html`
+        &lt;auro-tabgroup&gt;
+          &lt;div slot="tabs"&gt;
+            ${this.generateTabs(5)}
+            &lt;auro-tab&gt;
+              ${this.renderTabContent()}
+            &lt;/auro-tab&gt;
+          &lt;/div&gt;
+          &lt;div slot="panels"&gt;
+            ${this.generatePanels(5)}
+            &lt;auro-tabpanel&gt;
+              ${this.renderPanelContent()}
+            &lt;/auro-tabpanel&gt;
+          &lt;/div&gt;
+        &lt;/auro-tabgroup&gt;
+    `;
+  }
+}
+&#10;export function registerExampleGroup() {
+  customElements.define("example-group-test", ExampleTabGroup);
+}</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
