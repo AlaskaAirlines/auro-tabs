@@ -11,15 +11,34 @@ import { html } from "lit/static-html.js";
 import styleCss from "./styles/tab-style.scss";
 
 /**
- * Represents a tab within an auro-tabgroup element. When selected, displays the corresponding AuroTabpanel.
- * The auro-tabpanel element should only be used inside an AuroTabgroup element.
+ * A tab that shows its matching panel when selected. Use it only inside an `auro-tabgroup`.
+ *
+ * **Key capabilities**
+ * - **Shows its panel**: Set `selected` to show the matching panel and hide the others.
+ * - **Skipped by arrow keys**: Set `disabled` to skip the tab when the arrow keys move between tabs.
+ * - **Adapts to dark backgrounds**: Set `appearance="inverse"` on the tab group to restyle its tabs for dark backgrounds.
+ *
+ * **Example**
+ * ```html
+ * <auro-tabgroup>
+ *   <div slot="tabs">
+ *     <auro-tab>Baggage info</auro-tab>
+ *   </div>
+ *   <div slot="panels">
+ *     <auro-tabpanel>Baggage details</auro-tabpanel>
+ *   </div>
+ * </auro-tabgroup>
+ * ```
+ *
+ * @summary An accessible tab that shows its matching panel when selected.
+ * @csspart tab-root - The wrapper element around the tab's content.
  */
 export class AuroTab extends LitElement {
   static get properties() {
     return {
       /**
-       * Defines whether the component will be on lighter or darker backgrounds.
-       * @type {"default" | "inverse" | string} 
+       * Sets the color scheme for the background the tab sits on. Use `inverse` on dark backgrounds. The tab group sets this for you.
+       * @type {"default" | "inverse"}
        * @prop {String} appearance
        * @default "default"
        */
@@ -30,9 +49,8 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * Indicates whether the tab is selected.
+       * Shows this tab's panel and hides the others.
        * @prop {boolean} selected
-       * @default false
        */
       selected: {
         type: Boolean,
@@ -41,19 +59,18 @@ export class AuroTab extends LitElement {
 
       /**
        * Indicates whether the tab is focused.
-       * @property {boolean} focused 
-       * @default false
+       * @property {boolean} focused
        * @private
        */
       focused: {
         type: Boolean,
+        attribute: false,
         state: true,
       },
 
       /**
-       * Indicates whether the tab is disabled.
+       * Skips the tab when the arrow keys move between tabs and stops clicks from selecting it. Doesn't currently stop the `selectTab` method from selecting it.
        * @property {boolean} disabled
-       * @default false
        */
       disabled: {
         type: Boolean,
@@ -61,10 +78,10 @@ export class AuroTab extends LitElement {
       },
 
       /**
-       * The variant of the tab.
-       * @type {"default" | "unstyled" | string}
+       * Sets the tab's style variant. Doesn't currently change how the tab looks.
+       * @internal
+       * @type {"default" | "unstyled"}
        * @property {String} variant
-       * @default "default"
        */
       variant: {
         type: String,
@@ -155,7 +172,7 @@ export class AuroTab extends LitElement {
 
     // Static properties
     /**
-     * @property {AuroTabpanel} panel - The associated AuroTabpanel that will be displayed when this tab is selected.
+     * @property {AuroTabpanel} panel - The matching panel that shows when this tab is selected.
      * @readonly
      */
     this.panel = null;
@@ -183,7 +200,7 @@ export class AuroTab extends LitElement {
   }
 
   /**
-   * @description Applies changes to the component required for proper a11y functionality
+   * @description Applies changes to the component required for proper accessibility
    * @method applyA11y
    * @private
    */
@@ -228,11 +245,11 @@ export class AuroTab extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-tab"] - The name of element that you want to register to.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-tab"] - The tag name to register the element under.
    *
    * @example
-   * Aurotab.register("custom-tab") // this will register this element to <custom-tab/>
+   * AuroTab.register("custom-tab") // registers the element as <custom-tab>
    *
    */
   static register(name = "auro-tab") {

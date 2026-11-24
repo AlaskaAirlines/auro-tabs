@@ -1,10 +1,28 @@
 import { AuroTabgroup } from "../../src/auro-tabgroup.js";
 
 /**
- * The auro-tabgroup element is a container element for tabs and panels.
- * All children of `<auro-tabgroup>` should be either `<auro-tab>` or
- * `<auro-tabpanel>`. This element is stateless, meaning that no values are
- * cached and therefore, changes during runtime work.
+ * Groups tabs and panels so that one panel shows at a time.
+ *
+ * **Key capabilities**
+ * - **Selects on focus**: Set `selectonfocus` to select a tab as soon as the arrow keys, `Home`, or `End` move focus to it.
+ * - **Adapts to dark backgrounds**: Set `appearance="inverse"` to restyle the tabs for dark backgrounds.
+ * - **Keyboard navigation**: Always on. The left and right arrow keys, `Home`, and `End` move between tabs.
+ *
+ * **Example**
+ * ```html
+ * <auro-tabgroup>
+ *   <div slot="tabs">
+ *     <auro-tab>First tab</auro-tab>
+ *     <auro-tab>Second tab</auro-tab>
+ *   </div>
+ *   <div slot="panels">
+ *     <auro-tabpanel>First panel</auro-tabpanel>
+ *     <auro-tabpanel>Second panel</auro-tabpanel>
+ *   </div>
+ * </auro-tabgroup>
+ * ```
+ *
+ * @summary An accessible group of tabs and panels, with keyboard navigation and a sliding indicator.
  */
 class AuroTabgroupWCA extends AuroTabgroup {}
 

@@ -1,15 +1,19 @@
+function getTabs() {
+  const tabGroup = document.querySelector("#select-tab-example");
+  return { tabGroup, tabs: [...tabGroup.querySelectorAll("auro-tab")] };
+}
+
 export function selectFirstTab() {
-  const tabs = document.querySelector("#select-tab-example");
-  tabs.selectTab(tabs.allTabs[0]);
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[0]);
 }
 
 export function selectSecondTab() {
-  const tabs = document.querySelector("#select-tab-example");
-  const tabItems = tabs.allTabs;
-  tabs.selectTab([...tabItems][1]);
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[1]);
 }
 
 export function selectLastTab() {
-  const tabs = document.querySelector("#select-tab-example");
-  tabs.selectTab(tabs.allTabs[tabs.allTabs.length - 1]);
+  const { tabGroup, tabs } = getTabs();
+  tabGroup.selectTab(tabs[tabs.length - 1]);
 }

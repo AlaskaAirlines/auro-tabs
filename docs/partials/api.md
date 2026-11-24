@@ -1,7 +1,7 @@
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/api.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## API Examples
+## API examples
 
 ### Basic
 
@@ -17,11 +17,11 @@
 
 </auro-accordion>
 
-### Method Examples
+### Method examples
 
 #### `selectTab`
 
-We can programatically select a tab by passing the auro-tab element to the parameter of `selectTab` method.
+Pass an `auro-tab` to `selectTab` to select it in code.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/selectTab.html) -->
@@ -33,16 +33,16 @@ We can programatically select a tab by passing the auro-tab element to the param
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/selectTab.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/onTabSelected.js) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../demo/utils/selectTabExample.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
-### Event Examples
+### Event examples
 
 #### `tab-selected`
 
-Tab component will fire `tab-selected` event when selected.
+A tab fires `tab-selected` when it's selected.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/tab-selected.html) -->
@@ -59,9 +59,9 @@ Tab component will fire `tab-selected` event when selected.
 
 </auro-accordion>
 
-### Slot Examples
+### Slot examples
 
-#### `tabs` - `panels`
+#### `tabs` and `panels`
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
@@ -75,9 +75,9 @@ Tab component will fire `tab-selected` event when selected.
 
 </auro-accordion>
 
-### Visual State on Dark Background
+### Visual state on dark background
 
-Set when the tabgroup is used on a dark background.
+Use `appearance="inverse"` when the tab group sits on a dark background.
 
 <div class="exampleWrapper--ondark">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/inverseAppearance.html) -->

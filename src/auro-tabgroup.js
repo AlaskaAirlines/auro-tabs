@@ -24,26 +24,43 @@ const KEYCODE = {
 };
 
 /**
- * The auro-tabgroup element is a container element for tabs and panels.
- * All children of `<auro-tabgroup>` should be either `<auro-tab>` or
- * `<auro-tabpanel>`. This element is stateless, meaning that no values are
- * cached and therefore, changes during runtime work.
+ * Groups tabs and panels so that one panel shows at a time.
  *
- * @slot tab - Slot component named for auro-tab.
- * @slot panel - Slot component named for auro-tabpanel.
+ * **Key capabilities**
+ * - **Selects on focus**: Set `selectonfocus` to select a tab as soon as the arrow keys, `Home`, or `End` move focus to it.
+ * - **Adapts to dark backgrounds**: Set `appearance="inverse"` to restyle the tabs for dark backgrounds.
+ * - **Keyboard navigation**: Always on. The left and right arrow keys, `Home`, and `End` move between tabs.
+ *
+ * **Example**
+ * ```html
+ * <auro-tabgroup>
+ *   <div slot="tabs">
+ *     <auro-tab>First tab</auro-tab>
+ *     <auro-tab>Second tab</auro-tab>
+ *   </div>
+ *   <div slot="panels">
+ *     <auro-tabpanel>First panel</auro-tabpanel>
+ *     <auro-tabpanel>Second panel</auro-tabpanel>
+ *   </div>
+ * </auro-tabgroup>
+ * ```
+ *
+ * @summary An accessible group of tabs and panels, with keyboard navigation and a sliding indicator.
+ * @slot tabs - The `auro-tab` elements for the tab list, wrapped in one element with `slot="tabs"`.
+ * @slot panels - The `auro-tabpanel` elements, one per tab, in the same order as the tabs.
  * @csspart tabgroup__root - The root element of the tab group.
- * @csspart tabgroup__tabs - The "tabs list" internal wrapper element.
+ * @csspart tabgroup__tabs - The wrapper element for the tabs, with the `tablist` role.
  * @csspart tabgroup__panels - The panel wrapper element.
  * @csspart slider-positioner - The slider positioner element (non-visual, only used to center slider on tab).
  * @csspart slider - The slider element.
- * @attr {Boolean} ondark - DEPRECATED - use `appearance` instead.
+ * @attr {Boolean} ondark - Deprecated: Use `appearance="inverse"` instead.
  */
 export class AuroTabgroup extends LitElement {
   static get properties() {
     return {
       /**
-       * Defines whether the component will be on lighter or darker backgrounds.
-       * @type {"default" | "inverse" | string}
+       * Sets the color scheme for the background the tabs sit on. Use `inverse` on dark backgrounds.
+       * @type {"default" | "inverse"}
        * @property {String} appearance
        * @default 'default'
        */
@@ -53,35 +70,39 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {number} scrollPosition - The current scroll position of the tab group container.
+       * The current scroll position of the tab group container.
+       * @type {number}
        * @default 0
        * @private
        */
       scrollPosition: {
         type: Number,
+        attribute: false,
       },
 
       /**
-       * @property {Boolean} selectOnFocus - Whether or not to select the tab on focus.
-       * @default false
+       * Selects a tab as soon as the arrow keys, `Home`, or `End` move focus to it. Without it, people press `Enter` or `Space` to select.
+       * @type {boolean}
        */
       selectOnFocus: {
         type: Boolean,
+        attribute: "selectonfocus",
         reflect: true,
       },
 
       /**
-       * @property {Object} sliderStyles - The styles for the slider element.
+       * The inline styles for the slider element.
+       * @type {{ width?: string | number, left?: string }}
        * @default {}
        * @private
        */
       sliderStyles: {
         type: Object,
+        attribute: false,
       },
 
       /**
        * @property {Boolean} rightChevronIsVisible - Whether or not the right chevron is visible.
-       * @default false
        * @private
        */
       rightChevronIsVisible: {
@@ -93,7 +114,6 @@ export class AuroTabgroup extends LitElement {
 
       /**
        * @property {Boolean} leftChevronIsVisible - Whether or not the left chevron is visible.
-       * @default false
        * @private
        */
       leftChevronIsVisible: {
@@ -103,8 +123,9 @@ export class AuroTabgroup extends LitElement {
       },
 
       /**
-       * @property {boolean} ondark - DEPRECATED - use `appearance` instead.
-       * @default false
+       * Deprecated: Use `appearance="inverse"` instead.
+       * @type {boolean}
+       * @deprecated Use `appearance="inverse"` instead.
        */
       ondark: {
         type: Boolean,
@@ -169,8 +190,8 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Whether or not the DOM is currently loading/updating elements.
-   * @returns {Boolean}
+   * @description Checks whether the tab group is updating its tabs and panels. Reflects the `aria-busy` attribute.
+   * @returns {Boolean} True if the tab group is updating its tabs and panels; false otherwise.
    */
   get busy() {
     return this.getAttribute("aria-busy") === "true";
@@ -249,11 +270,11 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-tabgroup"] - The name of element that you want to register to.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-tabgroup"] - The tag name to register the element under.
    *
    * @example
-   * Aurotab.register("custom-tabgroup") // this will register this element to <custom-tab/>
+   * AuroTabgroup.register("custom-tabgroup") // registers the element as <custom-tabgroup>
    *
    */
   static register(name = "auro-tabgroup") {
@@ -349,8 +370,8 @@ export class AuroTabgroup extends LitElement {
   };
 
   /**
-   * @description Select an auro tab by reference
-   * @param {HTMLElement} newTab Selected auro-tab.
+   * @description Selects a tab and shows its panel.
+   * @param {HTMLElement} newTab The `auro-tab` to select.
    */
   selectTab(newTab) {
     const tabs = this.allTabs;
@@ -388,7 +409,7 @@ export class AuroTabgroup extends LitElement {
   }
 
   /**
-   * @description Select a tab by its index.
+   * @description Selects the tab at the given index. Does nothing if no tab is at that index.
    * @param {number} index - The index of the tab to select.
    */
   selectTabByIndex(index) {

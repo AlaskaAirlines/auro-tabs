@@ -9,25 +9,24 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/description.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## auro-tabs use cases
+## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/useCases.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-### BETA COMPONENT, BOREALIS USE ONLY
-Borealis developers please ignore this message!
+### Beta component for Borealis only
 
-Default styles are NOT SUPPORTED AT THE TIME OF PUBLICATION :) DO NOT USE THIS WITHOUT CONSULTING THE AURO ENGINEERING AND DESIGN TEAM(S).
+Borealis developers can ignore this note.
 
-As Auro-Tab does not currently have default styling, you are expected to bring your own styles. Please consult your design team
-and/or the Auro team for guidance on how to style your tabs.
+Default styles aren't supported yet. Consult the Auro engineering and design teams before you use this component.
 
-## Example(s)
+Because the component ships very few default styles, bring your own styles. Ask your design team or the Auro team for guidance on how to style your tabs.
+
+## Examples
 
 ### Basic example (unstyled)
 
-We include very few default styles at the time of writing. The only styles we actively
-ship are focus borders and active-tab slider colors.
+The component ships very few default styles, mainly focus borders and the active-tab slider color.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
@@ -43,12 +42,9 @@ ship are focus borders and active-tab slider colors.
 
 ## Custom tab content
 
-Auro tab also supports rich content inside a tab. Instead of passing simple text, use html markup as needed to fit
-your design spec. The wrapper `auro-tabgroup` also exposes two css parts for custom sliders (active indicator) -
-`slider` and the parent `slider-positioner`.
+`auro-tab` also supports rich content. Instead of plain text, use HTML markup that fits your design spec. `auro-tabgroup` exposes two CSS parts for custom sliders (the active indicator): `slider` and its parent, `slider-positioner`.
 
-Note: `slider` css is not overwritten by the JavaScript logic, while `slider-positioner` **width** and **left** properties
-are used internally to position the slider and will be automatically overwritten.
+Note: The JavaScript never overwrites your CSS for `slider`. It does set the `width` and `left` properties of `slider-positioner` to position the slider, so it overwrites any values you set for them.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
@@ -70,6 +66,8 @@ CSS used in the example above:
 
 ## Generated (looped) tab groups
 
+When you don't know how many tabs you need until runtime, build the tabs and panels in a loop. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
+
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -81,17 +79,16 @@ CSS used in the example above:
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/example-tab-group.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/generatedTabExample.js) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
 </auro-accordion>
 
 ## Accessibility
 
-### Tab Role
+### Tab role
 
-Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as tablist, button, or tabpanel. Except for auro-tab which is an extension of `auro-hyperlink`. If `href` property is defined, then the `auro-tab` role is not set.
-
-Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
-
-A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, for that reason we give it role 'button'.
+The tab list has the `tablist` role, each `auro-tab` has the `tab` role, and each `auro-tabpanel` has the `tabpanel` role. Keyboard users move between tabs with the left and right arrow keys, `Home`, and `End`, and select a tab with `Enter` or `Space`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/role.html) -->
@@ -106,27 +103,26 @@ A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alask
 
 </auro-accordion>
 
-## Recommended Use and Version Control
+## Recommended use and version control
 
-There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
+Every Auro component has two important parts: the [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and the custom element. The class is exported and then used to define the web component. When you install the component as described in the README, the class is imported and the `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` custom elements are defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `register(name)` method and pass in a unique name.
+To avoid version conflicts with other copies of the component on the page, use the `register(name)` method with a unique name.
 
 ```js
-import { AuroTab, AuroTabgroup, AuroTabpanel } '@aurodesignsystem/auro-tabs';
-
+import { AuroTab, AuroTabgroup, AuroTabpanel } from '@aurodesignsystem/auro-tabs/class';
 AuroTab.register('custom-tab');
 AuroTabgroup.register('custom-tabgroup');
 AuroTabpanel.register('custom-tabpanel');
 ```
 
-This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabgroup` element.
+This creates three new custom elements that work the same as `auro-tabgroup`, `auro-tab`, and `auro-tabpanel`, so you can use them in your HTML.
 
 <div class="exampleWrapper">
-  <custom-tabgroup variant="unstyled">
+  <custom-tabgroup>
     <div slot="tabs">
       <custom-tab>
-        Baggage Info
+        Baggage info
       </custom-tab>
       <custom-tab>
         Help
@@ -135,15 +131,15 @@ This will create a new custom element that you can use in your HTML that will fu
         More
       </custom-tab>
       <custom-tab>
-        No Panel
+        No panel
       </custom-tab>
     </div>
     <div slot="panels">
       <custom-tabpanel>
-        <span>Tab 1 Content</span>
+        <span>Tab 1 content</span>
       </custom-tabpanel>
-      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
-      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 2 content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 3 content</span></custom-tabpanel>
     </div>
   </custom-tabgroup>
 </div>
@@ -152,10 +148,10 @@ This will create a new custom element that you can use in your HTML that will fu
   <span slot="trigger">See code</span>
 
 ```html
-<custom-tabgroup variant="unstyled">
+<custom-tabgroup>
     <div slot="tabs">
       <custom-tab>
-        Baggage Info
+        Baggage info
       </custom-tab>
       <custom-tab>
         Help
@@ -164,15 +160,15 @@ This will create a new custom element that you can use in your HTML that will fu
         More
       </custom-tab>
       <custom-tab>
-        No Panel
+        No panel
       </custom-tab>
     </div>
     <div slot="panels">
       <custom-tabpanel>
-        <span>Tab 1 Content</span>
+        <span>Tab 1 content</span>
       </custom-tabpanel>
-      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
-      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 2 content</span></custom-tabpanel>
+      <custom-tabpanel><span>Tab 3 content</span></custom-tabpanel>
     </div>
   </custom-tabgroup>
 ```
