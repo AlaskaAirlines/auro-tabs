@@ -8,186 +8,178 @@ This file is generated based on a template fetched from `./docs/partials/demo.md
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/description.md) -->
 <!-- The below content is automatically added from ../docs/partials/description.md -->
-`<auro-tabs>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of showing a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
+`auro-tabgroup`, `auro-tab`, and `auro-tabpanel` work together to show one panel of content at a time. Each tab has a matching panel, and activating the tab shows that panel. The tabs sit in a row above the panel.
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## auro-tabs use cases
+## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=../docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ../docs/partials/useCases.md -->
-The `<auro-tabs>` element should be used in situations where users:
+Use `auro-tabgroup` to let people:
 
-* show a list of content without reloading the page or compromising on space
-* need to organize large amount of content that can be separated
+* switch between related sections of content without reloading the page or using more space
+* browse a large amount of content that you can split into separate sections
 <!-- AURO-GENERATED-CONTENT:END -->
 
-### BETA COMPONENT, BOREALIS USE ONLY
-Borealis developers please ignore this message!
+### Beta component for Borealis only
 
-Default styles are NOT SUPPORTED AT THE TIME OF PUBLICATION :) DO NOT USE THIS WITHOUT CONSULTING THE AURO ENGINEERING AND DESIGN TEAM(S).
+Borealis developers can ignore this note.
 
-As Auro-Tab does not currently have default styling, you are expected to bring your own styles. Please consult your design team
-and/or the Auro team for guidance on how to style your tabs.
+Default styles aren't supported yet. Consult the Auro engineering and design teams before you use this component.
 
-## Example(s)
+Because the component ships very few default styles, bring your own styles. Ask your design team or the Auro team for guidance on how to style your tabs.
+
+## Examples
 
 ### Basic example (unstyled)
 
-We include very few default styles at the time of writing. The only styles we actively
-ship are focus borders and active-tab slider colors.
+The component ships very few default styles, mainly focus borders and the active-tab slider color.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ../apiExamples/basic.html -->
-  <auro-tabgroup variant="unstyled">
-    <div slot="tabs">
-      <auro-tab>
-        Baggage Info
-      </auro-tab>
-      <auro-tab>
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/basic.html) -->
+<!-- The below content is automatically added from ../apiExamples/basic.html -->
+<auro-tabgroup>
+<div slot="tabs">
+<auro-tab>
+        Baggage info
+</auro-tab>
+<auro-tab>
         Help
-      </auro-tab>
-      <auro-tab>
+</auro-tab>
+<auro-tab>
         More
-      </auro-tab>
-      <auro-tab>
-        No Panel
-      </auro-tab>
-    </div>
-    <div slot="panels">
-      <auro-tabpanel>
-        <span>Tab 1 Content</span>
-      </auro-tabpanel>
-      <auro-tabpanel><span>Tab 2 Content</span></auro-tabpanel>
-      <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
-    </div>
-  </auro-tabgroup>
-  <!-- AURO-GENERATED-CONTENT:END -->
+</auro-tab>
+<auro-tab>
+        No panel
+</auro-tab>
+</div>
+<div slot="panels">
+<auro-tabpanel>
+<span>Tab 1 content</span>
+</auro-tabpanel>
+<auro-tabpanel><span>Tab 2 content</span></auro-tabpanel>
+<auro-tabpanel><span>Tab 3 content</span></auro-tabpanel>
+</div>
+</auro-tabgroup>
+<!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/basic.html -->
 
-```html
-<auro-tabgroup variant="unstyled">
-  <div slot="tabs">
-    <auro-tab>
-      Baggage Info
-    </auro-tab>
-    <auro-tab>
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
+  &lt;div slot="tabs"&gt;
+    &lt;auro-tab&gt;
+      Baggage info
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
       Help
-    </auro-tab>
-    <auro-tab>
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
       More
-    </auro-tab>
-    <auro-tab>
-      No Panel
-    </auro-tab>
-  </div>
-  <div slot="panels">
-    <auro-tabpanel>
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tabpanel><span>Tab 2 Content</span></auro-tabpanel>
-    <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
-  </div>
-</auro-tabgroup>
-```
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
+      No panel
+    &lt;/auro-tab&gt;
+  &lt;/div&gt;
+  &lt;div slot="panels"&gt;
+    &lt;auro-tabpanel&gt;
+      &lt;span&gt;Tab 1 content&lt;/span&gt;
+    &lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 2 content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 3 content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+  &lt;/div&gt;
+&lt;/auro-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
 ## Custom tab content
 
-Auro tab also supports rich content inside a tab. Instead of passing simple text, use html markup as needed to fit
-your design spec. The wrapper `auro-tabgroup` also exposes two css parts for custom sliders (active indicator) -
-`slider` and the parent `slider-positioner`.
+`auro-tab` also supports rich content. Instead of plain text, use HTML markup that fits your design spec. `auro-tabgroup` exposes two CSS parts for custom sliders (the active indicator): `slider` and its parent, `slider-positioner`.
 
-Note: `slider` css is not overwritten by the JavaScript logic, while `slider-positioner` **width** and **left** properties
-are used internally to position the slider and will be automatically overwritten.
+Note: The JavaScript never overwrites your CSS for `slider`. It does set the `width` and `left` properties of `slider-positioner` to position the slider, so it overwrites any values you set for them.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
-  <!-- The below content is automatically added from ../apiExamples/custom-content.html -->
-  <i>
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/custom-content.html) -->
+<!-- The below content is automatically added from ../apiExamples/custom-content.html -->
+<i>
     This example is intended to mimic the new Borealis tab implementation
     for the homepage design.
-  </i>
-  <auro-tabgroup variant="unstyled" id="custom-tab-example">
-    <div slot="tabs">
-      <auro-tab class="custom-tab">
-        <div class="custom-tab-content">
-          <span>Flights</span>
-          <span role="img" aria-label="airplane emoji">✈️</span>
-        </div>
-      </auro-tab>
-      <auro-tab class="custom-tab">
-        <div class="custom-tab-content">
-          <span>Rentals</span>
-          <span role="img" aria-label="car emoji">🚗</span>
-        </div>
-      </auro-tab>
-    </div>
-    <div class="custom-panel-wrapper" slot="panels">
-      <auro-tabpanel>
-        <span>Tab 1 Content</span>
-      </auro-tabpanel>
-      <auro-tabpanel>
-        <span>Tab 2 Content</span>
-        <!-- a radio group -->
-        <auro-radio-group horizontal>
-          <span slot="legend">Accordion Test</span>
-          <auro-radio id="basicGroupRadio1" label="Credit or debit card" name="creditordebit" value="credit"></auro-radio>
-          <auro-radio id="basicGroupRadio2" label="Apple Pay" name="applePay" value="applePay"></auro-radio>
-          <auro-radio id="basicGroupRadio3" label="Alaska Airlines Commercial Account" name="alaskaCommercial" value="alaskaCommercial"></auro-radio>
-        </auro-radio-group>
-      </auro-tabpanel>
-    </div>
-  </auro-tabgroup>
-  <!-- AURO-GENERATED-CONTENT:END -->
+</i>
+<auro-tabgroup id="custom-tab-example">
+<div slot="tabs">
+<auro-tab class="custom-tab">
+<div class="custom-tab-content">
+<span>Flights</span>
+<span role="img" aria-label="airplane emoji">✈️</span>
+</div>
+</auro-tab>
+<auro-tab class="custom-tab">
+<div class="custom-tab-content">
+<span>Rentals</span>
+<span role="img" aria-label="car emoji">🚗</span>
+</div>
+</auro-tab>
+</div>
+<div class="custom-panel-wrapper" slot="panels">
+<auro-tabpanel>
+<span>Tab 1 content</span>
+</auro-tabpanel>
+<auro-tabpanel>
+<span>Tab 2 content</span>
+<!-- a radio group -->
+<auro-radio-group horizontal>
+<span slot="legend">Payment method</span>
+<auro-radio id="basicGroupRadio1" label="Credit or debit card" name="creditordebit" value="credit"></auro-radio>
+<auro-radio id="basicGroupRadio2" label="Apple Pay" name="applePay" value="applePay"></auro-radio>
+<auro-radio id="basicGroupRadio3" label="Alaska Airlines commercial account" name="alaskaCommercial" value="alaskaCommercial"></auro-radio>
+</auro-radio-group>
+</auro-tabpanel>
+</div>
+</auro-tabgroup>
+<!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/custom-content.html -->
 
-```html
-<i>
+<pre class="language-html"><code class="language-html">&lt;i&gt;
   This example is intended to mimic the new Borealis tab implementation
   for the homepage design.
-</i>
-<auro-tabgroup variant="unstyled" id="custom-tab-example">
-  <div slot="tabs">
-    <auro-tab class="custom-tab">
-      <div class="custom-tab-content">
-        <span>Flights</span>
-        <span role="img" aria-label="airplane emoji">✈️</span>
-      </div>
-    </auro-tab>
-    <auro-tab class="custom-tab">
-      <div class="custom-tab-content">
-        <span>Rentals</span>
-        <span role="img" aria-label="car emoji">🚗</span>
-      </div>
-    </auro-tab>
-  </div>
-  <div class="custom-panel-wrapper" slot="panels">
-    <auro-tabpanel>
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tabpanel>
-      <span>Tab 2 Content</span>
-      <!-- a radio group -->
-      <auro-radio-group horizontal>
-        <span slot="legend">Accordion Test</span>
-        <auro-radio id="basicGroupRadio1" label="Credit or debit card" name="creditordebit" value="credit"></auro-radio>
-        <auro-radio id="basicGroupRadio2" label="Apple Pay" name="applePay" value="applePay"></auro-radio>
-        <auro-radio id="basicGroupRadio3" label="Alaska Airlines Commercial Account" name="alaskaCommercial" value="alaskaCommercial"></auro-radio>
-      </auro-radio-group>
-    </auro-tabpanel>
-  </div>
-</auro-tabgroup>
-```
+&lt;/i&gt;
+&#10;&lt;auro-tabgroup id="custom-tab-example"&gt;
+  &lt;div slot="tabs"&gt;
+    &lt;auro-tab class="custom-tab"&gt;
+      &lt;div class="custom-tab-content"&gt;
+        &lt;span&gt;Flights&lt;/span&gt;
+        &lt;span role="img" aria-label="airplane emoji"&gt;✈️&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/auro-tab&gt;
+    &lt;auro-tab class="custom-tab"&gt;
+      &lt;div class="custom-tab-content"&gt;
+        &lt;span&gt;Rentals&lt;/span&gt;
+        &lt;span role="img" aria-label="car emoji"&gt;🚗&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/auro-tab&gt;
+  &lt;/div&gt;
+  &lt;div class="custom-panel-wrapper" slot="panels"&gt;
+    &lt;auro-tabpanel&gt;
+      &lt;span&gt;Tab 1 content&lt;/span&gt;
+    &lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;
+      &lt;span&gt;Tab 2 content&lt;/span&gt;
+&#10;      &lt;!-- a radio group --&gt;
+      &lt;auro-radio-group horizontal&gt;
+        &lt;span slot="legend"&gt;Payment method&lt;/span&gt;
+        &lt;auro-radio id="basicGroupRadio1" label="Credit or debit card" name="creditordebit" value="credit"&gt;&lt;/auro-radio&gt;
+        &lt;auro-radio id="basicGroupRadio2" label="Apple Pay" name="applePay" value="applePay"&gt;&lt;/auro-radio&gt;
+        &lt;auro-radio id="basicGroupRadio3" label="Alaska Airlines commercial account" name="alaskaCommercial" value="alaskaCommercial"&gt;&lt;/auro-radio&gt;
+      &lt;/auro-radio-group&gt;
+    &lt;/auro-tabpanel&gt;
+  &lt;/div&gt;
+&lt;/auro-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 CSS used in the example above:
@@ -195,228 +187,270 @@ CSS used in the example above:
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/custom-content.css) -->
 <!-- The below code snippet is automatically added from ../apiExamples/custom-content.css -->
 
-```css
-/* hover style example */
+<pre class="language-css"><code class="language-css">/* hover style example */
 .custom-tab:hover,
 .custom-tab:focus-within,
 .custom-tab:focus:not(:focus-visible) {
   background: #7f7f7f22;
 }
-
-/* :before renders the focus outline, modify this to match your designs */
+&#10;/* :before renders the focus outline, modify this to match your designs */
 .custom-tab:focus-within:before,
 .custom-tab:focus:not(:focus-visible):before {
   border-color: #c21f39;
 }
-
-/* [selected] attribute can be used to apply styles to current tab */
+&#10;/* [selected] attribute can be used to apply styles to current tab */
 .custom-tab[selected] {
   font-weight: 700;
 }
-
-.custom-tab-content {
+&#10;.custom-tab-content {
   display: flex;
-
-  /* explicit width important for modifying active styles */
+&#10;  /* explicit width important for modifying active styles */
   width: 60px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 5px 15px 10px;
 }
-
-#custom-tab-example::part(tabgroup__panels) {
+&#10;#custom-tab-example::part(tabgroup__panels) {
   overflow: hidden;
   border: 1px solid #22222245;
   border-radius: 1rem;
   margin-top: 1rem;
 }
-
-#custom-tab-example::part(slider) {
+&#10;#custom-tab-example::part(slider) {
   width: 20px;
   height: 5px;
   border-radius: 1rem;
   margin-top: -3px;
 }
-
-/* below code shows how to visually hide the slider */
-
-/* #custom-tab-example::part(slider) {
+&#10;/* below code shows how to visually hide the slider */
+&#10;/* #custom-tab-example::part(slider) {
   width: 0;
   height: 0;
 } */
-
-.custom-panel-wrapper {
+&#10;.custom-panel-wrapper {
   padding: 1rem;
-}
-```
+}</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Generated (looped) tab groups
 
+When you don't know how many tabs you need until runtime, build the tabs and panels in a loop. `example-group-test` is a demo-only Lit component, and the code below shows how it renders the tabs and panels.
+
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
-  <!-- The below content is automatically added from ../apiExamples/example-tab-group.html -->
-  <example-group-test></example-group-test>
-  <!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/example-tab-group.html) -->
+<!-- The below content is automatically added from ../apiExamples/example-tab-group.html -->
+<example-group-test></example-group-test>
+<!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/example-tab-group.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/example-tab-group.html -->
 
-```html
-<example-group-test></example-group-test>
-```
+<pre class="language-html"><code class="language-html">&lt;example-group-test&gt;&lt;/example-group-test&gt;</code></pre>
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=../demo/generatedTabExample.js) -->
+<!-- The below code snippet is automatically added from ../demo/generatedTabExample.js -->
+
+<pre class="language-js"><code class="language-js">import { html, LitElement } from "lit";
+&#10;export class ExampleTabGroup extends LitElement {
+  /**
+   *
+   * @param {number} tabCount
+   * @return {TemplateResult[]}
+   */
+  generateTabs(tabCount) {
+    /** @type {TemplateResult[]} */
+    const tabs = [];
+    for (let i = 0; i &lt;= tabCount; i++) {
+      tabs.push(html`&lt;auro-tab&gt;Auto-generated ${i}&lt;/auro-tab&gt;`);
+    }
+&#10;    return tabs;
+  }
+&#10;  /**
+   *
+   * @param {number} tabCount
+   * @return {TemplateResult[]}
+   */
+  generatePanels(tabCount) {
+    /** @type {TemplateResult[]} */
+    const panels = [];
+    for (let i = 0; i &lt;= tabCount; i++) {
+      panels.push(html`&lt;auro-tabpanel&gt;Auto-generated ${i}&lt;/auro-tabpanel&gt;`);
+    }
+&#10;    return panels;
+  }
+&#10;  renderTabContent() {
+    return html`
+        &lt;span&gt;some content&lt;/span&gt;
+    `;
+  }
+&#10;  renderPanelContent() {
+    return html`
+        &lt;span&gt;some content&lt;/span&gt;
+    `;
+  }
+&#10;  render() {
+    return html`
+        &lt;auro-tabgroup&gt;
+          &lt;div slot="tabs"&gt;
+            ${this.generateTabs(5)}
+            &lt;auro-tab&gt;
+              ${this.renderTabContent()}
+            &lt;/auro-tab&gt;
+          &lt;/div&gt;
+          &lt;div slot="panels"&gt;
+            ${this.generatePanels(5)}
+            &lt;auro-tabpanel&gt;
+              ${this.renderPanelContent()}
+            &lt;/auro-tabpanel&gt;
+          &lt;/div&gt;
+        &lt;/auro-tabgroup&gt;
+    `;
+  }
+}
+&#10;export function registerExampleGroup() {
+  customElements.define("example-group-test", ExampleTabGroup);
+}</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
 ## Accessibility
 
-### Tab Role
+### Tab role
 
-Each of `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` have predefined role as tablist, button, or tabpanel. Except for auro-tab which is an extension of `auro-hyperlink`. If `href` property is defined, then the `auro-tab` role is not set.
-
-Q: Why `auro-tab`'s role assigned as 'button' instead of 'tab' ?
-
-A: Because auro-tab is currently extends the [auro-hyperlink](https://auro.alaskaair.com/components/auro/hyperlink) component,  it is either to be rendered as `<a>` element or return as its given slot. The element needs to be a [focusable element](https://allyjs.io/data-tables/focusable.html), and left & right arrow can be used to navigate through the tab items, for that reason we give it role 'button'.
+The tab list has the `tablist` role, each `auro-tab` has the `tab` role, and each `auro-tabpanel` has the `tabpanel` role. Keyboard users move between tabs with the left and right arrow keys, `Home`, and `End`, and select a tab with `Enter` or `Space`.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/role.html) -->
-  <!-- The below content is automatically added from ../apiExamples/role.html -->
-  <auro-tabgroup variant="unstyled">
-    <div slot="tabs">
-      <auro-tab>
-        Baggage Info
-      </auro-tab>
-      <auro-tab>
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=../apiExamples/role.html) -->
+<!-- The below content is automatically added from ../apiExamples/role.html -->
+<auro-tabgroup>
+<div slot="tabs">
+<auro-tab>
+        Baggage info
+</auro-tab>
+<auro-tab>
         Help
-      </auro-tab>
-      <auro-tab>
+</auro-tab>
+<auro-tab>
         More
-      </auro-tab>
-      <auro-tab disabled>
+</auro-tab>
+<auro-tab disabled>
         Disabled
-      </auro-tab>
-      <auro-tab>
-        No Panel
-      </auro-tab>
-    </div>
-    <div slot="panels">
-      <auro-tabpanel>
-        <span>Tab 1 Content</span>
-      </auro-tabpanel>
-      <auro-tabpanel><span><a href="https://www.google.com">Tab 2 Content</a></span></auro-tabpanel>
-      <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
-      <auro-tabpanel><span>Disabled Content</span></auro-tabpanel>
-    </div>
-  </auro-tabgroup>
-  <!-- AURO-GENERATED-CONTENT:END -->
+</auro-tab>
+<auro-tab>
+        No panel
+</auro-tab>
+</div>
+<div slot="panels">
+<auro-tabpanel>
+<span>Tab 1 content</span>
+</auro-tabpanel>
+<auro-tabpanel><span><a href="https://www.google.com">Tab 2 content</a></span></auro-tabpanel>
+<auro-tabpanel><span>Tab 3 content</span></auro-tabpanel>
+<auro-tabpanel><span>Disabled content</span></auro-tabpanel>
+</div>
+</auro-tabgroup>
+<!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=../apiExamples/role.html) -->
 <!-- The below code snippet is automatically added from ../apiExamples/role.html -->
 
-```html
-<auro-tabgroup variant="unstyled">
-  <div slot="tabs">
-    <auro-tab>
-      Baggage Info
-    </auro-tab>
-    <auro-tab>
+<pre class="language-html"><code class="language-html">&lt;auro-tabgroup&gt;
+  &lt;div slot="tabs"&gt;
+    &lt;auro-tab&gt;
+      Baggage info
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
       Help
-    </auro-tab>
-    <auro-tab>
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
       More
-    </auro-tab>
-    <auro-tab disabled>
+    &lt;/auro-tab&gt;
+    &lt;auro-tab disabled&gt;
       Disabled
-    </auro-tab>
-    <auro-tab>
-      No Panel
-    </auro-tab>
-  </div>
-  <div slot="panels">
-    <auro-tabpanel>
-      <span>Tab 1 Content</span>
-    </auro-tabpanel>
-    <auro-tabpanel><span><a href="https://www.google.com">Tab 2 Content</a></span></auro-tabpanel>
-    <auro-tabpanel><span>Tab 3 Content</span></auro-tabpanel>
-    <auro-tabpanel><span>Disabled Content</span></auro-tabpanel>
-  </div>
-</auro-tabgroup>
-```
+    &lt;/auro-tab&gt;
+    &lt;auro-tab&gt;
+      No panel
+    &lt;/auro-tab&gt;
+  &lt;/div&gt;
+  &lt;div slot="panels"&gt;
+    &lt;auro-tabpanel&gt;
+      &lt;span&gt;Tab 1 content&lt;/span&gt;
+    &lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;&lt;a href="https://www.google.com"&gt;Tab 2 content&lt;/a&gt;&lt;/span&gt;&lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Tab 3 content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+    &lt;auro-tabpanel&gt;&lt;span&gt;Disabled content&lt;/span&gt;&lt;/auro-tabpanel&gt;
+  &lt;/div&gt;
+&lt;/auro-tabgroup&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Recommended Use and Version Control
+## Recommended use and version control
 
-There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-tabs` custom element is defined automatically.
+Every Auro component has two important parts: the [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and the custom element. The class is exported and then used to define the web component. When you install the component as described in the README, the class is imported and the `auro-tabgroup`, `auro-tab`, and `auro-tabpanel` custom elements are defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `register(name)` method and pass in a unique name.
+To avoid version conflicts with other copies of the component on the page, use the `register(name)` method with a unique name.
 
-```js
-import { AuroTab, AuroTabgroup, AuroTabpanel } '@aurodesignsystem/auro-tabs';
-
+<pre class="language-js"><code class="language-js">import { AuroTab, AuroTabgroup, AuroTabpanel } from '@aurodesignsystem/auro-tabs/class';
 AuroTab.register('custom-tab');
 AuroTabgroup.register('custom-tabgroup');
-AuroTabpanel.register('custom-tabpanel');
-```
+AuroTabpanel.register('custom-tabpanel');</code></pre>
 
-This will create a new custom element that you can use in your HTML that will function identically to the `auro-tabgroup` element.
+This creates three new custom elements that work the same as `auro-tabgroup`, `auro-tab`, and `auro-tabpanel`, so you can use them in your HTML.
 
 <div class="exampleWrapper">
-  <custom-tabgroup variant="unstyled">
-    <div slot="tabs">
-      <custom-tab>
-        Baggage Info
-      </custom-tab>
-      <custom-tab>
+<custom-tabgroup>
+<div slot="tabs">
+<custom-tab>
+        Baggage info
+</custom-tab>
+<custom-tab>
         Help
-      </custom-tab>
-      <custom-tab>
+</custom-tab>
+<custom-tab>
         More
-      </custom-tab>
-      <custom-tab>
-        No Panel
-      </custom-tab>
-    </div>
-    <div slot="panels">
-      <custom-tabpanel>
-        <span>Tab 1 Content</span>
-      </custom-tabpanel>
-      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
-      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
-    </div>
-  </custom-tabgroup>
+</custom-tab>
+<custom-tab>
+        No panel
+</custom-tab>
+</div>
+<div slot="panels">
+<custom-tabpanel>
+<span>Tab 1 content</span>
+</custom-tabpanel>
+<custom-tabpanel><span>Tab 2 content</span></custom-tabpanel>
+<custom-tabpanel><span>Tab 3 content</span></custom-tabpanel>
+</div>
+</custom-tabgroup>
 </div>
 <auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+<span slot="trigger">See code</span>
 
-```html
-<custom-tabgroup variant="unstyled">
-    <div slot="tabs">
-      <custom-tab>
-        Baggage Info
-      </custom-tab>
-      <custom-tab>
+<pre class="language-html"><code class="language-html">&lt;custom-tabgroup&gt;
+    &lt;div slot="tabs"&gt;
+      &lt;custom-tab&gt;
+        Baggage info
+      &lt;/custom-tab&gt;
+      &lt;custom-tab&gt;
         Help
-      </custom-tab>
-      <custom-tab>
+      &lt;/custom-tab&gt;
+      &lt;custom-tab&gt;
         More
-      </custom-tab>
-      <custom-tab>
-        No Panel
-      </custom-tab>
-    </div>
-    <div slot="panels">
-      <custom-tabpanel>
-        <span>Tab 1 Content</span>
-      </custom-tabpanel>
-      <custom-tabpanel><span>Tab 2 Content</span></custom-tabpanel>
-      <custom-tabpanel><span>Tab 3 Content</span></custom-tabpanel>
-    </div>
-  </custom-tabgroup>
-```
+      &lt;/custom-tab&gt;
+      &lt;custom-tab&gt;
+        No panel
+      &lt;/custom-tab&gt;
+    &lt;/div&gt;
+    &lt;div slot="panels"&gt;
+      &lt;custom-tabpanel&gt;
+        &lt;span&gt;Tab 1 content&lt;/span&gt;
+      &lt;/custom-tabpanel&gt;
+      &lt;custom-tabpanel&gt;&lt;span&gt;Tab 2 content&lt;/span&gt;&lt;/custom-tabpanel&gt;
+      &lt;custom-tabpanel&gt;&lt;span&gt;Tab 3 content&lt;/span&gt;&lt;/custom-tabpanel&gt;
+    &lt;/div&gt;
+  &lt;/custom-tabgroup&gt;</code></pre>
 </auro-accordion>
